@@ -9,8 +9,4 @@ services:
     ports:
     - "3000:3000"
 
-  service-dependencies:
-    image: dadarek/wait-for-dependencies
-    depends_on:
-      - ufp-env-handlebars
 

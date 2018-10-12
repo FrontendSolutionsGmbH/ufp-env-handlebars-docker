@@ -6,6 +6,9 @@ var express = require('express');
 var logger = require('morgan');
 var path = require('path');
 var app = express();
+// Constants
+const PORT = 3000;
+const HOST = '0.0.0.0';
 
 // log requests
 app.use(logger('dev'));
@@ -21,3 +24,4 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 
 app.listen(3000);
+console.log(`Running on http://${HOST}:${PORT}`);
