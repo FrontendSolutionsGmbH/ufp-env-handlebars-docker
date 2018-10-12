@@ -11,8 +11,8 @@ const targetDir = 'public'
 
 // Parse environment for object to feed to handlebars
 const parsedEnv = rainuEnvParser.parse()
-console.log('Env Object is:')
-console.log(parsedEnv)
+// console.log('Env Object is:')
+// console.log(parsedEnv)
 
 function handleFile(src, dest) {
 
@@ -50,7 +50,7 @@ glob('**/**.*',
 
                 console.log('Found handlebars templates', files.length)
                 files.map(file => {
-                    handleFile(help1 + '/' + file, help2 + file)
+                    handleFile(help1 + '/' + file, help2 + '/' + file)
                 })
             }
 

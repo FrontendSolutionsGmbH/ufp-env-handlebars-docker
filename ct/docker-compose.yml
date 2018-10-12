@@ -3,11 +3,16 @@ services:
   ufp-env-handlebars:
     image: ufp-env-handlebars
     environment:
-    - "CFG_WILLI_BUTZEMANN=testValue1"
-    - "CFG_WILLI_WOONKA=testValue2"
-    - "CFG_WILLI_TEST_0_1=testValue3"
-    - "CFG_HEY_0_0=testValue4"
+      - "CFG_MENU_0_LABEL=UFP.DE"
+      - "CFG_MENU_0_LINK=http://www.froso.de"
+      - "CFG_MENU_0_TARGET=http://www.froso.de"
+
+      - "CFG_MENU_1_LABEL=MENU 2"
+
+      - "CFG_MENU_2_LABEL=MENU 3"
+
+      - "CFG_MENU_3_LABEL=MENU 3"
     ports:
-    - "3000:3000"
+      - "3000:3000"
 
 
