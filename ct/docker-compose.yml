@@ -1,0 +1,18 @@
+version: '3.2'
+services:
+  ufp-env-handlebars:
+    image: ufp-env-handlebars
+    environment:
+      - "CFG_MENU_0_LABEL=UFP.DE"
+      - "CFG_MENU_0_LINK=http://www.froso.de"
+      - "CFG_MENU_0_TARGET=http://www.froso.de"
+
+      - "CFG_MENU_1_LABEL=MENU 2"
+
+      - "CFG_MENU_2_LABEL=MENU 3"
+
+      - "CFG_MENU_3_LABEL=MENU 3"
+    ports:
+      - "3000:3000"
+
+
