@@ -1,23 +1,24 @@
-const Handlebars = require('handlebars')
-const rainuEnvParser = require('rainu-env-parser')
-const fs = require('fs')
-const path = require('path')
-const glob = require("glob")
-const defaults = require("./config/default.json")
+'use strict';
+
+const Handlebars = require('handlebars');
+const rainuEnvParser = require('rainu-env-parser');
+const fs = require('fs');
+const path = require('path');
+const glob = require("glob");
 
 // Consts
 
-const templateDir = 'template'
-const targetDir = 'public'
+const templateDir = 'template';
+const targetDir = 'public';
 
 // Parse environment for object to feed to handlebars
-const parsedEnv = rainuEnvParser.parse("CFG_",defaults)
+const parsedEnv = rainuEnvParser.parse();
 // console.log('Env Object is:')
 // console.log(parsedEnv)
 
 function handleFile(src, dest) {
 
-    console.log(`Parsing ${src}`)
+    console.log(`Parsing ${src}`);
     const source = fs.readFileSync(src, 'utf8');
     var template = Handlebars.compile(source);
 
@@ -26,15 +27,15 @@ function handleFile(src, dest) {
         console.log('Creating dir:', path.dirname(dest));
         fs.mkdirSync(path.dirname(dest));
     }
-    fs.writeFileSync(dest, result)
-    console.log(`Written ${dest}`)
+    fs.writeFileSync(dest, result);
+    console.log(`Written ${dest}`);
 
 }
 
-const help1 = path.join(__dirname, templateDir)
-const help2 = path.join(__dirname, targetDir)
-console.log(`Template dir ${help1}`)
-console.log(`Template dir ${(help2)}`)
+const help1 = path.join(__dirname, templateDir);
+const help2 = path.join(__dirname, targetDir);
+console.log(`Template dir ${help1}`);
+console.log(`Template dir ${(help2)}`);
 glob('**/**.*',
     {
         cwd: help1
@@ -46,17 +47,16 @@ glob('**/**.*',
         if (er === null) {
 
             if (files.length === 0) {
-                console.log('No templates found')
+                console.log('No templates found');
             } else {
 
-                console.log('Found handlebars templates', files.length)
+                console.log('Found handlebars templates', files.length);
                 files.map(file => {
-                    handleFile(help1 + '/' + file, help2 + '/' + file)
-                })
+                    handleFile(help1 + '/' + file, help2 + '/' + file);
+                });
             }
 
         } else {
-            console.log('Error', er)
+            console.log('Error', er);
         }
-    })
-
+    });

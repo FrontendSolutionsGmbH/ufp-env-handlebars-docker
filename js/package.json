@@ -5,6 +5,9 @@
     "handlebars": "^4.0.12",
     "morgan": "^1.9.1",
     "path": "^0.12.7",
-    "rainu-env-parser": "^1.0.0"
+    "rainu-env-parser": "^1.0.0",
+    "rollup": "^0.66.6",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
   }
 }
