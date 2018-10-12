@@ -1,0 +1,16 @@
+version: '3.2'
+services:
+  ufp-env-handlebars:
+    image: ufp-env-handlebars
+    environment:
+    - "CFG_WILLI_BUTZEMANN=dnsmasq"
+    - "CFG_WILLI_WOONKA=dnsmasq"
+    - "CFG_WILLI_TEST_0_1=dnsmasq"
+    ports:
+    - "3000:3000"
+
+  service-dependencies:
+    image: dadarek/wait-for-dependencies
+    depends_on:
+      - ufp-env-handlebars
+
