@@ -10,10 +10,19 @@
               href="https://www.w3schools.com/w3css/4/w3.css" >
     </head >
     <body >
-        <div class="w3-bar w3-black" >
+        <div class="w3-bar w3-black w3-{{menucolor}}" >
             {{#menu}}
+            {{default link 'KEIN LINK'}}
+            {{#if link}}
             <a href="{{link}}"
                class="w3-bar-item w3-button" >{{label}}</a >
+            {{else}}
+            <div      class="w3-bar-item w3-button"  >
+                {{label}}
+            </div >
+
+            {{/if}}
+
             {{/menu}}
         </div >
     </body >

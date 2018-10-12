@@ -5,13 +5,22 @@ const path = require('path')
 const glob = require("glob")
 const defaults = require("./config/default.json")
 
+// defs
+Handlebars.registerHelper('default', function (value, defaultValue) {
+
+    return new Handlebars.SafeString(value || defaultValue );
+});
+
 // Consts
 
-const templateDir = 'template'
-const targetDir = 'public'
+const ufpConfig = rainuEnvParser.parse("UFP_", {
 
+    templatedir: 'template',
+    targetdir: 'public'
+})
 // Parse environment for object to feed to handlebars
-const parsedEnv = rainuEnvParser.parse("CFG_",defaults)
+const parsedEnv = rainuEnvParser.parse("CFG_", defaults)
+console.log('Ufp Config is ', ufpConfig)
 // console.log('Env Object is:')
 // console.log(parsedEnv)
 
@@ -31,13 +40,14 @@ function handleFile(src, dest) {
 
 }
 
-const help1 = path.join(__dirname, templateDir)
-const help2 = path.join(__dirname, targetDir)
-console.log(`Template dir ${help1}`)
-console.log(`Template dir ${(help2)}`)
+const realPath1 = path.join(__dirname, ufpConfig.templatedir)
+const realPath2 = path.join(__dirname, ufpConfig.targetdir)
+
+console.log(`Output dir ${(realPath2)}`)
+
 glob('**/**.*',
     {
-        cwd: help1
+        cwd: realPath1
     }, function (er, files) {
         // files is an array of filenames.
         // If the `nonull` option is set, and nothing
@@ -51,7 +61,7 @@ glob('**/**.*',
 
                 console.log('Found handlebars templates', files.length)
                 files.map(file => {
-                    handleFile(help1 + '/' + file, help2 + '/' + file)
+                    handleFile(realPath1 + '/' + file, realPath2 + '/' + file)
                 })
             }
 
