@@ -1,10 +1,5 @@
 # ufp-env-handlebars-docker
-UFP Docker image that creates a JSON from ENV variables, and feeds them to a Handlebars template
-
-WARNING:
-this is work in progress, and dockerized version will include only bundled files, current state is using copied node modules folder untouched in image
-
-
+UFP Docker image that uses handlebar template folder and environment variables as input for handlebars rendering and hosting the parsed templates under localhost:3000
 
 # Quickstart
 
@@ -19,3 +14,7 @@ build the docker file using the
 
 	./build.sh
 	
+
+# Test
+
+use docker-compose up in the /ct folder for executing a local instance
