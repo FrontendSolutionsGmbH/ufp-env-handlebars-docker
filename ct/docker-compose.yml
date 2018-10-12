@@ -3,9 +3,10 @@ services:
   ufp-env-handlebars:
     image: ufp-env-handlebars
     environment:
-    - "CFG_WILLI_BUTZEMANN=dnsmasq"
-    - "CFG_WILLI_WOONKA=dnsmasq"
-    - "CFG_WILLI_TEST_0_1=dnsmasq"
+    - "CFG_WILLI_BUTZEMANN=testValue1"
+    - "CFG_WILLI_WOONKA=testValue2"
+    - "CFG_WILLI_TEST_0_1=testValue3"
+    - "CFG_HEY_0_0=testValue4"
     ports:
     - "3000:3000"
 

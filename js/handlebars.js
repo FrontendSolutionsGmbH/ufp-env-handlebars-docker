@@ -16,7 +16,7 @@ console.log(parsedEnv)
 
 function handleFile(src, dest) {
 
-    console.log(`Parsing ${src}->${dest}`)
+    console.log(`Parsing ${src}`)
     const source = fs.readFileSync(src, 'utf8');
     var template = Handlebars.compile(source);
 
@@ -26,6 +26,7 @@ function handleFile(src, dest) {
         fs.mkdirSync(path.dirname(dest));
     }
     fs.writeFileSync(dest, result)
+    console.log(`Written ${dest}`)
 
 }
 
@@ -47,9 +48,9 @@ glob('**/**.*',
                 console.log('No templates found')
             } else {
 
-                console.log('Found handlebars templates', files)
+                console.log('Found handlebars templates', files.length)
                 files.map(file => {
-                    handleFile(help1 +'/'+ file, help2 + file)
+                    handleFile(help1 + '/' + file, help2 + file)
                 })
             }
 
