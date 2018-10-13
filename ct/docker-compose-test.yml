@@ -1,6 +1,6 @@
 version: '3.2'
 services:
-  ufp-env-handlebars:
+  robot-test:
     image: manycoding/robotframework
     volumes:
       - ./robot:/robot/tests

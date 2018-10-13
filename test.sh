@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-#./build.sh
+./build.sh
 
 
 echo "------------------------------------------------------------------------------"
@@ -15,7 +15,6 @@ echo "Executing component test "
 echo "------------------------------------------------------------------------------"
 
 docker-compose -f ./ct/docker-compose-test.yml up
-
 
 echo "------------------------------------------------------------------------------"
 echo "Shutting down Infrastructure "
