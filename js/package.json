@@ -4,24 +4,7 @@
   "description": "creates a json from environment variables, feeds to a handlebars template dir and parses all found files to output directory",
   "main": "index.js",
   "scripts": {
-    "ufp-install": "npm install && node node_modules/ufp-core/ext/Install",
-    "ufp-util:createTests": "node node_modules/ufp-core/bin/createTests",
-    "ufp-make": "node node_modules/ufp-core/ext/build/scripts/make",
-    "ufp-install-new": "npm install ../../src_modules/ufp-root",
-    "ufp-update": "node node_modules/ufp-core/ext/UpdatePackageJson",
-    "ufp-update-scripts": "node node_modules/ufp-core/ext/UpdatePackageJsonScripts",
-    "ufp-update-dependencies": "node node_modules/ufp-core/ext/UpdatePackageJsonDependencies",
-    "ufp-start": "cross-env NODE_ENV=development node node_modules/ufp-core/ext/build/scripts/start",
-    "ufp-test-util:create": "node node_modules/ufp-core/bin/createTests",
-    "ufp-start-install": "npm run ufp-install-new && npm run ufp-start",
-    "ufp-compile:production": "cross-env NODE_ENV=production npm run ufp-compile",
-    "ufp-compile:dev": "cross-env NODE_ENV=development npm run ufp-compile",
-    "ufp-compile": "node node_modules/ufp-core/ext/build/scripts/compile",
-    "ufp-lint": "eslint src --ext .jsx,.js --config node_modules/ufp-core/src/.eslintrc",
-    "ufp-lint:fix": "npm run ufp-lint -- --fix",
-    "ufp-test": "cross-env NODE_ENV=test karma start node_modules/ufp-core/ext/presets/default/config/karma.config --no-exit",
-    "ufp-test:watch": "npm run ufp-test -- --watch",
-    "ufp-start:dist": "node node_modules/ufp-core/ext/build/scripts/serveDist"
+    "lint": "eslint ./src/ --fix"
   },
   "repository": {
     "type": "git",
@@ -30,6 +13,12 @@
   "author": "Christian Kleinhuis <ck@froso.de> http://wwww.froso.de",
   "license": "MIT",
   "dependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
     "express": "4.16.4",
     "glob": "7.1.3",
     "global": "^4.3.2",
