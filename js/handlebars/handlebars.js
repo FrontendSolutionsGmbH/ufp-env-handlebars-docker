@@ -27,11 +27,12 @@ const ufpConfig = rainuEnvParser.parse("UFP_", {
 // Parse environment for object to feed to handlebars
 const parsedEnv = rainuEnvParser.parse(ufpConfig.prefix, defaults)
 line()
-console.log('Config is:')
-console.log(ufpConfig)
+console.log('Config Object (use UFP_ prefix environment to override) is:')
+console.log(JSON.stringify(ufpConfig, null, ' '))
 line()
-console.log('Env Object is:')
-console.log(parsedEnv)
+console.log('Env Object* (use CFG_ prefix environment to override) is:')
+console.log(JSON.stringify(parsedEnv, null, ' '))
+console.log('(* this is used as input for Handlebars)')
 line()
 
 function handleFile(src, dest) {
