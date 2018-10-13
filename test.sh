@@ -1,25 +1,24 @@
 #!/usr/bin/env bash
 
 
-./build.sh
-
+#// ./build.sh
 
 echo "------------------------------------------------------------------------------"
 echo "Bringing up Infrastructure "
 echo "------------------------------------------------------------------------------"
 
-/stack.sh -d service
-/stack.sh -u service -b
+./stack.sh -d service
+./stack.sh -u service -b
 
 echo "------------------------------------------------------------------------------"
 echo "Executing component test "
 echo "------------------------------------------------------------------------------"
 
-/stack.sh -d test
-/stack.sh -u test
+./stack.sh -d test
+./stack.sh -u test
 
 echo "------------------------------------------------------------------------------"
 echo "Shutting down Infrastructure "
 echo "------------------------------------------------------------------------------"
 
-/stack.sh -d service
+./stack.sh -d service
