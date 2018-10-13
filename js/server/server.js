@@ -26,3 +26,10 @@ app.use(express.static(path.join(process.cwd(), 'public')));
 
 app.listen(PORT);
 console.log(`Started server on ${HOST}:${PORT}`)
+process.on('SIGTERM', function () {
+    console.log(`SIGTERM`)
+    app.close(function () {
+        console.log(`Server Closed, exiting`)
+        process.exit(0);
+    });
+});

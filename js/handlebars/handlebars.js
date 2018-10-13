@@ -10,20 +10,29 @@ Handlebars.registerHelper('default', function (value, defaultValue) {
     return new Handlebars.SafeString(value || defaultValue);
 });
 
+function line() {
+    console.log('-------------------------------------------------------------------------------')
+
+}
 // Consts
 
 const ufpConfig = rainuEnvParser.parse("UFP_", {
 
-    templatedir: '/template',
-    targetdir: '/public',
+    templatedir: 'template',
+    targetdir: 'public',
     prefix: 'CFG_'
 
 })
 
 // Parse environment for object to feed to handlebars
 const parsedEnv = rainuEnvParser.parse(ufpConfig.prefix, defaults)
+line()
+console.log('Config is:')
+console.log(ufpConfig)
+line()
 console.log('Env Object is:')
 console.log(parsedEnv)
+line()
 
 function handleFile(src, dest) {
 
@@ -45,6 +54,8 @@ const help1 = path.join(process.cwd(), ufpConfig.templatedir)
 const help2 = path.join(process.cwd(), ufpConfig.targetdir)
 console.log(`Template dir ${help1}`)
 console.log(`Template dir ${(help2)}`)
+line()
+
 glob('**/**.*',
     {
         cwd: help1
