@@ -7,6 +7,10 @@ SCRIPT_PATH=$(realpath "$0")
 SCRIPT_NAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 SCRIPT_HOME=${SCRIPT_PATH%$SCRIPT_NAME}
 
+echo "SCRIPT_PATH=${SCRIPT_PATH}"
+echo "SCRIPT_NAME=${SCRIPT_NAME}"
+echo "SCRIPT_HOME=${SCRIPT_HOME}"
+
 START=1
 STOP=0
 
@@ -59,8 +63,8 @@ pullAllImages() {
 
 logAllImages() {
     cd ${SCRIPT_HOME}/ct/
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml logs
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml logs
+#    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml logs
+#    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml logs
 #    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-debug.yml logs
 #    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml logs
     cd -
