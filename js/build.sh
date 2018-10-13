@@ -17,7 +17,7 @@ webpack --entry ./server/server.js --target node  --output-filename index.js   -
 echo "------------------------------------------------------------------------------"
 echo "Executing Webpack for handlebars/index.js"
 echo "------------------------------------------------------------------------------"
-webpack --entry ./handlebars/handlebars.js --target node  --output-filename index.js    --output-path dist/handlebars   --mode production --resolve-alias handlebars=handlebars/dist/handlebars.js
+webpack --entry ./handlebars/handlebars.js --target node  --output-filename index.js    --output-path dist/handlebars --mode production --resolve-alias handlebars=handlebars/dist/handlebars.js
 
 echo "------------------------------------------------------------------------------"
 echo "Manually copying static assets"

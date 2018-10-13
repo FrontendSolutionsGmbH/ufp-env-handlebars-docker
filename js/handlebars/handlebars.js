@@ -6,6 +6,13 @@ const glob = require("glob")
 const mkdirp = require("mkdirp")
 const defaults = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'default.json')))
 
+/**
+ * one of the handlebars utility methods
+ * after registering the ;default; helper you can use
+ * {{default value defaultValue}}
+ * in your templates
+ *
+ * */
 Handlebars.registerHelper('default', function (value, defaultValue) {
     return new Handlebars.SafeString(value || defaultValue);
 });
@@ -27,12 +34,16 @@ const ufpConfig = rainuEnvParser.parse("UFP_", {
 // Parse environment for object to feed to handlebars
 const parsedEnv = rainuEnvParser.parse(ufpConfig.prefix, defaults)
 line()
-console.log('Config Object (use UFP_ prefix environment to override) is:')
+console.log('Config Object is *:')
 console.log(JSON.stringify(ufpConfig, null, ' '))
+console.log('Notes:')
+console.log('(** (use UFP_ prefix environment to override))')
 line()
-console.log('Env Object* (use CFG_ prefix environment to override) is:')
+console.log('Env Object is * **:')
 console.log(JSON.stringify(parsedEnv, null, ' '))
+console.log('Notes:')
 console.log('(* this is used as input for Handlebars)')
+console.log('(** (use CFG_ prefix environment to override))')
 line()
 
 function handleFile(src, dest) {

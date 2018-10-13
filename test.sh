@@ -1,27 +1,24 @@
 #!/usr/bin/env bash
 
-echo "------------------------------------------------------------------------------"
-echo "Building ufp-env-handlebars "
-echo "------------------------------------------------------------------------------"
 
-#cd js
-#yarn install
 #./build.sh
-#cd ..
-
-echo "------------------------------------------------------------------------------"
-echo "Building ufp-env-handlebars docker file "
-echo "------------------------------------------------------------------------------"
-
-
-docker build -t ufp/env-handlebars .
 
 
 echo "------------------------------------------------------------------------------"
-echo "Building finished "
+echo "Bringing up Infrastructure "
 echo "------------------------------------------------------------------------------"
+
+docker-compose -f ./ct/docker-compose.yml up -d
+
+echo "------------------------------------------------------------------------------"
+echo "Executing component test "
+echo "------------------------------------------------------------------------------"
+
+docker-compose -f ./ct/docker-compose-test.yml up
 
 
 echo "------------------------------------------------------------------------------"
-echo "docker run  -p 3000:3000 ufp/env-handlebars "
+echo "Shutting down Infrastructure "
 echo "------------------------------------------------------------------------------"
+
+docker-compose -f ./ct/docker-compose.yml down

@@ -1,11 +1,7 @@
-/**
- * Module dependencies.
- */
-
-var express = require('express');
-var logger = require('morgan');
-var path = require('path');
-var app = express();
+const express = require('express');
+const logger = require('morgan');
+const path = require('path');
+const app = express();
 
 // consts
 
@@ -21,17 +17,15 @@ app.use(logger('dev'));
 // the `req.path` within the directory
 // that you pass it. In this case "GET /js/app.js"
 // will look for "./public/js/app.js".
-
 app.use(express.static(path.join(process.cwd(), 'public')));
 
-app.listen(PORT);
-console.log(`Started server on ${HOST}:${PORT}`)
 const server = app.listen(PORT);
+console.log(`Started server on ${HOST}:${PORT}`)
 
 // https://medium.com/@becintec/building-graceful-node-applications-in-docker-4d2cd4d5d392
 // The signals we want to handle
 // NOTE: although it is tempting, the SIGKILL signal (9) cannot be intercepted and handled
-var signals = {
+const signals = {
     'SIGHUP': 1,
     'SIGINT': 2,
     'SIGTERM': 15
@@ -39,7 +33,7 @@ var signals = {
 // Do any necessary shutdown logic for our application here
 const shutdown = (signal, value) => {
     console.log("shutdown!");
-    app.close(() => {
+    server.close(() => {
         console.log(`server stopped by ${signal} with value ${value}`);
         process.exit(128 + value);
     });

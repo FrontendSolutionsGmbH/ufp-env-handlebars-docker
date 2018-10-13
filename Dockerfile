@@ -13,7 +13,14 @@ RUN ./build.sh
 
 # final step build distribution and execute the parse and serve steps
 FROM node:8-slim
+
+RUN wget https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_amd64.deb
+RUN dpkg -i dumb-init_*.deb
+
+
 COPY --from=builder /ufp-env-handlebars-build/dist /ufp-env-handlebars
 WORKDIR /ufp-env-handlebars
 EXPOSE 3000:3000
+# Runs "/usr/bin/dumb-init -- /my/script --with --args"
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD ./execute.sh

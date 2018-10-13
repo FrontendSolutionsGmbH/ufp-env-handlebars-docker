@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
- RED='\033[0;31m'
-NC='\033[0m' # No Color
+_term() {
+  echo "Caught SIGTERM signal!"
+  kill -TERM "$child" 2>/dev/null
+}
+
+trap _term SIGTERM
+trap _term SIGINT
+trap _term SIGHUP
 
 echo " _______ _______ ______                              _______ _______ ___ ___  "
 echo "|   |   |    ___|   __ \         ______             |    ___|    |  |   |   | "
@@ -22,4 +28,8 @@ node handlebars
 echo "------------------------------------------------------------------------------"
 echo "Starting Server"
 echo "------------------------------------------------------------------------------"
-node server
+node server &
+
+child=$!
+
+wait "$child"

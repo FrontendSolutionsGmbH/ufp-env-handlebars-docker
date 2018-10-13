@@ -1,0 +1,12 @@
+version: '3.2'
+services:
+  ufp-env-handlebars:
+    image: manycoding/robotframework
+    volumes:
+      - ./robot:/robot/tests
+      - ./report:/robot/report
+    entrypoint:
+      - robot
+      - -d
+      - /robot/report
+      - /robot/tests
