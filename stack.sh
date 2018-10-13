@@ -16,9 +16,11 @@ STACK_SERVICE=1
 STACK_TEST=0
 
 BACKGROUND=""
+CREATE=0
 
 COMPOSE_PROJECT_NAME="ct"
 
+RESULT=0
 ###
 # Functions
 ###
@@ -29,6 +31,7 @@ help() {
   echo "   -h          Show this help"
   echo "   -p          Pulls the latest docker images"
   echo "   -b          starts stack in background with -d"
+  echo "   -c          recreate container stacks"
   echo "   -l          Show the logs"
   echo "   -u <stack>  Starts the given stack. Possible stacks see below!"
   echo "   -d <stack>  Stops the given stack. Possible stacks see below!"
@@ -79,7 +82,11 @@ getEnv() {
 
 startInfraStack() {
     cd ${SCRIPT_HOME}/ct/
+
+	if [ "$CREATE" -eq "1" ]; then
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml build --no-cache
+    fi
+
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml -p ${COMPOSE_PROJECT_NAME} ${BACKGROUND}
     cd -
 }
@@ -92,7 +99,11 @@ stopInfraStack() {
 
 startDebugStack(){
     cd ${SCRIPT_HOME}/ct/
+
+	if [ "$CREATE" -eq "1" ]; then
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-debug.yml build --no-cache
+    fi
+
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-debug.yml -p ${COMPOSE_PROJECT_NAME} up ${BACKGROUND}
     cd -
 }
@@ -105,22 +116,40 @@ stopDebugStack(){
 
 startServiceStack(){
     cd ${SCRIPT_HOME}/ct/
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml build --no-cache
+
+	if [ "$CREATE" -eq "1" ]; then
+		docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml build --no-cache
+	fi
+
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml -p ${COMPOSE_PROJECT_NAME} up ${BACKGROUND}
+    RESULT=$?
     cd -
 }
 
 stopServiceStack(){
+	echo "Stopping Service Stack"
     cd ${SCRIPT_HOME}/ct/
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml -p ${COMPOSE_PROJECT_NAME} down
     cd -
+
+	echo "Stopping Service Stack End"
 }
 
 startTestStack(){
+	echo "Starting Test Stack"
+		if [ "$CREATE" -eq "1" ]; then
+		./build.sh
+	fi
     cd ${SCRIPT_HOME}/ct/
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml build --no-cache
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml -p ${COMPOSE_PROJECT_NAME} up ${BACKGROUND}
+
+	if [ "$CREATE" -eq "1" ]; then
+		docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml build --no-cache
+	fi
+
+    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml  -p ${COMPOSE_PROJECT_NAME} up --exit-code-from robot-test ${BACKGROUND}
+    RESULT=$?
     cd -
+	echo "Starting Test Stack End ${RESULT}"
 }
 
 stopTestStack(){
@@ -138,13 +167,16 @@ if [ "$#" -ge 1 ]; then
     STACK_SERVICE=0
 fi
 
-while getopts 'u:d:hplb' OPTION; do
+while getopts 'u:d:hplbc' OPTION; do
   case $OPTION in
     b)
         BACKGROUND="-d"
     ;;
     p)
         pullAllImages
+    ;;
+    c)
+        CREATE=1
     ;;
     l)
         logAllImages
@@ -184,3 +216,5 @@ if [ "$STACK_TEST" -eq "1" ]; then
     if [ "$START" -eq "1" ];then startTestStack ;fi
     if [ "$STOP" -eq "1" ];then stopTestStack ;fi
 fi
+
+exit ${RESULT}

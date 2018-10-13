@@ -1,4 +1,5 @@
 FROM node:8-slim as builder
+VOLUME /ufp-env-handlebars-build/node_modules
 # Setup binary pathes for project node modules
 ENV PATH ${PATH}:./node_modules/.bin
 # Set up working directory, copying our local js folder as buil

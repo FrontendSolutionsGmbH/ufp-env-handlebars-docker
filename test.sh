@@ -1,24 +1,27 @@
 #!/usr/bin/env bash
 
-
-#// ./build.sh
+INPUT=$@
 
 echo "------------------------------------------------------------------------------"
 echo "Bringing up Infrastructure "
 echo "------------------------------------------------------------------------------"
 
-./stack.sh -d service
-./stack.sh -u service -b
+./stack.sh -d service ${INPUT}
+./stack.sh -u service -b ${INPUT}
 
 echo "------------------------------------------------------------------------------"
 echo "Executing component test "
 echo "------------------------------------------------------------------------------"
 
-./stack.sh -d test
-./stack.sh -u test
+./stack.sh -d test ${INPUT}
+./stack.sh -u test ${INPUT}
+TEST_RESULT=$?
 
 echo "------------------------------------------------------------------------------"
 echo "Shutting down Infrastructure "
 echo "------------------------------------------------------------------------------"
 
-./stack.sh -d service
+./stack.sh -d service ${INPUT}
+
+echo "EXITING WITH ${TEST_RESULT}"
+exit ${TEST_RESULT}

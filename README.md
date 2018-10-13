@@ -66,3 +66,27 @@ the 4 branches of possible stacks which are:
 - Debug - Any debug tools ( like this repository ) that may help yourself keeps track of what is going on
 - Service - the service itself, this stack should contain only the service under development
 - Test - we use robot framework for testing, nevertheless, the test stack executes against a running infra and service stack
+
+
+	$ ./stack.sh --help 
+     Starts/Stops the local stack and their debug-tools.
+     Options:
+       -h          Show this help
+       -p          Pulls the latest docker images
+       -b          starts stack in background with -d
+       -c          recreate container stacks
+       -l          Show the logs
+       -u <stack>  Starts the given stack. Possible stacks see below!
+       -d <stack>  Stops the given stack. Possible stacks see below!
+    
+       Possible Stacks:
+         infra     The infrastructure needed by the services
+         service   The order-process involved services
+         debug     The debug tools
+         test     The Robotframework test run
+         all       All these stacks
+    
+     Default behavior: Starts the service only
+    
+     (continued) author: ck@froso.de
+     (initial) author: s.schumann@tarent.de
