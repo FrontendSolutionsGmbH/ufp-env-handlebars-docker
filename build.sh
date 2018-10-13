@@ -14,7 +14,7 @@ echo "Building ufp-env-handlebars docker file "
 echo "------------------------------------------------------------------------------"
 
 
-docker build -t ufp/env-handlebars .
+docker build --no-cache -t ufp/env-handlebars .
 
 
 echo "------------------------------------------------------------------------------"
