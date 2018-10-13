@@ -4,7 +4,8 @@
   "description": "creates a json from environment variables, feeds to a handlebars template dir and parses all found files to output directory",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ./src/ --fix"
+    "lint": "eslint ./src/ --fix",
+    "dev": "nodemon builder --ignore dist "
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "handlebars": "4.0.12",
     "mkdirp": "0.5.1",
     "morgan": "1.9.1",
+    "nodemon": "^1.18.4",
     "path": "0.12.7",
     "rainu-env-parser": "1.0.0",
     "webpack": "4.20.2",

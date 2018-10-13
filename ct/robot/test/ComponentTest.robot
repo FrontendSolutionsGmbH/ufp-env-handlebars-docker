@@ -18,10 +18,10 @@ Check Service 1 With Current ENV Config in Docker-Compose.yml
   Should Be Equal As Strings  ${resp.status_code}  200
   Should Contain  ${resp.text}  MENU 3
   Should Contain  ${resp.text}  MENU 2
-  Should Contain  ${resp.text}  http://www.froso.de
-  Should Contain  ${resp.text}  UFP.DE
+  Should Contain  ${resp.text}  UFP
   Should Contain  ${resp.text}  w3-blue
   Should Contain  ${resp.text}  github.com
+  Should Contain  ${resp.text}  w3-cyan
   Should Contain  ${resp.text}  https://github.com
   Log  ${resp.text}
 

@@ -22,20 +22,67 @@
             min-height : 100%;
         }
     </style >
+    <script >
+        function myFunction(item, show) {
+            console.log('Event received ', item)
+            console.log('Event received ', item.firstElementChild)
+            if (show) {
+                // just show
+                if (item.firstElementChild.className.indexOf("w3-show") == -1) {
+                    item.firstElementChild.className += " w3-show";
+                }
+            }
+            else {
+                // just hide
+                if (item.firstElementChild.className.indexOf("w3-show") !== -1) {
+                    item.firstElementChild.className = item.firstElementChild.className.replace(" w3-show", "");
+                }
 
+            }
+        }
+        function myFunction2(item) {
+            console.log('Event received ', item)
+            console.log('Event received ', item.firstElementChild)
+                // just show
+                if (item.firstElementChild.className.indexOf("w3-show") == -1) {
+                    item.firstElementChild.className += " w3-show";
+                }
+            else {
+
+                    item.firstElementChild.className = item.firstElementChild.className.replace(" w3-show", "");
+
+
+            }
+        }
+    </script >
     <body height="100%"
           width="100%" >
-        <div class="w3-bar {{default   menucolor 'w3-black'}}" >
+
+        {{#*inline "myPartial"}}
+        <a class="w3-bar-item w3-button {{default color 'w3-black'}} "
+           href="{{default link  '#'}}"
+           target="{{default target 'content'}}" >{{default label 'DefaultLabel'}}</a >
+        {{#if children}}
+        <div onmouseleave="myFunction(this,false)"
+             onclick="myFunction2(this)"
+             class="w3-bar-item  w3-button {{default color 'w3-black'}} " >
+            <div class="w3-dropdown-content w3-bar-block "
+                 style="min-width:25px" >
+                {{#children}}
+                {{> myPartial}}
+                {{/children}}
+            </div >
+            &gt;
+        </div >
+        {{/if}}
+        {{/inline}}
+
+
+        <div class="w3-bar {{default menucolor 'w3-black'}}" >
+
             {{#menu}}
-
-            <a href="{{default link  '#'}}"
-               target="{{default target 'content'}}"
-               class="w3-bar-item w3-button {{default color 'w3-black'}}" >{{default label 'DefaultLabel'}}</a >
-
+            {{> myPartial}}
             {{/menu}}
-
-
-            <a class="w3-bar-item w3-button " >TEST</a >
 
 
             <div class="w3-bar-item w3-white w3-right w3-button" >
