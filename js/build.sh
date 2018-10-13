@@ -6,16 +6,16 @@ echo "Cleaning ./dist folder"
 echo "------------------------------------------------------------------------------"
 rm -rf dist
 echo "------------------------------------------------------------------------------"
-echo "Executing Webpack for server/server.js"
+echo "Executing Webpack for server/index.js"
 echo "------------------------------------------------------------------------------"
-webpack --entry ./server/server.js --target node  --output-filename server.js   --output-path dist/server
+webpack --entry ./server/server.js --target node  --output-filename index.js   --output-path dist/server
 echo "------------------------------------------------------------------------------"
-echo "Executing Webpack for handlebars/handlebars.js"
+echo "Executing Webpack for handlebars/index.js"
 echo "------------------------------------------------------------------------------"
-webpack --entry ./handlebars/handlebars.js --target node  --output-filename handlebars.js    --output-path dist/handlebars
+webpack --entry ./handlebars/handlebars.js --target node  --output-filename index.js    --output-path dist/handlebars
 
 echo "------------------------------------------------------------------------------"
 echo "Manually copying static assets"
 echo "------------------------------------------------------------------------------"
 
-cp -r ./static/ ./dist
+cp -r ./static/* ./dist

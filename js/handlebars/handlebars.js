@@ -3,15 +3,20 @@ const rainuEnvParser = require('rainu-env-parser')
 const fs = require('fs')
 const path = require('path')
 const glob = require("glob")
+const mkdirp = require("mkdirp")
 const defaults = {}
+
+Handlebars.registerHelper('default', function (value, defaultValue) {
+    return new Handlebars.SafeString(value || defaultValue);
+});
 
 // Consts
 
-const templateDir = 'template'
-const targetDir = 'public'
+const templateDir = '/template'
+const targetDir = '/public'
 
 // Parse environment for object to feed to handlebars
-const parsedEnv = rainuEnvParser.parse("CFG_",defaults)
+const parsedEnv = rainuEnvParser.parse("CFG_", defaults)
 // console.log('Env Object is:')
 // console.log(parsedEnv)
 
@@ -24,15 +29,15 @@ function handleFile(src, dest) {
     var result = template(parsedEnv);
     if (!fs.existsSync(path.dirname(dest))) {
         console.log('Creating dir:', path.dirname(dest));
-        fs.mkdirSync(path.dirname(dest));
+        mkdirp.sync(path.dirname(dest));
     }
     fs.writeFileSync(dest, result)
     console.log(`Written ${dest}`)
 
 }
 
-const help1 = path.join(__dirname, templateDir)
-const help2 = path.join(__dirname, targetDir)
+const help1 = path.join(process.cwd(), templateDir)
+const help2 = path.join(process.cwd(), targetDir)
 console.log(`Template dir ${help1}`)
 console.log(`Template dir ${(help2)}`)
 glob('**/**.*',
