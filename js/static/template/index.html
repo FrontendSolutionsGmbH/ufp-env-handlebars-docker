@@ -28,28 +28,28 @@
             console.log('Event received ', item.firstElementChild)
             if (show) {
                 // just show
-                if (item.firstElementChild.className.indexOf("w3-show") == -1) {
-                    item.firstElementChild.className += " w3-show";
+                if (item.firstElementChild.nextElementSibling.className.indexOf("w3-show") == -1) {
+                    item.firstElementChild.nextElementSibling.className += " w3-show";
                 }
             }
             else {
                 // just hide
-                if (item.firstElementChild.className.indexOf("w3-show") !== -1) {
-                    item.firstElementChild.className = item.firstElementChild.className.replace(" w3-show", "");
+                if (item.firstElementChild.nextElementSibling.className.indexOf("w3-show") !== -1) {
+                    item.firstElementChild.nextElementSibling.className = item.firstElementChild.nextElementSibling.className.replace(" w3-show", "");
                 }
 
             }
         }
         function myFunction2(item) {
             console.log('Event received ', item)
-            console.log('Event received ', item.firstElementChild)
+            console.log('Event received ', item.firstElementChild.nextElementSibling)
             // just show
-            if (item.firstElementChild.className.indexOf("w3-show") == -1) {
-                item.firstElementChild.className += " w3-show";
+            if (item.firstElementChild.nextElementSibling.className.indexOf("w3-show") == -1) {
+                item.firstElementChild.nextElementSibling.className += " w3-show";
             }
             else {
 
-                item.firstElementChild.className = item.firstElementChild.className.replace(" w3-show", "");
+                item.firstElementChild.nextElementSibling.className = item.firstElementChild.nextElementSibling.className.replace(" w3-show", "");
 
             }
         }
@@ -58,22 +58,33 @@
           width="100%" >
 
         {{#*inline "myPartial"}}
-        <div class="w3-bar-item w3-bar  {{default color 'w3-black'}} " >
+        <div class="w3-bar-item w3-bar  {{default color 'w3-black'}} "
+             {{#if children}}
+          onmouseleave="myFunction(this,false)"
+             onclick="myFunction(this,true)"
+             {{else}}
+             {{/if}}
+        >
             <a class="w3-bar-item  w3-button  "
+
+
+               {{#if children}}
+               CHILDREN
+               {{else}}
+               NO CHIDLREN
                href="{{default link  '#'}}"
+               {{/if}}
+
                target="{{default target 'content'}}" >{{default label 'DefaultLabel'}}</a >
             {{#if children}}
-            <div onmouseleave="myFunction(this,false)"
-                 onclick="myFunction2(this)"
-                 class="w3-bar-item  w3-button {{default color 'w3-black'}} " >
+
                 <div class="w3-dropdown-content w3-bar-block "
                      style="min-width:25px" >
                     {{#children}}
                     {{> myPartial}}
                     {{/children}}
                 </div >
-                &gt;
-            </div >
+
             {{/if}}
         </div >
         {{/inline}}
