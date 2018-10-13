@@ -43,14 +43,13 @@
         function myFunction2(item) {
             console.log('Event received ', item)
             console.log('Event received ', item.firstElementChild)
-                // just show
-                if (item.firstElementChild.className.indexOf("w3-show") == -1) {
-                    item.firstElementChild.className += " w3-show";
-                }
+            // just show
+            if (item.firstElementChild.className.indexOf("w3-show") == -1) {
+                item.firstElementChild.className += " w3-show";
+            }
             else {
 
-                    item.firstElementChild.className = item.firstElementChild.className.replace(" w3-show", "");
-
+                item.firstElementChild.className = item.firstElementChild.className.replace(" w3-show", "");
 
             }
         }
@@ -59,22 +58,24 @@
           width="100%" >
 
         {{#*inline "myPartial"}}
-        <a class="w3-bar-item w3-button {{default color 'w3-black'}} "
-           href="{{default link  '#'}}"
-           target="{{default target 'content'}}" >{{default label 'DefaultLabel'}}</a >
-        {{#if children}}
-        <div onmouseleave="myFunction(this,false)"
-             onclick="myFunction2(this)"
-             class="w3-bar-item  w3-button {{default color 'w3-black'}} " >
-            <div class="w3-dropdown-content w3-bar-block "
-                 style="min-width:25px" >
-                {{#children}}
-                {{> myPartial}}
-                {{/children}}
+        <div class="w3-bar-item w3-bar  {{default color 'w3-black'}} " >
+            <a class="w3-bar-item  w3-button  "
+               href="{{default link  '#'}}"
+               target="{{default target 'content'}}" >{{default label 'DefaultLabel'}}</a >
+            {{#if children}}
+            <div onmouseleave="myFunction(this,false)"
+                 onclick="myFunction2(this)"
+                 class="w3-bar-item  w3-button {{default color 'w3-black'}} " >
+                <div class="w3-dropdown-content w3-bar-block "
+                     style="min-width:25px" >
+                    {{#children}}
+                    {{> myPartial}}
+                    {{/children}}
+                </div >
+                &gt;
             </div >
-            &gt;
+            {{/if}}
         </div >
-        {{/if}}
         {{/inline}}
 
 
