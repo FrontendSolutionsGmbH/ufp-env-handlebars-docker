@@ -28,6 +28,7 @@ help() {
   echo " Options:"
   echo "   -h          Show this help"
   echo "   -p          Pulls the latest docker images"
+  echo "   -b          starts stack in background with -d"
   echo "   -l          Show the logs"
   echo "   -u <stack>  Starts the given stack. Possible stacks see below!"
   echo "   -d <stack>  Stops the given stack. Possible stacks see below!"
@@ -38,8 +39,9 @@ help() {
   echo "     debug     The debug tools"
   echo "     all       All these stacks"
   echo ""
-  echo " Default behavior: Starts the local-stack (exclusive all debug-tools)"
+  echo " Default behavior: Starts the service only"
   echo ""
+  echo " (continued) author: ck@froso.de"
   echo " (initial) author: s.schumann@tarent.de"
 }
 
