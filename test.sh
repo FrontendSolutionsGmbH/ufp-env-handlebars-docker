@@ -8,16 +8,18 @@ echo "--------------------------------------------------------------------------
 echo "Bringing up Infrastructure "
 echo "------------------------------------------------------------------------------"
 
-docker-compose -f ./ct/docker-compose.yml up -d
+/stack.sh -d service
+/stack.sh -u service -b
 
 echo "------------------------------------------------------------------------------"
 echo "Executing component test "
 echo "------------------------------------------------------------------------------"
 
-docker-compose -f ./ct/docker-compose-test.yml up
+/stack.sh -d test
+/stack.sh -u test
 
 echo "------------------------------------------------------------------------------"
 echo "Shutting down Infrastructure "
 echo "------------------------------------------------------------------------------"
 
-docker-compose -f ./ct/docker-compose.yml down
+/stack.sh -d service
