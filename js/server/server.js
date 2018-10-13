@@ -7,6 +7,11 @@ var logger = require('morgan');
 var path = require('path');
 var app = express();
 
+// consts
+
+const PORT = 3000
+const HOST = '0.0.0.0'
+
 // log requests
 app.use(logger('dev'));
 
@@ -19,4 +24,5 @@ app.use(logger('dev'));
 
 app.use(express.static(path.join(process.cwd(), 'public')));
 
-app.listen(3000);
+app.listen(PORT);
+console.log(`Started server on ${HOST}:${PORT}`)

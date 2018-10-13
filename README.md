@@ -45,3 +45,15 @@ or use the configured docker-compose in the ./ct/ folder
 	cd ct
 	docker-compose up
 	
+
+# Development
+
+# Executing node app
+
+as of now, you have to trigger ./js/build.sh for creating the dist folder, a watch for automatically executing the
+dist refresh ist not yet build in
+
+after the build execute the functionality (pars env and parse handlebar folders to public) in the ./js/dist folder
+
+keep in mind that you have to provide the environment variable config manually in this case using normal `export VAR=value`
+shell functionality

@@ -15,6 +15,5 @@ RUN ./build.sh
 FROM node:8-slim
 COPY --from=builder /ufp-env-handlebars-build/dist /ufp-env-handlebars
 WORKDIR /ufp-env-handlebars
-RUN ls -la
 EXPOSE 3000:3000
 CMD ./execute.sh

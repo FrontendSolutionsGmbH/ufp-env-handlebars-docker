@@ -5,15 +5,14 @@ services:
     environment:
       - "CFG_MENU_0_LABEL=UFP.DE"
       - "CFG_MENU_0_LINK=http://www.froso.de"
-      - "CFG_MENU_0_TARGET=http://www.froso.de"
+      - "CFG_MENU_0_TARGET=ufp"
       - "CFG_MENU_0_COLOR=w3-blue"
 
-      - "CFG_MENU_1_LABEL=MENU 2"
+      - "CFG_MENU_1_LABEL=github"
+      - "CFG_MENU_1_LINK=github.com"
 
       - "CFG_MENU_2_LABEL=MENU 3"
 
       - "CFG_MENU_3_LABEL=MENU 3"
     ports:
       - "3000:3000"
-
-

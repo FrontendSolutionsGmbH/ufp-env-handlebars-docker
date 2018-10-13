@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path')
 const glob = require("glob")
 const mkdirp = require("mkdirp")
-const defaults = {}
+const defaults = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'default.json')))
 
 Handlebars.registerHelper('default', function (value, defaultValue) {
     return new Handlebars.SafeString(value || defaultValue);
@@ -12,13 +12,18 @@ Handlebars.registerHelper('default', function (value, defaultValue) {
 
 // Consts
 
-const templateDir = '/template'
-const targetDir = '/public'
+const ufpConfig = rainuEnvParser.parse("UFP_", {
+
+    templatedir: '/template',
+    targetdir: '/public',
+    prefix: 'CFG_'
+
+})
 
 // Parse environment for object to feed to handlebars
-const parsedEnv = rainuEnvParser.parse("CFG_", defaults)
-// console.log('Env Object is:')
-// console.log(parsedEnv)
+const parsedEnv = rainuEnvParser.parse(ufpConfig.prefix, defaults)
+console.log('Env Object is:')
+console.log(parsedEnv)
 
 function handleFile(src, dest) {
 
@@ -36,8 +41,8 @@ function handleFile(src, dest) {
 
 }
 
-const help1 = path.join(process.cwd(), templateDir)
-const help2 = path.join(process.cwd(), targetDir)
+const help1 = path.join(process.cwd(), ufpConfig.templatedir)
+const help2 = path.join(process.cwd(), ufpConfig.targetdir)
 console.log(`Template dir ${help1}`)
 console.log(`Template dir ${(help2)}`)
 glob('**/**.*',

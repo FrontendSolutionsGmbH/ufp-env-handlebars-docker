@@ -14,7 +14,7 @@ echo "Building ufp-env-handlebars docker file "
 echo "------------------------------------------------------------------------------"
 
 
-docker build --no-cache -t ufp/env-handlebars .
+docker build -t ufp/env-handlebars .
 
 
 echo "------------------------------------------------------------------------------"
@@ -26,3 +26,4 @@ echo "--------------------------------------------------------------------------
 echo "docker run  -p 3000:3000 ufp/env-handlebars "
 echo "------------------------------------------------------------------------------"
 
+docker-compose -f ./ct/docker-compose.yml up
