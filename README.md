@@ -58,6 +58,10 @@ after the build execute the functionality (pars env and parse handlebar folders 
 keep in mind that you have to provide the environment variable config manually in this case using normal `export VAR=value`
 shell functionality
 
+	WARNING:
+	
+	this particular repository onlu uses the service and test stacks due to the nature of this repo
+
 # Acknowledgement 
 
 this repository uses a generalization approach for the microservice development, the stack.sh script is used to control
@@ -66,6 +70,14 @@ the 4 branches of possible stacks which are:
 - Debug - Any debug tools ( like this repository ) that may help yourself keeps track of what is going on
 - Service - the service itself, this stack should contain only the service under development
 - Test - we use robot framework for testing, nevertheless, the test stack executes against a running infra and service stack
+
+important options are 
+- -c which forces a recreation of the stack, so, for re-running e.g. the test suite you dont need to rebuild, only if you work on the particular stack you should use -c 
+
+ 
+and 
+
+- -b this param is background running of the stack, so when working one can easily start/stop the particular services running in backgrojund
 
 
 	$ ./stack.sh --help 
