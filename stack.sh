@@ -57,9 +57,9 @@ pullAllImages() {
 logAllImages() {
     cd ${SCRIPT_HOME}/ct/
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml logs
-#    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml logs
+    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml logs
 #    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-debug.yml logs
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml logs
+#    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml logs
     cd -
 }
 
@@ -92,6 +92,7 @@ stopInfraStack() {
 
 startDebugStack(){
     cd ${SCRIPT_HOME}/ct/
+    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-debug.yml build --no-cache
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-debug.yml -p ${COMPOSE_PROJECT_NAME} up ${BACKGROUND}
     cd -
 }
@@ -104,6 +105,7 @@ stopDebugStack(){
 
 startServiceStack(){
     cd ${SCRIPT_HOME}/ct/
+    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml build --no-cache
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml -p ${COMPOSE_PROJECT_NAME} up ${BACKGROUND}
     cd -
 }
@@ -116,6 +118,7 @@ stopServiceStack(){
 
 startTestStack(){
     cd ${SCRIPT_HOME}/ct/
+    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml build --no-cache
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml -p ${COMPOSE_PROJECT_NAME} up ${BACKGROUND}
     cd -
 }

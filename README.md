@@ -57,3 +57,12 @@ after the build execute the functionality (pars env and parse handlebar folders 
 
 keep in mind that you have to provide the environment variable config manually in this case using normal `export VAR=value`
 shell functionality
+
+# Acknowledgement 
+
+this repository uses a generalization approach for the microservice development, the stack.sh script is used to control
+the 4 branches of possible stacks which are:
+- Infrastructure - the stack used for everything that is not the service but the service depends on
+- Debug - Any debug tools ( like this repository ) that may help yourself keeps track of what is going on
+- Service - the service itself, this stack should contain only the service under development
+- Test - we use robot framework for testing, nevertheless, the test stack executes against a running infra and service stack
