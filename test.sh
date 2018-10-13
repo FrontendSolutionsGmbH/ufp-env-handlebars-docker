@@ -2,12 +2,12 @@
 
 INPUT=$@
 TEARDOWN=1
-CREATE=1
+CREATE="-c"
 help() {
   echo " Executes the component tests"
   echo " Options:"
   echo "   -t          No Teardown keeps infrastructure up for inspection after test"
-  echo "   -c          recreate images"
+  echo "   -c          do not recreate images"
 
 }
 
@@ -17,7 +17,7 @@ while getopts 'thc' OPTION; do
         TEARDOWN=0
     ;;
     c)
-        CREATE="-c"
+        CREATE=""
     ;;
 
     h)
@@ -41,13 +41,14 @@ echo "--------------------------------------------------------------------------
 ./stack.sh -u test ${CREATE}
 TEST_RESULT=$?
 
-echo "------------------------------------------------------------------------------"
-echo "Shutting down Infrastructure "
-echo "------------------------------------------------------------------------------"
-
 
 if [ "$TEARDOWN" -eq "1" ]; then
-	./stack.sh -d service ${CREATE}
+
+	echo "------------------------------------------------------------------------------"
+	echo "Shutting down Infrastructure "
+	echo "------------------------------------------------------------------------------"
+
+	./stack.sh -d service
 fi
 
 echo "EXITING WITH ${TEST_RESULT}"

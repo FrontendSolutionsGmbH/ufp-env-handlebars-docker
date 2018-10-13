@@ -1,9 +1,15 @@
 FROM node:8-slim as builder
-VOLUME /ufp-env-handlebars-build/node_modules
+#VOLUME /ufp-env-handlebars-build/node_modules
 # Setup binary pathes for project node modules
-ENV PATH ${PATH}:./node_modules/.bin
+
+ENV PATH ${PATH}:/ufp-env-handlebars-build/node_modules/.bin
+
 # Set up working directory, copying our local js folder as buil
-COPY js /ufp-env-handlebars-build
+COPY js/src /ufp-env-handlebars-build/src
+COPY js/static /ufp-env-handlebars-build/static
+COPY js/build.sh /ufp-env-handlebars-build/build.sh
+COPY js/package.json /ufp-env-handlebars-build/package.json
+COPY js/yarn.lock /ufp-env-handlebars-build/yarn.lock
 WORKDIR /ufp-env-handlebars-build
 
 # Install dependencies (node modules is mounted, so if present will be used)
