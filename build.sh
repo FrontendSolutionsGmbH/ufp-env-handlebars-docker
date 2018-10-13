@@ -4,10 +4,10 @@ echo "--------------------------------------------------------------------------
 echo "Building ufp-env-handlebars "
 echo "------------------------------------------------------------------------------"
 
-cd js
-yarn install
-./build.sh
-cd ..
+#cd js
+#yarn install
+#./build.sh
+#cd ..
 
 echo "------------------------------------------------------------------------------"
 echo "Building ufp-env-handlebars docker file "

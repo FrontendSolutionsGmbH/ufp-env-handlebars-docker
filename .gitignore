@@ -2,4 +2,4 @@
 js/node_modules
 js/public
 js/dist
-js/yarn.lock
+node_modules/
