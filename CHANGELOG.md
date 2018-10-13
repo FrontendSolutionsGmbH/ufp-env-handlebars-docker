@@ -1,6 +1,10 @@
 # Changelog
 
 
+2018-10-12 [2.1.0]
+	- extend readme
+	- stabilize build process
+	- update stack.sh functionality
 2018-10-12 [2.0.0]
 	- bundling using webpack binary size <1mb
 	- default template using w3.css button bar with most properties settable
