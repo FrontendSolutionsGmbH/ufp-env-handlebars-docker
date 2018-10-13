@@ -1,3 +1,5 @@
 .idea
-js/node_modules/
+js/node_modules
+js/public
+js/dist
 js/yarn.lock

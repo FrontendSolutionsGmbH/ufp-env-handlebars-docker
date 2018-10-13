@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
     <head >
-        <title ></title >
+        <title >{{title}}</title >
         <meta charset="utf-8" >
         <meta name="viewport"
               content="width=device-width, initial-scale=1" >
@@ -11,7 +11,13 @@
     </head >
 
     <body >
-        <div class="w3-bar w3-black" >
+        <div class="w3-bar {{default   menucolor 'w3-black'}}" >
+            {{#menu}}
+
+            <a href="{{default link  '#'}}"
+               class="w3-bar-item w3-button {{default color 'w3-black'}}" >{{default label 'DefaultLabel'}}</a >
+
+            {{/menu}}
 
 
         </div >

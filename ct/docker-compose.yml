@@ -6,6 +6,7 @@ services:
       - "CFG_MENU_0_LABEL=UFP.DE"
       - "CFG_MENU_0_LINK=http://www.froso.de"
       - "CFG_MENU_0_TARGET=http://www.froso.de"
+      - "CFG_MENU_0_COLOR=w3-blue"
 
       - "CFG_MENU_1_LABEL=MENU 2"
 
