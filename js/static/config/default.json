@@ -1,3 +1,75 @@
 {
-  "hello": "world"
+  "title": "Example",
+  "hello": "world",
+  "menu": [
+    {
+      "label": "HELLO",
+      "children": [
+        {
+          "label": "THERE1",
+          "children": [
+            {
+              "label": "XTHERE1"
+            },
+            {
+              "label": "XTHERE2",
+              "children": [
+                {
+                  "label": "YTHERE1"
+                },
+                {
+                  "label": "YTHERE2"
+                },
+                {
+                  "label": "YTHERE3"
+                },
+                {
+                  "label": "YTHERE4"
+                },
+                {
+                  "label": "YTHERE5"
+                }
+              ]
+            },
+            {
+              "label": "XTHERE3"
+            },
+            {
+              "label": "XTHERE4"
+            },
+            {
+              "label": "XTHERE5"
+            }
+          ]
+        },
+        {
+          "label": "THERE2"
+        },
+        {
+          "label": "THERE3"
+        },
+        {
+          "label": "THERE4"
+        },
+        {
+          "label": "THERE5"
+        }
+      ]
+    },
+    {
+      "label": "HELLO1"
+    },
+    {
+      "label": "HELLO2"
+    },
+    {
+      "label": "HELLO3"
+    },
+    {
+      "label": "HELLO4"
+    },
+    {
+      "label": "HELLO5"
+    }
+  ]
 }

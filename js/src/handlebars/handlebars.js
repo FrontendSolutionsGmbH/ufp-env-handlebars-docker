@@ -4,7 +4,6 @@ const fs = require('fs')
 const path = require('path')
 const glob = require('glob')
 const mkdirp = require('mkdirp')
-
 /**
  * one of the handlebars utility methods
  * after registering the ;default; helper you can use
@@ -57,6 +56,7 @@ function handleFile(src, dest) {
     var template = undefined
     var result = undefined
     try {
+
         template = Handlebars.compile(source)
         result = template(parsedEnv)
     } catch (e) {
@@ -78,7 +78,6 @@ const help2 = path.join(process.cwd(), ufpConfig.targetdir)
 console.log(`Template dir ${help1}`)
 console.log(`Template dir ${(help2)}`)
 line()
-line()
 glob('**/**.*',
     {
         cwd: help1
@@ -96,7 +95,7 @@ glob('**/**.*',
                     handleFile(help1 + '/' + file, help2 + '/' + file)
                 })
             }
-
+             line()
             console.log(`Writing data file ${ufpConfig.targetfile}`)
             fs.writeFileSync(ufpConfig.targetfile, JSON.stringify(parsedEnv))
 
