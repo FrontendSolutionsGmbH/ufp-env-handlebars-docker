@@ -1,9 +1,14 @@
 const Handlebars = require('handlebars')
 const rainuEnvParser = require('rainu-env-parser')
+const helpersHandlebars = require('handlebars-helpers');
+// var helpersTemplate = require('template-helpers')();
 const fs = require('fs')
 const path = require('path')
 const glob = require('glob')
 const mkdirp = require('mkdirp')
+
+Handlebars.registerHelper(helpersHandlebars())
+// Handlebars.registerHelper(helpersTemplate)
 /**
  * one of the handlebars utility methods
  * after registering the ;default; helper you can use
@@ -95,7 +100,7 @@ glob('**/**.*',
                     handleFile(help1 + '/' + file, help2 + '/' + file)
                 })
             }
-             line()
+            line()
             console.log(`Writing data file ${ufpConfig.targetfile}`)
             fs.writeFileSync(ufpConfig.targetfile, JSON.stringify(parsedEnv))
 
