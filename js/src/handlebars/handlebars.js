@@ -54,9 +54,17 @@ line()
 function handleFile(src, dest) {
     console.log(`Parsing ${src}`)
     const source = fs.readFileSync(src, 'utf8')
-    var template = Handlebars.compile(source)
+    var template = undefined
+    var result = undefined
+    try {
+        template = Handlebars.compile(source)
+        result = template(parsedEnv)
+    } catch (e) {
+        result = source + '\n-------------------UFP ENV HANDLEBARS PARSE ERROR ---------------\n' + e
+        console.log(`Error parsing ${src}`)
+        console.log(e)
+    }
 
-    var result = template(parsedEnv)
     if (!fs.existsSync(path.dirname(dest))) {
         console.log('Creating dir:', path.dirname(dest))
         mkdirp.sync(path.dirname(dest))

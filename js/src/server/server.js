@@ -3,10 +3,21 @@ const logger = require('morgan')
 const path = require('path')
 const app = express()
 
-// consts
+// exception handlers
 
 const PORT = 3000
 const HOST = '0.0.0.0'
+
+process.on('uncaughtException', function (err) {
+    if (err.errno === 'EADDRINUSE') {
+        console.log(`The port ${PORT} on local machine is already in use, please check for any other running node-express or any other server running on your local machine using port ${PORT}`)
+    } else {
+        console.log('Some other error: ', err)
+    }
+    process.exit(0)
+})
+
+// consts
 
 // log requests
 app.use(logger('dev'))
