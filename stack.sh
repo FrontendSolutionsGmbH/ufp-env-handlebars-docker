@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-echo "Stack.sh called"
+log(){
+	echo "[$(date +"%Y-%m-%d %H:%M:%S")] $@"
+}
+
+log "Stack.sh called"
 
 ###
 # Variables
@@ -35,7 +39,7 @@ help() {
   echo "   -p          Pulls the latest docker images"
   echo "   -b          Starts stack in background with -d"
   echo "   -c          do not create container stacks"
-  echo "   -l          Show the logs"
+  echo "   -l          Show the echos"
   echo "   -u <stack>  Starts the given stack. Possible stacks see below!"
   echo "   -d <stack>  Stops the given stack. Possible stacks see below!"
   echo ""
@@ -86,9 +90,6 @@ getEnv() {
 startInfraStack() {
     cd ${SCRIPT_HOME}/ct/
 
-	if [ "$CREATE" -eq "1" ]; then
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml build --no-cache
-    fi
 
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml -p ${COMPOSE_PROJECT_NAME} ${BACKGROUND}
     cd -
@@ -96,6 +97,10 @@ startInfraStack() {
 
 stopInfraStack() {
     cd ${SCRIPT_HOME}/ct/
+    if [ "$CREATE" -eq "1" ]; then
+    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml build --no-cache
+    fi
+
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml -p ${COMPOSE_PROJECT_NAME} down
     cd -
 }
@@ -103,66 +108,65 @@ stopInfraStack() {
 startDebugStack(){
     cd ${SCRIPT_HOME}/ct/
 
-	if [ "$CREATE" -eq "1" ]; then
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-debug.yml build --no-cache
-    fi
-
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-debug.yml -p ${COMPOSE_PROJECT_NAME} up ${BACKGROUND}
     cd -
 }
 
 stopDebugStack(){
     cd ${SCRIPT_HOME}/ct/
+
+	if [ "$CREATE" -eq "1" ]; then
+    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-debug.yml build --no-cache
+    fi
+
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-debug.yml -p ${COMPOSE_PROJECT_NAME} down
     cd -
 }
 
 startServiceStack(){
-	echo "Starting Service Stack"
+	log "Starting Service Stack"
     cd ${SCRIPT_HOME}/ct/
+
+    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml -p ${COMPOSE_PROJECT_NAME} up ${BACKGROUND}
+    RESULT=$?
+    cd -
+
+	log "Returning Service Stack"
+}
+
+stopServiceStack(){
+	log "Stopping Service Stack"
 
 	if [ "$CREATE" -eq "1" ]; then
 		./build.sh
 		docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml build --no-cache
 	fi
 
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml -p ${COMPOSE_PROJECT_NAME} up ${BACKGROUND}
-    RESULT=$?
-    cd -
-
-	echo "Returning Service Stack"
-}
-
-stopServiceStack(){
-	echo "Stopping Service Stack"
-
-	if [ "$CREATE" -eq "1" ]; then
-		./build.sh
-	fi
-
     cd ${SCRIPT_HOME}/ct/
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml -p ${COMPOSE_PROJECT_NAME} down
     cd -
 
-	echo "Stopping Service Stack End"
+	log "Stopping Service Stack End"
 }
 
 startTestStack(){
 
     cd ${SCRIPT_HOME}/ct/
 
-	if [ "$CREATE" -eq "1" ]; then
-		docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml build --no-cache
-	fi
 
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml  -p ${COMPOSE_PROJECT_NAME} up --exit-code-from robot-test --abort-on-container-exit ${BACKGROUND}
     RESULT=$?
     cd -
-	echo "Starting Test Stack End ${RESULT}"
+	log "Starting Test Stack End ${RESULT}"
 }
 
 stopTestStack(){
     cd ${SCRIPT_HOME}/ct/
+
+    if [ "$CREATE" -eq "1" ]; then
+		docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml build --no-cache
+	fi
+
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml -p ${COMPOSE_PROJECT_NAME} down
     cd -
 }
@@ -208,16 +212,16 @@ while getopts 'u:d:hplbc' OPTION; do
 done
 
 
-echo "SCRIPT_PATH=${SCRIPT_PATH}"
-echo "SCRIPT_NAME=${SCRIPT_NAME}"
-echo "SCRIPT_HOME=${SCRIPT_HOME}"
-echo "START=${START}"
-echo "STOP=${STOP}"
-echo "STACK_INFRA=${STACK_INFRA}"
-echo "STACK_DEBUG=${STACK_DEBUG}"
-echo "STACK_SERVICE=${STACK_SERVICE}"
-echo "STACK_TEST=${STACK_TEST}"
-echo "CREATE=${CREATE}"
+log "SCRIPT_PATH=${SCRIPT_PATH}"
+log "SCRIPT_NAME=${SCRIPT_NAME}"
+log "SCRIPT_HOME=${SCRIPT_HOME}"
+log "START=${START}"
+log "STOP=${STOP}"
+log "STACK_INFRA=${STACK_INFRA}"
+log "STACK_DEBUG=${STACK_DEBUG}"
+log "STACK_SERVICE=${STACK_SERVICE}"
+log "STACK_TEST=${STACK_TEST}"
+log "CREATE=${CREATE}"
 
 
 if [ "$STACK_INFRA" -eq "1" ]; then
@@ -239,4 +243,5 @@ if [ "$STACK_TEST" -eq "1" ]; then
     if [ "$STOP" -eq "1" ];then stopTestStack ;fi
 fi
 
+log "Stack.sh exit"
 exit ${RESULT}

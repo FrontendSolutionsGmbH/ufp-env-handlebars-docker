@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+log(){
+	echo "[$(date +"%Y-%m-%d %H:%M:%S")] $@"
+}
+
 INPUT=$@
 TEARDOWN=1
 CREATE="-c"
@@ -26,30 +30,30 @@ while getopts 'thc' OPTION; do
     ;;
   esac
 done
-echo "------------------------------------------------------------------------------"
-echo "Bringing up Infrastructure "
-echo "------------------------------------------------------------------------------"
+log "------------------------------------------------------------------------------"
+log "Bringing up Infrastructure "
+log "------------------------------------------------------------------------------"
 
 ./stack.sh -d service ${CREATE}
-./stack.sh -u service -b ${CREATE}
+./stack.sh -u service -b
 
-echo "------------------------------------------------------------------------------"
-echo "Executing component test "
-echo "------------------------------------------------------------------------------"
+log "------------------------------------------------------------------------------"
+log "Executing component test "
+log "------------------------------------------------------------------------------"
 
 ./stack.sh -d test ${CREATE}
-./stack.sh -u test ${CREATE}
+./stack.sh -u test
 TEST_RESULT=$?
 
 
 if [ "$TEARDOWN" -eq "1" ]; then
 
-	echo "------------------------------------------------------------------------------"
-	echo "Shutting down Infrastructure "
-	echo "------------------------------------------------------------------------------"
+	log "------------------------------------------------------------------------------"
+	log "Shutting down Infrastructure "
+	log "------------------------------------------------------------------------------"
 
 	./stack.sh -d service
 fi
 
-echo "EXITING WITH ${TEST_RESULT}"
+log "EXITING WITH ${TEST_RESULT}"
 exit ${TEST_RESULT}

@@ -1,11 +1,15 @@
 const Handlebars = require('handlebars')
 const rainuEnvParser = require('rainu-env-parser')
+const helpersHandlebars = require('handlebars-helpers')
+// const helpersTemplate = require('template-helpers')
 const fs = require('fs')
 const path = require('path')
 const glob = require('glob')
 const mkdirp = require('mkdirp')
-const defaults = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'default.json')))
 
+Handlebars.registerHelper(helpersHandlebars())
+// Handlebars.registerHelper(helpersTemplate())
+// Handlebars.registerHelper(helpersTemplate)
 /**
  * one of the handlebars utility methods
  * after registering the ;default; helper you can use
@@ -17,21 +21,34 @@ Handlebars.registerHelper('default', function (value, defaultValue) {
   return new Handlebars.SafeString(value || defaultValue)
 })
 
+Handlebars.registerHelper('recure', function (template, value) {
+  return new Handlebars.SafeString(template)
+})
+
 function line () {
   console.log('-------------------------------------------------------------------------------')
 }
 // Consts
 
 const ufpConfig = rainuEnvParser.parse('UFP_', {
-
-  templatedir: 'template',
-  targetdir: 'public',
-  prefix: 'CFG_'
+  templatedir: 'static/template',
+  targetdir: 'static/public',
+  prefix: 'CFG_',
+  defaultfile: path.join(process.cwd(), '/static/config', 'default.json'),
+  targetfile: path.join(process.cwd(), '/static/public', 'output.json')
 
 })
+// load the defaults
+const defaults = JSON.parse(fs.readFileSync(ufpConfig.defaultfile))
 
 // Parse environment for object to feed to handlebars
-const parsedEnv = rainuEnvParser.parse(ufpConfig.prefix, defaults)
+const parsedEnv = {
+  /**
+   * wrap the input data into a template 'data' property
+   */
+  data: rainuEnvParser.parse(ufpConfig.prefix, defaults)
+}
+
 line()
 console.log('Config Object is *:')
 console.log(JSON.stringify(ufpConfig, null, ' '))
@@ -48,9 +65,17 @@ line()
 function handleFile (src, dest) {
   console.log(`Parsing ${src}`)
   const source = fs.readFileSync(src, 'utf8')
-  var template = Handlebars.compile(source)
+  var template = undefined
+  var result = undefined
+  try {
+    template = Handlebars.compile(source)
+    result = template(parsedEnv)
+  } catch (e) {
+    result = source + '\n-------------------UFP ENV HANDLEBARS PARSE ERROR ---------------\n' + e
+    console.log(`Error parsing ${src}`)
+    console.log(e)
+  }
 
-  var result = template(parsedEnv)
   if (!fs.existsSync(path.dirname(dest))) {
     console.log('Creating dir:', path.dirname(dest))
     mkdirp.sync(path.dirname(dest))
@@ -64,25 +89,30 @@ const help2 = path.join(process.cwd(), ufpConfig.targetdir)
 console.log(`Template dir ${help1}`)
 console.log(`Template dir ${(help2)}`)
 line()
-
-glob('**/**.*',
-  {
-    cwd: help1
-  }, function (er, files) {
-    // files is an array of filenames.
-    // If the `nonull` option is set, and nothing
-    // was found, then files is ["**/*.js"]
-    // er is an error object or null.
-    if (er === null) {
-      if (files.length === 0) {
-        console.log('No templates found')
-      } else {
-        console.log('Found handlebars templates', files.length)
-        files.map(file => {
-          handleFile(help1 + '/' + file, help2 + '/' + file)
-        })
-      }
+glob('**/**.*', {
+  cwd: help1
+}, function (er, files) {
+  // files is an array of filenames.
+  // If the `nonull` option is set, and nothing
+  // was found, then files is ["**/*.js"]
+  // er is an error object or null.
+  if (er === null) {
+    if (files.length === 0) {
+      console.log('No templates found')
     } else {
-      console.log('Error', er)
+      console.log('Found handlebars templates', files.length)
+      files.map(file => {
+        handleFile(help1 + '/' + file, help2 + '/' + file)
+      })
     }
-  })
+    line()
+    console.log(`Writing data file ${ufpConfig.targetfile}`)
+    if (!fs.existsSync(path.dirname(ufpConfig.targetfile))) {
+      console.log('Creating dir:', path.dirname(ufpConfig.targetfile))
+      mkdirp.sync(path.dirname(ufpConfig.targetfile))
+    }
+    fs.writeFileSync(ufpConfig.targetfile, JSON.stringify(parsedEnv))
+  } else {
+    console.log('Error', er)
+  }
+})
