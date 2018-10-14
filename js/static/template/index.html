@@ -5,165 +5,125 @@
         <meta charset="utf-8" >
         <meta name="viewport"
               content="width=device-width, initial-scale=1" >
-
         <link rel="stylesheet"
-              href="https://www.w3schools.com/w3css/4/w3.css" >
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" >
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script >
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script >
+        <style >
+            html {
+                height : 100%;
+            }
+
+            iframe {
+                height : 100%;
+                width  : 100%;
+                border : 0px;
+            }
+
+            body {
+                min-height : 100%;
+            }
+
+            .dropdown-submenu {
+                position : relative;
+            }
+
+            .dropdown-submenu .dropdown-menu {
+                top        : 0;
+                left       : 50%;
+                margin-top : -1px;
+            }
+        </style >
     </head >
-    <style >
-        html {
-            height : 100%;
-        }
 
-        iframe {
-            height : 100%;
-        }
-
-        body {
-            min-height : 100%;
-        }
-    </style >
-    <script >
-        function myFunction(item, show) {
-            console.log('Event received ', item)
-            console.log('Event received ', item.firstElementChild)
-            if (show) {
-                // just show
-                if (item.firstElementChild.nextElementSibling.className.indexOf("w3-show") == -1) {
-                    item.firstElementChild.nextElementSibling.className += " w3-show";
-                }
-            }
-            else {
-                // just hide
-                if (item.firstElementChild.nextElementSibling.className.indexOf("w3-show") !== -1) {
-                    item.firstElementChild.nextElementSibling.className = item.firstElementChild.nextElementSibling.className.replace(" w3-show", "");
-                }
-
-            }
-        }
-        function myFunction2(item) {
-            console.log('Event received ', item)
-            console.log('Event received ', item.firstElementChild.nextElementSibling)
-            // just show
-            if (item.firstElementChild.nextElementSibling.className.indexOf("w3-show") == -1) {
-                item.firstElementChild.nextElementSibling.className += " w3-show";
-            }
-            else {
-
-                item.firstElementChild.nextElementSibling.className = item.firstElementChild.nextElementSibling.className.replace(" w3-show", "");
-
-            }
-        }
-    </script >
-    <body height="100%"
-          width="100%" >
-        {{add 33 33}}XXX
-        {{#*inline "myPartial"}}
-        <div class="w3-bar-item w3-bar  {{default color 'w3-black'}} "
-             {{#if children}}
-          onmouseleave="myFunction(this,false)"
-             onclick="myFunction(this,true)"
-             {{else}}
-             {{/if}}
-        >
-            <a class="w3-bar-item  w3-button  "
+    {{#*inline "bootstrapColor"}}
+    {{default color 'btn-primary'}}
+    {{/inline}}
 
 
-               {{#if children}}
-               CHILDREN
-               {{else}}
-               NO CHIDLREN
-               href="{{default link  '#'}}"
-               {{/if}}
-
-               target="{{default target 'content'}}" >{{default label 'DefaultLabel'}}</a >
-            {{#if children}}
-
-                <div class="w3-dropdown-content w3-bar-block "
-                     style="min-width:25px" >
-                    {{#children}}
-                    {{> myPartial}}
-                    {{/children}}
-                </div >
-
-            {{/if}}
-        </div >
-        {{/inline}}
+    {{#*inline "liMenuItemRenderer"}}
 
 
-        <div class="w3-bar {{default menucolor 'w3-black'}}" >
+    {{#if children}}
+    <!-- HAS CHILDREN -->
 
-            {{#menu}}
-            {{> myPartial}}
-            {{/menu}}
+    <li class="dropdown-submenu   nav-item " >
+        <a tabindex="-1"
+           class="test btn btn-block dropdown-toggle {{>bootstrapColor}}"
+           target="{{default target 'content'}}"
+           href="{{default link '#'}}" >{{default label 'DefaultLabel'}}<span class="caret" ></span ></a >
 
+        {{>dropDownMenu}}
+    </li >
 
-            <div class="w3-bar-item w3-white w3-right w3-button" >
-                <!--UFP-->
-                <a href="https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker"
-                   target="github" >
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         version="1.1"
+    {{else}}
+    <!-- NO CHILDREN, NORMAL LI -->
 
-                         width="16"
-                         height="16"
-                         viewBox="-4 -4 22 22" >
+    <li class="nav-item" ><a tabindex="-1"
+                             class="btn btn-block {{>bootstrapColor}} "
+                             target="{{default target 'content'}}"
+                             href="{{default link '#'}}" >{{default label 'DefaultLabel'}}</a ></li >
+    {{/if}}
+    {{/inline}}
 
-                        <g id="ufp" >
-
-                            <path id="F"
-                                  d="M 1 14 V 1 h 9 M 1 9 h 9"
-                                  fill="transparent"
-                                  stroke="darkblue"
-                                  stroke-width="2" >
-
-                            </path >
-
-                            <path id="P"
-                                  d="M 13 0 v 13 H 4 M 13 5 H 5 v 9"
-                                  fill="transparent"
-                                  stroke="darkblue"
-                                  stroke-width="2" >
-
-                            </path >
-
-                        </g >
-                    </svg >
-                </a >
-            </div >
-            <div class="w3-bar-item w3-button w3-white w3-right" >
-                <!--FROSO-->
-
-                <a href="https://frontendsolutions.de"
-                   target="froso" >
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         version="1.1"
-                         width="16"
-                         height="16"
-                         viewBox="-4 -4 22 22" >
+    {{#*inline "dropDownMenu"}}
+    {{#if children}}
+    <ul class="dropdown-menu p-0   " >
+        {{#children}}
+        {{>liMenuItemRenderer}}
+        {{/children}}
+    </ul >
+    {{/if}}
+    {{/inline}}
 
 
-                        <rect width="14"
-                              height="14"
-                              style="fill:darkblue;" />
+    {{#*inline "rootMenuRenderer"}}
+
+    {{#data.menu}}
+    <div class="dropdown" >
+        {{#if children}}
+        <button class="btn btn-block  dropdown-toggle  {{>bootstrapColor}}"
+                type="button"
+                data-toggle="dropdown" >{{default label 'DefaultLabel'}}
+
+        </button >
+        {{else}}
+        <button class="btn  btn-block   "
+                type="button"
+                data-toggle="dropdown" >{{default label 'DefaultLabel'}}
+
+        </button >
+
+        {{/if}}
+        {{>dropDownMenu}}
+    </div >
+    {{/data.menu}}
+
+    {{/inline}}
 
 
-                        <path class="friPath"
-                              d="M 11 0 v 3 H 3 v 4 H 11 v 4 H 3 v 4"
-                              fill="transparent"
-                              stroke="white"
-                              stroke-width="2" >
+    <body >
 
-                        </path >
+        <nav class="navbar  justify-content-start" >
+            <a class="navbar-brand"
+               href="https://github.com/FrontendSolutionsGmbH" >UFP</a >
+            {{>rootMenuRenderer}}
+        </nav >
 
-                    </svg >
-                </a >
-            </div >
-        </div >
         <div style="width:100%;height:calc(100% - 3em);position:absolute;padding-top:1em" >
-            <iframe frameborder="0"
-                    width="100%"
-                    height="100%"
-                    name="content" />
+            <iframe name="content" ></iframe >
         </div >
+
+        <script >
+            $(document).ready(function () {
+                $('.dropdown-submenu a.test').on("click", function (e) {
+                    $(this).next('ul').toggle();
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+
+            });
+        </script >
     </body >
+
 </html >

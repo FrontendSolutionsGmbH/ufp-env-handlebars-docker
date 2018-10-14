@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./src/ --fix",
+    "htmllint": "htmllint ./dist/**/*.html",
     "dev": "nodemon builder --ignore dist "
   },
   "repository": {
@@ -14,25 +15,28 @@
   "author": "Christian Kleinhuis <ck@froso.de> http://wwww.froso.de",
   "license": "MIT",
   "dependencies": {
+    "express": "4.16.4",
+    "glob": "7.1.3",
+    "global": "^4.3.2",
+    "handlebars": "4.0.12",
+    "handlebars-helpers": "0.10.0",
+    "is-number": "^7.0.0",
+    "mkdirp": "0.5.1",
+    "morgan": "1.9.1",
+    "path": "0.12.7",
+    "rainu-env-parser": "1.0.0",
+    "unlazy-loader": "^0.1.3"
+  },
+  "devDependencies": {
     "eslint": "5.7.0",
     "eslint-config-standard": "12.0.0",
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-node": "7.0.1",
     "eslint-plugin-promise": "4.0.1",
     "eslint-plugin-standard": "4.0.0",
-    "express": "4.16.4",
-    "glob": "7.1.3",
-    "global": "^4.3.2",
-    "handlebars": "4.0.12",
-    "handlebars-helpers": "0.10.0",
-    "html-tag": "^2.0.0",
     "htmllint": "0.7.2",
     "htmllint-cli": "0.0.7",
-    "mkdirp": "0.5.1",
-    "morgan": "1.9.1",
-    "nodemon": "^1.18.4",
-    "path": "0.12.7",
-    "rainu-env-parser": "1.0.0",
+    "nodemon": "1.18.4",
     "webpack": "4.20.2",
     "webpack-cli": "3.1.2"
   }

@@ -7,6 +7,7 @@ const path = require('path')
 const glob = require('glob')
 const mkdirp = require('mkdirp')
 
+console.log('HELPERS ARE',helpersHandlebars())
 Handlebars.registerHelper(helpersHandlebars())
 // Handlebars.registerHelper(helpersTemplate)
 /**
@@ -38,10 +39,16 @@ const ufpConfig = rainuEnvParser.parse('UFP_', {
 
 })
 // load the defaults
-const defaults = JSON.parse(fs.readFileSync(ufpConfig.defaultfile))
+const defaults = {}//JSON.parse(fs.readFileSync(ufpConfig.defaultfile))
 
 // Parse environment for object to feed to handlebars
-const parsedEnv = rainuEnvParser.parse(ufpConfig.prefix, defaults)
+const parsedEnv = {
+    /**
+     * wrap the input data into a template 'data' property
+     */
+    data: rainuEnvParser.parse(ufpConfig.prefix, defaults)
+}
+
 line()
 console.log('Config Object is *:')
 console.log(JSON.stringify(ufpConfig, null, ' '))
@@ -102,6 +109,10 @@ glob('**/**.*',
             }
             line()
             console.log(`Writing data file ${ufpConfig.targetfile}`)
+            if (!fs.existsSync(path.dirname(ufpConfig.targetfile))) {
+                console.log('Creating dir:', path.dirname(ufpConfig.targetfile))
+                mkdirp.sync(path.dirname(ufpConfig.targetfile))
+            }
             fs.writeFileSync(ufpConfig.targetfile, JSON.stringify(parsedEnv))
 
         } else {
