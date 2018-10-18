@@ -3,10 +3,21 @@ const logger = require('morgan')
 const path = require('path')
 const app = express()
 
-// consts
+// exception handlers
 
 const PORT = 3000
 const HOST = '0.0.0.0'
+
+process.on('uncaughtException', function (err) {
+  if (err.errno === 'EADDRINUSE') {
+    console.log(`The port ${PORT} on local machine is already in use, please check for any other running node-express or any other server running on your local machine using port ${PORT}`)
+  } else {
+    console.log('Some other error: ', err)
+  }
+  process.exit(0)
+})
+
+// consts
 
 // log requests
 app.use(logger('dev'))
@@ -17,7 +28,7 @@ app.use(logger('dev'))
 // the `req.path` within the directory
 // that you pass it. In this case "GET /js/app.js"
 // will look for "./public/js/app.js".
-app.use(express.static(path.join(process.cwd(), 'public')))
+app.use(express.static(path.join(process.cwd(), 'static', 'public')))
 
 const server = app.listen(PORT)
 console.log(`Started server on ${HOST}:${PORT}`)

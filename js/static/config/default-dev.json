@@ -1,0 +1,79 @@
+{
+  "title": "Ufp Env Handlebars - Ufp Menu",
+  "brand": "UFP Menu",
+  "brandLink": "http://www.froso.de",
+  "menu": [
+    {
+      "label": "HELLO",
+      "color": "btn-warning",
+      "children": [
+        {
+          "label": "THERE1",
+          "color": "btn-secondary",
+          "children": [
+            {
+              "label": "XTHERE1",
+              "link": "http://www.froso.de"
+            },
+            {
+              "label": "XTHERE2",
+              "children": [
+                {
+                  "label": "YTHERE1"
+                },
+                {
+                  "label": "YTHERE2"
+                },
+                {
+                  "label": "YTHERE3"
+                },
+                {
+                  "label": "YTHERE4"
+                },
+                {
+                  "label": "YTHERE5"
+                }
+              ]
+            },
+            {
+              "label": "XTHERE3"
+            },
+            {
+              "label": "XTHERE4"
+            },
+            {
+              "label": "XTHERE5"
+            }
+          ]
+        },
+        {
+          "label": "THERE2"
+        },
+        {
+          "label": "THERE3"
+        },
+        {
+          "label": "THERE4"
+        },
+        {
+          "label": "THERE5"
+        }
+      ]
+    },
+    {
+      "label": "HELLO1"
+    },
+    {
+      "label": "HELLO2"
+    },
+    {
+      "label": "HELLO3"
+    },
+    {
+      "label": "HELLO4"
+    },
+    {
+      "label": "HELLO5"
+    }
+  ]
+}

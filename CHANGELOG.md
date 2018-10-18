@@ -1,6 +1,10 @@
 # Changelog
 
 
+2018-10-18 [3.0.0]
+    - remove default config
+    - default example now with welcome.html    
+
 2018-10-12 [2.1.0]
 	- extend readme
 	- stabilize build process
@@ -16,6 +20,8 @@
 
 	- Initial functionality release
               
-[unreleased]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/2.0.0-develop
+[unreleased]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/3.0.0-develop
+[3.0.0]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/2.1.0-3.1.0
+[2.1.0]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/2.0.0-2.1.0
 [2.0.0]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/1.0.0-2.0.0
 [1.0.0]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/commits/1.0.0
