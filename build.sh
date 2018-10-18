@@ -18,7 +18,7 @@ log "Building ufp-env-handlebars docker file "
 log "------------------------------------------------------------------------------"
 
 
-docker build --no-cache -t ufp/env-handlebars .
+docker build --no-cache -t ckleinhuis/ufp-env-handlebars .
 
 
 log "------------------------------------------------------------------------------"
