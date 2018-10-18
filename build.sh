@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+VERSION=3
+
 log(){
 	echo "[$(date +"%Y-%m-%d %H:%M:%S")] $@"
 }
@@ -18,7 +20,7 @@ log "Building ufp-env-handlebars docker file "
 log "------------------------------------------------------------------------------"
 
 
-docker build --no-cache -t ckleinhuis/ufp-env-handlebars .
+docker build --no-cache -t ckleinhuis/ufp-env-handlebars:${VERSION} .
 
 
 log "------------------------------------------------------------------------------"
