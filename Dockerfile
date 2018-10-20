@@ -28,4 +28,4 @@ COPY --from=builder /ufp-env-handlebars-build /ufp-env-handlebars
 
 WORKDIR /ufp-env-handlebars
 EXPOSE 3000:3000
-CMD node ./execute.js
+CMD ["node","./execute.js"]

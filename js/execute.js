@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const childProcess = require('child_process')
-const path=require('path')
+const path = require('path')
 
 function log(message) {
     console.log(`${new Date().toLocaleDateString()} ${message}`)
@@ -26,7 +26,7 @@ log("---------------------------------------------------------------------------
 log("Starting Server")
 log("-------------------------------------------------------------------------------")
 // node src / server / server.js
-const childProcessServer = childProcess.spawn(`node`,[`src/server/server.js`], {
+const childProcessServer = childProcess.spawn(`node`, [`src/server/server.js`], {
     cwd: process.cwd(),
     stdio: [0, 1, 2]
 });
@@ -38,12 +38,24 @@ process.on('SIGTERM', () => {
     childProcessServer.kill('SIGINT')
 
 });
+process.on('SIGINT', () => {
+    console.info('SIGINT signal received.');
+    console.log('Closing...');
+    childProcessServer.kill('SIGINT')
+
+});
+process.on('error', (e) => {
+    console.info('error signal received.', e);
+    console.log('Closing...');
+    childProcessServer.kill('SIGINT')
+
+});
 
 childProcessServer.on('exit', function (code, signal) {
     console.log('child process exited with ' +
         `code ${code} and signal ${signal}`);
 });
-childProcessServer.on('error', function (code ) {
+childProcessServer.on('error', function (code) {
     console.log('child process onError with ' +
         `code ${code}  `);
 });
