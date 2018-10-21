@@ -1,6 +1,10 @@
 # Changelog
 
 
+2018-10-21 [3.0.0]
+    - more extensive default template and setup
+    - include `callback.sh` as callback for own dynamic functionality
+
 2018-10-18 [3.0.0]
     - remove default config
     - default example now with welcome.html    
@@ -20,7 +24,8 @@
 
 	- Initial functionality release
               
-[unreleased]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/3.0.0-develop
+[unreleased]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/4.0.0-develop
+[4.0.0]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/3.1.0-4.0.0
 [3.0.0]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/2.1.0-3.1.0
 [2.1.0]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/2.0.0-2.1.0
 [2.0.0]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/1.0.0-2.0.0
