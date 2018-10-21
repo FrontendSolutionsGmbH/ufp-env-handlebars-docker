@@ -53,6 +53,81 @@ or use the configured docker-compose in the ./ct/ folder
 	docker-compose up
 	
 
+# How To Use this Image
+
+## Default Template Syntax
+
+The included template renders a json data containing these properties:
+
+	{
+	
+	menu:[
+	{
+	label
+	link
+	target
+	color
+	children
+	}
+	
+	]
+	welcome:{
+	entries: [
+		alerts:[{
+			text,
+			color
+			}],
+		text:[{
+			title,
+			text,
+			color
+		}],
+		buttons:[{
+			label,
+			description,
+			link ,
+			target,
+			color
+		}]   	
+	]}
+	
+	}
+
+To fill the data, the environment is used to fill it, when starting the container each environment variable with the syntax
+
+	CFG_PROPERTY1_PROPERTY2=value
+	
+are configured to fill the data json object provided to handlebars, see component tests for example
+
+## Mount Volumes
+
+## Config
+
+the mount position for the config is 
+
+	/ufp-env-handlebars/static/config
+
+the config location consist of 2 files:
+
+* default.json - this file defines the default values, merged with env
+* getjsondata.sh - this is a shell script that you could use to generate more sophisticated input, it returns a json structure to the standard output, which is picked up and forwarded to the template .callback data field
+
+## Templates
+                        
+the mount position for the template folder is 
+
+	/ufp-env-handlebars/static/template
+	
+all files found in this folder are transpiled using a handlebars renderer and stored in the web root and hosted, so keep a index.html in your file system as entry point
+	
+
+## Default Callback
+
+A callback feature enables you to provide an own script to render some additional json, e.g. a `docker info` command it is called on container startup - will be called regularly in future versions
+
+
+
+
 # Development
 
 # Executing node app

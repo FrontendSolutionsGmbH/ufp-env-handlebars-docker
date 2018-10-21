@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 
-<head>
-    <title>{{title}}</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <style>
-        html {
+    <head >
+        <title >{{title}}</title >
+        <meta charset="utf-8" >
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1" >
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" >
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script >
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script >
+        <style >
+            html {
                 height : 100%;
             }
 
@@ -32,93 +34,105 @@
                 left       : 50%;
                 margin-top : -1px;
             }
-        </style>
-</head>
+        </style >
+    </head >
 
-{{#*inline "bootstrapColor"}}
-{{default color 'btn-primary'}}
-{{/inline}}
-
-
-{{#*inline "liMenuItemRenderer"}}
+    {{#*inline "bootstrapColor"}}
+    {{default color 'btn-primary'}}
+    {{/inline}}
 
 
-{{#if children}}
-<!-- HAS CHILDREN -->
-
-<li class="dropdown-submenu   nav-item ">
-    <a tabindex="-1" class="test btn btn-block dropdown-toggle {{>bootstrapColor}}" target="{{default target 'content'}}"
-        href="{{default link '#'}}">{{default label 'DefaultLabel'}}<span class="caret"></span></a>
-
-    {{>dropDownMenu}}
-</li>
-
-{{else}}
-<!-- NO CHILDREN, NORMAL LI -->
-
-<li class="nav-item"><a tabindex="-1" class="btn btn-block {{>bootstrapColor}} " target="{{default target 'content'}}"
-        href="{{default link '#'}}">{{default label 'DefaultLabel'}}</a></li>
-{{/if}}
-{{/inline}}
-
-{{#*inline "dropDownMenu"}}
-{{#if children}}
-<ul class="dropdown-menu p-0   ">
-    {{#children}}
-    {{>liMenuItemRenderer}}
-    {{/children}}
-</ul>
-{{/if}}
-{{/inline}}
+    {{#*inline "liMenuItemRenderer"}}
 
 
-{{#*inline "rootMenuRenderer"}}
-
-{{#data.menu}}
-<div class="dropdown">
     {{#if children}}
-    <button class="btn btn-block  dropdown-toggle  {{>bootstrapColor}}" type="button" data-toggle="dropdown">{{default
-        label 'DefaultLabel'}}
+    <!-- HAS CHILDREN -->
 
-    </button>
+    <li class="dropdown-submenu   nav-item " >
+        <a tabindex="-1"
+           class="test btn btn-block dropdown-toggle {{>bootstrapColor}}"
+           target="{{default target 'content'}}"
+           href="{{default link '#'}}" >{{default label 'DefaultLabel'}}<span class="caret" ></span ></a >
+
+        {{>dropDownMenu}}
+    </li >
+
     {{else}}
-    <button class="btn  btn-block   " type="button" data-toggle="dropdown">{{default label 'DefaultLabel'}}
+    <!-- NO CHILDREN, NORMAL LI -->
 
-    </button>
-
+    <li class="nav-item" ><a tabindex="-1"
+                             class="btn btn-block {{>bootstrapColor}} "
+                             target="{{default target 'content'}}"
+                             href="{{default link '#'}}" >{{default label 'DefaultLabel'}}</a ></li >
     {{/if}}
-    {{>dropDownMenu}}
-</div>
-{{/data.menu}}
+    {{/inline}}
 
-{{/inline}}
+    {{#*inline "dropDownMenu"}}
+    {{#if children}}
+    <ul class="dropdown-menu p-0   " >
+        {{#children}}
+        {{>liMenuItemRenderer}}
+        {{/children}}
+    </ul >
+    {{/if}}
+    {{/inline}}
 
 
-<body>
-    <!-- 
-        Debug output shows incoming template data
+    {{#*inline "rootMenuRenderer"}}
 
-        {{JSONstringify data}}
-     -->
-    <nav class="navbar  justify-content-start">
-        <a class="navbar-brand" href="https://github.com/FrontendSolutionsGmbH">UFP</a>
-        {{>rootMenuRenderer}}
-    </nav>
+    {{#data.menu}}
+    <div class="dropdown" >
+        {{#if children}}
+        <a class="btn btn-block  dropdown-toggle  {{>bootstrapColor}}"
+           type="button"
+           data-toggle="dropdown" >{{default
+            label 'DefaultLabel'}}
 
-    <div style="width:100%;height:calc(100% - 3em);position:absolute;padding-top:1em">
-        <iframe name="content" src="/welcome.html"></iframe>
-    </div>
+        </a >
+        {{else}}
+        <a class="btn  btn-block   "
+           type="button"
+           target="{{default target 'content'}}"
+           href="{{default link '#'}}"
+           data-toggle="dropdown" >{{default label 'DefaultLabel'}}
 
-    <script>
-        $(document).ready(function () {
-            $('.dropdown-submenu a.test').on("click", function (e) {
-                $(this).next('ul').toggle();
-                e.stopPropagation();
-                e.preventDefault();
+        </a >
+
+        {{/if}}
+        {{>dropDownMenu}}
+    </div >
+    {{/data.menu}}
+
+    {{/inline}}
+
+
+    <body >
+        <!--
+            Debug output shows incoming template data
+
+            {{JSONstringify data}}
+         -->
+        <nav class="navbar  justify-content-start" >
+            <a class="navbar-brand"
+               href="{{default brand.link 'https://github.com/FrontendSolutionsGmbH'}}" >{{default brand.label 'UFP'}}</a >
+            {{>rootMenuRenderer}}
+        </nav >
+
+        <div style="width:100%;height:calc(100% - 3em);position:absolute;padding-top:1em" >
+            <iframe name="content"
+                    src="/welcome.html" ></iframe >
+        </div >
+
+        <script >
+            $(document).ready(function () {
+                $('.dropdown-submenu a.test').on("click", function (e) {
+                    $(this).next('ul').toggle();
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+
             });
+        </script >
+    </body >
 
-        });
-    </script>
-</body>
-
-</html>
+</html >
