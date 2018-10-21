@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint ./src/ --fix",
     "htmllint": "htmllint ./dist/**/*.html",
-    "dev": "nodemon builder --ignore dist "
+    "dev": "nodemon execute.js "
   },
   "repository": {
     "type": "git",
@@ -37,5 +37,15 @@
     "nodemon": "1.18.4",
     "webpack": "4.20.2",
     "webpack-cli": "3.1.2"
+  },
+  "nodemonConfig": {
+    "verbose": true,
+    "ignore": [
+      "static/public/**"
+    ],
+    "watch": [
+      "src/static/template/"
+    ],
+    "ext": "js,json,html"
   }
 }

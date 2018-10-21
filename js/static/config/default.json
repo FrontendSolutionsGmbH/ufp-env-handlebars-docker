@@ -2,8 +2,16 @@
   "title": "Ufp Env Handlebars - Ufp Menu",
   "brand": "UFP Menu",
   "brandLink": "http://www.froso.de",
-  "welcome":{
-    "title":"Welcome to UFP Env Handlebars",
-    "text":"This is the default value for the ${CFG_WELCOME_TEXT} env value, override to set new. The title is controlled using the ${CFG_WELCOME_TILE} env property"
+  "welcome": {
+    "entries": [
+      {
+        "texts": [
+          {
+            "title": "Welcome to UFP Env Handlebars",
+            "text": "This is the default value for the ${CFG_WELCOME_TEXT} env value, override to set new. The title is controlled using the ${CFG_WELCOME_TILE} env property"
+          }
+        ]
+      }
+    ]
   }
 }
