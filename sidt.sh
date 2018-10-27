@@ -7,6 +7,7 @@ log ""
 log "SIDT - Service Infrastructure Debug Test"
 log ""
 
+ACTIVE_STACKS=()
 
 
 ###
@@ -18,6 +19,7 @@ SCRIPT_PATH=$(realpath "$0")
 SCRIPT_NAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 SCRIPT_HOME=${SCRIPT_PATH%$SCRIPT_NAME}
 
+STACK_LOCATION="${SCRIPT_HOME}ct/docker-compose-"
 STACK_LOCATION_SERVICE="${SCRIPT_HOME}ct/docker-compose-service.yml"
 STACK_LOCATION_INFRA="${SCRIPT_HOME}ct/docker-compose-infrastructure.yml"
 STACK_LOCATION_DEBUG="${SCRIPT_HOME}ct/docker-compose-debug.yml"
@@ -29,7 +31,7 @@ STOP=0
 
 STACK_INFRA=0
 STACK_DEBUG=0
-STACK_SERVICE=1
+STACK_SERVICE=0
 STACK_TEST=0
 LOG_STACK=0
 DEBUG=0
@@ -127,17 +129,19 @@ pullAllImages() {
 
 chooseServices() {
     case $1 in
-       infra) STACK_INFRA=1;;
-       debug) STACK_DEBUG=1 ;;
-       service) STACK_SERVICE=1 ;;
-       test) STACK_TEST=1 ;;
-       all) STACK_SERVICE=1; STACK_DEBUG=1; STACK_INFRA=1;STACK_TEST=1;;
+       all)
+            ACTIVE_STACKS+=("infra")
+            ACTIVE_STACKS+=("service")
+            ACTIVE_STACKS+=("debug")
+            ACTIVE_STACKS+=("test")
+            ;;
+     *)
+            echo "Using input --- $1"
+            STACK_NAME=$1
+            ACTIVE_STACKS+=("$1")
     esac
 }
 
-getEnv() {
-    cat ${ENV_FILE} | grep ${1} | cut -d\= -f2
-}
 
 ###
 # Main
@@ -190,22 +194,9 @@ while getopts 'u:d:hpl:bc' OPTION; do
 done
 
 
-#log "SCRIPT_PATH=${SCRIPT_PATH}"
-#log "SCRIPT_NAME=${SCRIPT_NAME}"
-#log "SCRIPT_HOME=${SCRIPT_HOME}"
-#log "START=${START}"
-#log "STOP=${STOP}"
-#log "STACK_INFRA=${STACK_INFRA}"
-#log "STACK_DEBUG=${STACK_DEBUG}"
-#log "STACK_SERVICE=${STACK_SERVICE}"
-#log "STACK_TEST=${STACK_TEST}"
-#log "CREATE=${CREATE}"
-
-
 log ""
-log "SIDT - Performing action"
+log "SIDT - Performing action on [${ACTIVE_STACKS}]"
 log ""
-set -x
 execute(){
     log "Executing ${1}"
 
@@ -217,27 +208,13 @@ execute(){
 if [ "$DEBUG" -eq "1" ]; then
 set -x
 fi
-
-if [ "$STACK_INFRA" -eq "1" ]; then
-   execute $STACK_LOCATION_INFRA
-fi
-
-if [ "$STACK_SERVICE" -eq "1" ]; then
-
-   execute $STACK_LOCATION_SERVICE
-fi
-
-if [ "$STACK_DEBUG" -eq "1" ]; then
-
-   execute $STACK_LOCATION_DEBUG
-fi
-
-if [ "$STACK_TEST" -eq "1" ]; then
-
-   execute $STACK_LOCATION_TEST
-fi
+          for stack_name in $ACTIVE_STACKS
+          do
+                execute ${STACK_LOCATION}${stack_name}.yml
+          done
 
 log ""
+log "SIDT - ${ACTIVE_STACKS}"
 log "SIDT - Service Infrastructure Debug Test Exit"
 log ""
 exit ${RESULT}
