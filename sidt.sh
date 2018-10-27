@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+  set -x
 log(){
 	echo "[$(date +"%Y-%m-%d %H:%M:%S")] $@"
 }
@@ -9,6 +9,7 @@ log "Stack.sh called"
 ###
 # Variables
 ###
+VERSION=5
 SCRIPT_PATH=$(realpath "$0")
 SCRIPT_NAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 SCRIPT_HOME=${SCRIPT_PATH%$SCRIPT_NAME}
@@ -73,6 +74,7 @@ logAllImages() {
     cd -
 }
 
+
 chooseServices() {
     case $1 in
        infra) STACK_INFRA=1;;
@@ -125,6 +127,12 @@ stopDebugStack(){
 
 startServiceStack(){
 	log "Starting Service Stack"
+
+
+	if [ "$CREATE" -eq "1" ]; then
+		docker build --no-cache -t ckleinhuis/ufp-env-handlebars:${VERSION} .
+	fi
+
     cd ${SCRIPT_HOME}/ct/
 
     docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml -p ${COMPOSE_PROJECT_NAME} up ${BACKGROUND}
@@ -138,7 +146,6 @@ stopServiceStack(){
 	log "Stopping Service Stack"
 
 	if [ "$CREATE" -eq "1" ]; then
-		./build.sh
 		docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml build --no-cache
 	fi
 
