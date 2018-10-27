@@ -1,11 +1,13 @@
 {
   "title": "Ufp Env Handlebars - Ufp Menu",
-  "brand": "UFP Menu",
-  "brandLink": "http://www.froso.de",
+  "brand": {
+    "label": "UFP Menu",
+    "color": "primary"
+  },
   "welcome": {
     "entries": [
       {
-        "title": "Welcome",
+        "title": "Welcome2",
         "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
         "alerts": [
           {
@@ -35,49 +37,18 @@
       }
     ]
   },
+  "nav": {
+    "colorscheme": "light",
+    "type": "light"
+  },
   "menu": [
     {
       "label": "HELLO",
-      "color": "btn-warning",
+      "color": "warning",
       "children": [
         {
           "label": "THERE1",
-          "color": "btn-secondary",
-          "children": [
-            {
-              "label": "XTHERE1",
-              "link": "http://www.froso.de"
-            },
-            {
-              "label": "XTHERE2",
-              "children": [
-                {
-                  "label": "YTHERE1"
-                },
-                {
-                  "label": "YTHERE2"
-                },
-                {
-                  "label": "YTHERE3"
-                },
-                {
-                  "label": "YTHERE4"
-                },
-                {
-                  "label": "YTHERE5"
-                }
-              ]
-            },
-            {
-              "label": "XTHERE3"
-            },
-            {
-              "label": "XTHERE4"
-            },
-            {
-              "label": "XTHERE5"
-            }
-          ]
+          "color": "secondary"
         },
         {
           "label": "THERE2"
@@ -94,6 +65,28 @@
       ]
     },
     {
+      "label": "HELLO2",
+      "color": "btn-warning",
+      "children": [
+        {
+          "label": "XXX",
+          "color": "secondary"
+        },
+        {
+          "label": "AAA"
+        },
+        {
+          "label": "BBB"
+        },
+        {
+          "label": "CCC"
+        },
+        {
+          "label": "DDD"
+        }
+      ]
+    },
+    {
       "label": "HELLO1"
     },
     {
@@ -106,7 +99,8 @@
       "label": "HELLO4"
     },
     {
-      "label": "HELLO5"
+      "label": "github.com",
+      "link": "http://www.github.com"
     }
   ]
 }

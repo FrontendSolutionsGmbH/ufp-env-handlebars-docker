@@ -1,7 +1,7 @@
-version: '3.2'
+version: '2'
 services:
   ufp-env-handlebars:
-    image: ckleinhuis/ufp-env-handlebars:4
+    image: ckleinhuis/ufp-env-handlebars:5
     environment:
     - "CFG_MENU_0_LABEL=UFP"
     - "CFG_MENU_0_LINK=https://frontendsolutions.de/"
@@ -10,21 +10,9 @@ services:
     - "CFG_MENU_0_CHILDREN_0_LINK=https://frontendsolutions.de/#/enterprise"
     - "CFG_MENU_0_CHILDREN_0_COLOR=btn-primary"
 
-    - "CFG_MENU_0_CHILDREN_0_CHILDREN_0_LABEL=Contact"
-    - "CFG_MENU_0_CHILDREN_0_CHILDREN_0_LINK=https://frontendsolutions.de/#/imprint"
-    - "CFG_MENU_0_CHILDREN_0_CHILDREN_0_COLOR=btn-warning"
-
     - "CFG_MENU_0_CHILDREN_1_LABEL=More"
     - "CFG_MENU_0_CHILDREN_1_LINK=https://frontendsolutions.de/#/startup"
     - "CFG_MENU_0_CHILDREN_1_COLOR=btn-secondary"
-
-    - "CFG_MENU_0_CHILDREN_1_CHILDREN_0_LABEL=Us"
-    - "CFG_MENU_0_CHILDREN_1_CHILDREN_0_LINK=https://frontendsolutions.de/#/startup"
-    - "CFG_MENU_0_CHILDREN_1_CHILDREN_0_COLOR=btn-default"
-
-    - "CFG_MENU_0_CHILDREN_1_CHILDREN_1_LABEL=Help"
-    - "CFG_MENU_0_CHILDREN_1_CHILDREN_1_LINK=https://frontendsolutions.de/#/about-us"
-    - "CFG_MENU_0_CHILDREN_1_CHILDREN_1_COLOR=btn-default"
 
     - "CFG_MENU_1_LABEL=github.com"
     - "CFG_MENU_1_TARGET=ufp github"
@@ -38,15 +26,15 @@ services:
     - "CFG_MENU_3_LABEL=MENU 3"
     - "CFG_MENU_3_COLOR=btn-secondary"
     - "CFG_MENU_3_LINK=https://frontendsolutions.de/"
-    - "CFG_WELCOME_ENTRIES_0_TEXT_0_TITLE=Welcome to this example"
-    - "CFG_WELCOME_ENTRIES_0_TEXT_0_TEXT=Welcome to this example"
+    - "CFG_WELCOME_ENTRIES_0_TEXTS_0_TITLE=Welcome to this example"
+    - "CFG_WELCOME_ENTRIES_0_TEXTS_0_TEXT=Welcome to this example"
     ports:
     - "3000:3000"
 
 
 
   ufp-env-handlebars2:
-    image: ckleinhuis/ufp-env-handlebars:4
+    image: ckleinhuis/ufp-env-handlebars:5
     environment:
     - "CFG_MENU_0_LABEL=SERVICE 2"
     - "CFG_MENU_0_LINK=http://www.froso.de"

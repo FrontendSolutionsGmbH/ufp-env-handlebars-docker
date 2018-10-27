@@ -31,4 +31,17 @@ app.use(logger('dev'))
 app.use(express.static(path.join(process.cwd(), 'static', 'public')))
 
 const server = app.listen(PORT)
+
+process.on('SIGTERM', function () {
+  console.log(`SIGINT received closing server`)
+  server.close(function () {
+    process.exit(0)
+  })
+})
+process.on('SIGINT', function () {
+  console.log(`SIGINT received closing server`)
+  server.close(function () {
+    process.exit(0)
+  })
+})
 console.log(`Started server on ${HOST}:${PORT}`)

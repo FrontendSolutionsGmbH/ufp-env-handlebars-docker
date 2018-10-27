@@ -1,4 +1,4 @@
 *** Test Cases ***
 HelloWorld
-   [Tags]  playground
-   Log to console  Hello World
+    [Tags]    playground
+    Log to console    Hello World

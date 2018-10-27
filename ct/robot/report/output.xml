@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20181027 19:02:35.114" generator="Robot 3.0.4 (Python 2.7.15 on linux2)">
+<suite source="/opt/robotframework/tests" id="s1" name="Tests">
+<suite source="/opt/robotframework/tests/test" id="s1-s1" name="Test">
+<suite source="/opt/robotframework/tests/test/ComponentTest.robot" id="s1-s1-s1" name="ComponentTest">
+<test id="s1-s1-s1-t1" name="Check Service 1 With Current ENV Config in Docker-Compose.yml">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>local</arg>
+<arg>http://${SERVICE_NAME1}:${SERVICE_PORT1}</arg>
+</arguments>
+<msg timestamp="20181027 19:02:35.365" level="INFO">Creating Session using : alias=local, url=http://ufp-env-handlebars:3000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20181027 19:02:35.366" starttime="20181027 19:02:35.364"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>local</arg>
+<arg>/</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20181027 19:02:35.397" level="INFO">Get Request using : alias=local, uri=/, headers=None json=None</msg>
+<msg timestamp="20181027 19:02:35.397" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20181027 19:02:35.398" starttime="20181027 19:02:35.366"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20181027 19:02:35.399" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20181027 19:02:35.399" starttime="20181027 19:02:35.398"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+<arg>MENU 3</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:35.401" starttime="20181027 19:02:35.400"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+<arg>MENU 2</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:35.402" starttime="20181027 19:02:35.401"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+<arg>UFP</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:35.403" starttime="20181027 19:02:35.402"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+<arg>btn-primary</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:35.404" starttime="20181027 19:02:35.404"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+<arg>btn-secondary</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:35.406" starttime="20181027 19:02:35.405"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+<arg>github.com</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:35.407" starttime="20181027 19:02:35.406"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+<arg>https://github.com</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:35.408" starttime="20181027 19:02:35.407"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+</arguments>
+<msg timestamp="20181027 19:02:35.409" level="INFO">&lt;!DOCTYPE html&gt;
+&lt;html lang="en" &gt;
+
+    &lt;head &gt;
+        &lt;title &gt;&lt;/title &gt;
+        &lt;meta charset="utf-8" &gt;
+        &lt;meta name="viewport"
+              content="width=device-width, initial-scale=1" &gt;
+        &lt;link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" &gt;
+        &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" &gt;&lt;/script &gt;
+        &lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" &gt;&lt;/script &gt;
+        &lt;style &gt;
+            html {
+                height : 100%;
+            }
+
+            iframe {
+                height : 100%;
+                width  : 100%;
+                border : 0px;
+            }
+
+            body {
+                min-height : 100%;
+            }
+
+            .dropdown-submenu {
+                position : relative;
+            }
+
+            .dropdown-submenu .dropdown-menu {
+                top        : 0;
+                left       : 50%;
+                margin-top : -1px;
+            }
+        &lt;/style &gt;
+    &lt;/head &gt;
+
+
+
+
+
+
+
+    &lt;body &gt;
+        &lt;!--
+            Debug output shows incoming template data
+
+            {&amp;quot;title&amp;quot;:&amp;quot;Ufp Env Handlebars - Ufp Menu&amp;quot;,&amp;quot;brand&amp;quot;:{&amp;quot;label&amp;quot;:&amp;quot;UFP Menu&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;primary&amp;quot;},&amp;quot;welcome&amp;quot;:{&amp;quot;entries&amp;quot;:[{&amp;quot;texts&amp;quot;:[{&amp;quot;title&amp;quot;:&amp;quot;Welcome to this example&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;Welcome to this example&amp;quot;}]}]},&amp;quot;menu&amp;quot;:[{&amp;quot;link&amp;quot;:&amp;quot;https://frontendsolutions.de/&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;btn-primary&amp;quot;,&amp;quot;children&amp;quot;:[{&amp;quot;link&amp;quot;:&amp;quot;https://frontendsolutions.de/#/enterprise&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;btn-primary&amp;quot;,&amp;quot;label&amp;quot;:&amp;quot;Welcome&amp;quot;},{&amp;quot;link&amp;quot;:&amp;quot;https://frontendsolutions.de/#/startup&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;btn-secondary&amp;quot;,&amp;quot;label&amp;quot;:&amp;quot;More&amp;quot;}],&amp;quot;label&amp;quot;:&amp;quot;UFP&amp;quot;},{&amp;quot;link&amp;quot;:&amp;quot;https://github.com/FrontendSolutionsGmbH&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;btn-secondary&amp;quot;,&amp;quot;label&amp;quot;:&amp;quot;github.com&amp;quot;,&amp;quot;target&amp;quot;:&amp;quot;ufp github&amp;quot;},{&amp;quot;link&amp;quot;:&amp;quot;https://frontendsolutions.de/&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;btn-secondary&amp;quot;,&amp;quot;label&amp;quot;:&amp;quot;MENU 2&amp;quot;},{&amp;quot;link&amp;quot;:&amp;quot;https://frontendsolutions.de/&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;btn-secondary&amp;quot;,&amp;quot;label&amp;quot;:&amp;quot;MENU 3&amp;quot;}],&amp;quot;callback&amp;quot;:{&amp;quot;some&amp;quot;:&amp;quot;json&amp;quot;}}
+         --&gt;
+        &lt;nav class="navbar navbar-expand-lg navbar-light navbar-light bg-light"
+
+        &gt;
+            &lt;a class="navbar-brand  "
+               href="/"
+               target="_self" &gt;UFP Menu&lt;/a &gt;
+            
+                &lt;div class="collapse navbar-collapse" &gt;
+                    &lt;ul class="navbar-nav mr-auto" &gt;
+                        &lt;li class="nav-item dropdown " &gt;
+                            &lt;a class="nav-link dropdown-toggle  "
+                               href="#"
+                               id="navbarDropdown"
+                               role="button"
+                               data-toggle="dropdown"
+                               aria-haspopup="true"
+                               aria-expanded="false" &gt;
+                                UFP
+                            &lt;/a &gt;
+                                &lt;div class="dropdown-menu"
+                                     aria-labelledby="navbarDropdown" &gt;
+                                    
+                                    
+                                        &lt;!-- NO CHILDREN, NORMAL LI --&gt;
+                                    
+                                        &lt;a class="dropdown-item  "
+                                           target="content"
+                                           href="https://frontendsolutions.de/#/enterprise" &gt;Welcome&lt;/a &gt;
+                                    
+                                    
+                                        &lt;!-- NO CHILDREN, NORMAL LI --&gt;
+                                    
+                                        &lt;a class="dropdown-item  "
+                                           target="content"
+                                           href="https://frontendsolutions.de/#/startup" &gt;More&lt;/a &gt;
+                                &lt;/div &gt;
+                        &lt;/li &gt;
+                        &lt;li class="nav-item" &gt;
+                            &lt;a class="nav-link  "
+                               target="ufp github"
+                               href="https://github.com/FrontendSolutionsGmbH" &gt;github.com
+            
+                            &lt;/a &gt;
+                        &lt;/li &gt;
+                        &lt;li class="nav-item" &gt;
+                            &lt;a class="nav-link  "
+                               target="content"
+                               href="https://frontendsolutions.de/" &gt;MENU 2
+            
+                            &lt;/a &gt;
+                        &lt;/li &gt;
+                        &lt;li class="nav-item" &gt;
+                            &lt;a class="nav-link  "
+                               target="content"
+                               href="https://frontendsolutions.de/" &gt;MENU 3
+            
+                            &lt;/a &gt;
+                        &lt;/li &gt;
+                    &lt;/ul &gt;
+                &lt;/div &gt;
+            
+
+
+        &lt;/nav &gt;
+
+        &lt;div style="width:100%;height:calc(100% - 3em);position:absolute;padding-top:1em" &gt;
+            &lt;iframe name="content"
+                    src="/welcome.html" &gt;&lt;/iframe &gt;
+        &lt;/div &gt;
+
+        &lt;script &gt;
+            $(document).ready(function () {
+                $('.dropdown-submenu a.test').on("click", function (e) {
+                    $(this).next('ul').toggle();
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+
+            });
+        &lt;/script &gt;
+    &lt;/body &gt;
+
+&lt;/html &gt;
+</msg>
+<status status="PASS" endtime="20181027 19:02:35.410" starttime="20181027 19:02:35.408"></status>
+</kw>
+<doc>This test checks that configured env variables from docker-compose-service.yml are found in service 1</doc>
+<tags>
+<tag>critical</tag>
+</tags>
+<status status="PASS" endtime="20181027 19:02:35.410" critical="yes" starttime="20181027 19:02:35.361"></status>
+</test>
+<test id="s1-s1-s1-t2" name="Check Service 1 Path 2 With Current ENV Config in Docker-Compose.yml">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>local</arg>
+<arg>http://${SERVICE_NAME1}:${SERVICE_PORT1}</arg>
+</arguments>
+<msg timestamp="20181027 19:02:35.415" level="INFO">Creating Session using : alias=local, url=http://ufp-env-handlebars:3000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20181027 19:02:35.416" starttime="20181027 19:02:35.414"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>local</arg>
+<arg>/folder2</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20181027 19:02:35.435" level="INFO">Get Request using : alias=local, uri=/folder2, headers=None json=None</msg>
+<msg timestamp="20181027 19:02:35.435" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20181027 19:02:35.435" starttime="20181027 19:02:35.416"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20181027 19:02:35.437" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20181027 19:02:35.437" starttime="20181027 19:02:35.436"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+<arg>container-fluid</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:35.439" starttime="20181027 19:02:35.438"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+</arguments>
+<msg timestamp="20181027 19:02:35.440" level="INFO">&lt;!DOCTYPE html&gt;
+&lt;html lang="en" &gt;
+    &lt;head &gt;
+        &lt;title &gt;UFP ENV Handlebars Bootstrap Example&lt;/title &gt;
+        &lt;meta charset="utf-8" &gt;
+        &lt;meta name="viewport"
+              content="width=device-width, initial-scale=1" &gt;
+        &lt;link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" &gt;
+        &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" &gt;&lt;/script &gt;
+        &lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" &gt;&lt;/script &gt;
+        &lt;style &gt;
+            /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+            .row.content {
+                height : 1500px
+            }
+
+            /* Set gray background color and 100% height */
+            .sidenav {
+                background-color : #F1F1F1;
+                height           : 100%;
+            }
+
+            /* Set black background color, white text and some padding */
+            footer {
+                background-color : #555;
+                color            : white;
+                padding          : 15px;
+            }
+
+            /* On small screens, set height to 'auto' for sidenav and grid */
+            @media screen and (max-width : 767px) {
+                .sidenav {
+                    height  : auto;
+                    padding : 15px;
+                }
+
+                .row.content {
+                    height : auto;
+                }
+            }
+        &lt;/style &gt;
+    &lt;/head &gt;
+    &lt;body &gt;
+
+        &lt;div class="container-fluid" &gt;
+            &lt;div class="row content" &gt;
+                &lt;div class="col-sm-3 sidenav" &gt;
+                    &lt;h4 &gt;John's Blog&lt;/h4 &gt;
+                    &lt;ul class="nav nav-pills nav-stacked" &gt;
+                        &lt;li class="active" &gt;&lt;a href="#section1" &gt;Home&lt;/a &gt;&lt;/li &gt;
+                        &lt;li &gt;&lt;a href="#section2" &gt;Friends&lt;/a &gt;&lt;/li &gt;
+                        &lt;li &gt;&lt;a href="#section3" &gt;Family&lt;/a &gt;&lt;/li &gt;
+                        &lt;li &gt;&lt;a href="#section3" &gt;Photos&lt;/a &gt;&lt;/li &gt;
+                    &lt;/ul &gt;
+                    &lt;br &gt;
+                    &lt;div class="input-group" &gt;
+                        &lt;input type="text"
+                               class="form-control"
+                               placeholder="Search Blog.." &gt;
+                        &lt;span class="input-group-btn" &gt;
+          &lt;button class="btn btn-default"
+                  type="button" &gt;
+            &lt;span class="glyphicon glyphicon-search" &gt;&lt;/span &gt;
+          &lt;/button &gt;
+        &lt;/span &gt;
+                    &lt;/div &gt;
+                &lt;/div &gt;
+
+
+            &lt;/div &gt;
+        &lt;/div &gt;
+
+        &lt;footer class="container-fluid" &gt;
+            &lt;p &gt;Footer Text&lt;/p &gt;
+        &lt;/footer &gt;
+
+    &lt;/body &gt;
+&lt;/html &gt;
+</msg>
+<status status="PASS" endtime="20181027 19:02:35.440" starttime="20181027 19:02:35.439"></status>
+</kw>
+<doc>This test checks that the second sub folder file is exported and accessible as well</doc>
+<tags>
+<tag>critical</tag>
+</tags>
+<status status="PASS" endtime="20181027 19:02:35.441" critical="yes" starttime="20181027 19:02:35.411"></status>
+</test>
+<test id="s1-s1-s1-t3" name="Check Service 2 With Current ENV Config in Docker-Compose.yml">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>local</arg>
+<arg>http://${SERVICE_NAME2}:${SERVICE_PORT2}</arg>
+</arguments>
+<msg timestamp="20181027 19:02:35.446" level="INFO">Creating Session using : alias=local, url=http://ufp-env-handlebars2:3000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20181027 19:02:35.447" starttime="20181027 19:02:35.445"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>local</arg>
+<arg>/</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20181027 19:02:35.476" level="INFO">Get Request using : alias=local, uri=/, headers=None json=None</msg>
+<msg timestamp="20181027 19:02:35.477" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20181027 19:02:35.477" starttime="20181027 19:02:35.448"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20181027 19:02:35.478" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20181027 19:02:35.478" starttime="20181027 19:02:35.477"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+<arg>SERVICE 2</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:35.480" starttime="20181027 19:02:35.479"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+</arguments>
+<msg timestamp="20181027 19:02:35.481" level="INFO">&lt;!DOCTYPE html&gt;
+&lt;html lang="en" &gt;
+
+    &lt;head &gt;
+        &lt;title &gt;&lt;/title &gt;
+        &lt;meta charset="utf-8" &gt;
+        &lt;meta name="viewport"
+              content="width=device-width, initial-scale=1" &gt;
+        &lt;link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" &gt;
+        &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" &gt;&lt;/script &gt;
+        &lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" &gt;&lt;/script &gt;
+        &lt;style &gt;
+            html {
+                height : 100%;
+            }
+
+            iframe {
+                height : 100%;
+                width  : 100%;
+                border : 0px;
+            }
+
+            body {
+                min-height : 100%;
+            }
+
+            .dropdown-submenu {
+                position : relative;
+            }
+
+            .dropdown-submenu .dropdown-menu {
+                top        : 0;
+                left       : 50%;
+                margin-top : -1px;
+            }
+        &lt;/style &gt;
+    &lt;/head &gt;
+
+
+
+
+
+
+
+    &lt;body &gt;
+        &lt;!--
+            Debug output shows incoming template data
+
+            {&amp;quot;title&amp;quot;:&amp;quot;Ufp Env Handlebars - Ufp Menu&amp;quot;,&amp;quot;brand&amp;quot;:{&amp;quot;label&amp;quot;:&amp;quot;UFP Menu&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;primary&amp;quot;},&amp;quot;welcome&amp;quot;:{&amp;quot;entries&amp;quot;:[{&amp;quot;texts&amp;quot;:[{&amp;quot;title&amp;quot;:&amp;quot;Welcome to UFP Env Handlebars&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;This is the default value for the ${CFG_WELCOME_TEXT} env value, override to set new. The title is controlled using the ${CFG_WELCOME_TILE} env property&amp;quot;}]}]},&amp;quot;menu&amp;quot;:[{&amp;quot;link&amp;quot;:&amp;quot;http://www.froso.de&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;w3-blue&amp;quot;,&amp;quot;label&amp;quot;:&amp;quot;SERVICE 2&amp;quot;}],&amp;quot;callback&amp;quot;:{&amp;quot;some&amp;quot;:&amp;quot;json&amp;quot;}}
+         --&gt;
+        &lt;nav class="navbar navbar-expand-lg navbar-light navbar-light bg-light"
+
+        &gt;
+            &lt;a class="navbar-brand  "
+               href="/"
+               target="_self" &gt;UFP Menu&lt;/a &gt;
+            
+                &lt;div class="collapse navbar-collapse" &gt;
+                    &lt;ul class="navbar-nav mr-auto" &gt;
+                        &lt;li class="nav-item" &gt;
+                            &lt;a class="nav-link  "
+                               target="content"
+                               href="http://www.froso.de" &gt;SERVICE 2
+            
+                            &lt;/a &gt;
+                        &lt;/li &gt;
+                    &lt;/ul &gt;
+                &lt;/div &gt;
+            
+
+
+        &lt;/nav &gt;
+
+        &lt;div style="width:100%;height:calc(100% - 3em);position:absolute;padding-top:1em" &gt;
+            &lt;iframe name="content"
+                    src="/welcome.html" &gt;&lt;/iframe &gt;
+        &lt;/div &gt;
+
+        &lt;script &gt;
+            $(document).ready(function () {
+                $('.dropdown-submenu a.test').on("click", function (e) {
+                    $(this).next('ul').toggle();
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+
+            });
+        &lt;/script &gt;
+    &lt;/body &gt;
+
+&lt;/html &gt;
+</msg>
+<status status="PASS" endtime="20181027 19:02:35.482" starttime="20181027 19:02:35.480"></status>
+</kw>
+<doc>This test checks that configured env variables from docker-compose-service.yml are found in service 2</doc>
+<tags>
+<tag>critical</tag>
+</tags>
+<status status="PASS" endtime="20181027 19:02:35.482" critical="yes" starttime="20181027 19:02:35.442"></status>
+</test>
+<doc>This test assumes that the docker-compose-service.yml stack is running and performs checks against the current configured environment variables to be present in the outputed pathes</doc>
+<status status="PASS" endtime="20181027 19:02:35.484" starttime="20181027 19:02:35.180"></status>
+</suite>
+<suite source="/opt/robotframework/tests/test/ComponentTestDebugStack.robot" id="s1-s1-s2" name="ComponentTestDebugStack">
+<test id="s1-s1-s2-t1" name="Check Localhost:8080 Is Working">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the given ``url``.</doc>
+<arguments>
+<arg>http://${SERVICE_NAME1}:${SERVICE_PORT1}</arg>
+<arg>Chrome</arg>
+</arguments>
+<msg timestamp="20181027 19:02:35.657" level="INFO">Opening browser 'Chrome' to base url 'http://development-overview:3000'.</msg>
+<status status="PASS" endtime="20181027 19:02:43.023" starttime="20181027 19:02:35.656"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on current page.</doc>
+<arguments>
+<arg>Ufp-Env-Handlebars-Docker</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:43.082" starttime="20181027 19:02:43.023"></status>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes screenshot of the current page and embeds it into log file.</doc>
+<arguments>
+<arg>ScreenshotDebug.png</arg>
+</arguments>
+<msg timestamp="20181027 19:02:43.653" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="ScreenshotDebug.png"&gt;&lt;img src="ScreenshotDebug.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20181027 19:02:43.653" starttime="20181027 19:02:43.083"></status>
+</kw>
+<doc>This test checks that configured env variables from docker-compose-service.yml are found in service 1</doc>
+<tags>
+<tag>critical</tag>
+</tags>
+<status status="PASS" endtime="20181027 19:02:43.654" critical="yes" starttime="20181027 19:02:35.653"></status>
+</test>
+<doc>This test assumes that the docker-compose-service.yml stack is running and performs checks against the current configured environment variables to be present in the outputed pathes</doc>
+<status status="PASS" endtime="20181027 19:02:43.656" starttime="20181027 19:02:35.490"></status>
+</suite>
+<suite source="/opt/robotframework/tests/test/ComponentTestFrontend.robot" id="s1-s1-s3" name="ComponentTestFrontend">
+<test id="s1-s1-s3-t1" name="Check Service 1 With Current ENV Config in Docker-Compose.yml">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the given ``url``.</doc>
+<arguments>
+<arg>http://${SERVICE_NAME1}:${SERVICE_PORT1}</arg>
+<arg>Chrome</arg>
+</arguments>
+<msg timestamp="20181027 19:02:43.677" level="INFO">Opening browser 'Chrome' to base url 'http://ufp-env-handlebars:3000'.</msg>
+<status status="PASS" endtime="20181027 19:02:50.918" starttime="20181027 19:02:43.676"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on current page.</doc>
+<arguments>
+<arg>UFP</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:50.969" starttime="20181027 19:02:50.919"></status>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes screenshot of the current page and embeds it into log file.</doc>
+<arguments>
+<arg>ScreenshotFrontend1.png</arg>
+</arguments>
+<msg timestamp="20181027 19:02:51.499" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="ScreenshotFrontend1.png"&gt;&lt;img src="ScreenshotFrontend1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20181027 19:02:51.500" starttime="20181027 19:02:50.970"></status>
+</kw>
+<doc>This test checks that configured env variables from docker-compose-service.yml are found in service 1</doc>
+<tags>
+<tag>critical</tag>
+</tags>
+<status status="PASS" endtime="20181027 19:02:51.500" critical="yes" starttime="20181027 19:02:43.673"></status>
+</test>
+<test id="s1-s1-s3-t2" name="Check Service 2 With Current ENV Config in Docker-Compose.yml">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the given ``url``.</doc>
+<arguments>
+<arg>http://${SERVICE_NAME2}:${SERVICE_PORT2}</arg>
+<arg>Chrome</arg>
+</arguments>
+<msg timestamp="20181027 19:02:51.507" level="INFO">Opening browser 'Chrome' to base url 'http://ufp-env-handlebars2:3000'.</msg>
+<status status="PASS" endtime="20181027 19:02:58.774" starttime="20181027 19:02:51.506"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on current page.</doc>
+<arguments>
+<arg>UFP</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:58.837" starttime="20181027 19:02:58.775"></status>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes screenshot of the current page and embeds it into log file.</doc>
+<arguments>
+<arg>ScreenshotFrontend2.png</arg>
+</arguments>
+<msg timestamp="20181027 19:02:59.390" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="ScreenshotFrontend2.png"&gt;&lt;img src="ScreenshotFrontend2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20181027 19:02:59.390" starttime="20181027 19:02:58.837"></status>
+</kw>
+<doc>This test checks that configured env variables from docker-compose-service.yml are found in service 1</doc>
+<tags>
+<tag>critical</tag>
+</tags>
+<status status="PASS" endtime="20181027 19:02:59.391" critical="yes" starttime="20181027 19:02:51.502"></status>
+</test>
+<doc>This test assumes that the docker-compose-service.yml stack is running and performs checks against the current configured environment variables to be present in the outputed pathes</doc>
+<status status="PASS" endtime="20181027 19:02:59.394" starttime="20181027 19:02:43.663"></status>
+</suite>
+<suite source="/opt/robotframework/tests/test/HelloWorld.robot" id="s1-s1-s4" name="HelloWorld">
+<test id="s1-s1-s4-t1" name="HelloWorld">
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Hello World</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:59.414" starttime="20181027 19:02:59.413"></status>
+</kw>
+<tags>
+<tag>playground</tag>
+</tags>
+<status status="PASS" endtime="20181027 19:02:59.414" critical="no" starttime="20181027 19:02:59.412"></status>
+</test>
+<status status="PASS" endtime="20181027 19:02:59.416" starttime="20181027 19:02:59.406"></status>
+</suite>
+<status status="PASS" endtime="20181027 19:02:59.420" starttime="20181027 19:02:35.176"></status>
+</suite>
+<status status="PASS" endtime="20181027 19:02:59.432" starttime="20181027 19:02:35.119"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="6">Critical Tests</stat>
+<stat fail="0" pass="7">All Tests</stat>
+</total>
+<tag>
+<stat info="critical" fail="0" pass="6">critical</stat>
+<stat info="non-critical" fail="0" pass="0">noncritical</stat>
+<stat fail="0" pass="1">playground</stat>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Tests" pass="7">Tests</stat>
+<stat fail="0" id="s1-s1" name="Test" pass="7">Tests.Test</stat>
+<stat fail="0" id="s1-s1-s1" name="ComponentTest" pass="3">Tests.Test.ComponentTest</stat>
+<stat fail="0" id="s1-s1-s2" name="ComponentTestDebugStack" pass="1">Tests.Test.ComponentTestDebugStack</stat>
+<stat fail="0" id="s1-s1-s3" name="ComponentTestFrontend" pass="2">Tests.Test.ComponentTestFrontend</stat>
+<stat fail="0" id="s1-s1-s4" name="HelloWorld" pass="1">Tests.Test.HelloWorld</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

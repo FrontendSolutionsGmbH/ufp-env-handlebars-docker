@@ -34,15 +34,15 @@ log "---------------------------------------------------------------------------
 log "Bringing up Infrastructure "
 log "------------------------------------------------------------------------------"
 
-./stack.sh -d service ${CREATE}
-./stack.sh -u service -b
+sidt.sh -d service ${CREATE}
+sidt.sh -u service -b
 
 log "------------------------------------------------------------------------------"
 log "Executing component test "
 log "------------------------------------------------------------------------------"
 
-./stack.sh -d test ${CREATE}
-./stack.sh -u test
+sidt.sh -d test ${CREATE}
+sidt.sh -u test
 TEST_RESULT=$?
 
 
@@ -52,7 +52,7 @@ if [ "$TEARDOWN" -eq "1" ]; then
 	log "Shutting down Infrastructure "
 	log "------------------------------------------------------------------------------"
 
-	./stack.sh -d service
+	sidt.sh -d service
 fi
 
 log "EXITING WITH ${TEST_RESULT}"
