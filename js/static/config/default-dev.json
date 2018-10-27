@@ -1,0 +1,106 @@
+{
+  "title": "Ufp Env Handlebars - Ufp Menu",
+  "brand": {
+    "label": "UFP Menu",
+    "color": "primary"
+  },
+  "welcome": {
+    "entries": [
+      {
+        "title": "Welcome2",
+        "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+        "alerts": [
+          {
+            "text": "Alert 1",
+            "color": "danger"
+          }
+        ],
+        "buttons": [
+          {
+            "label": "Button1 ",
+            "link": "http://www.froso.de",
+            "description": "The Description"
+          },
+          {
+            "label": "Button 2",
+            "color": "danger",
+            "link": "http://www.froso.de"
+          }
+        ],
+        "texts": [
+          {
+            "title": " The Title",
+            "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+            "color": "default"
+          }
+        ]
+      }
+    ]
+  },
+  "nav": {
+    "colorscheme": "light",
+    "type": "light"
+  },
+  "menu": [
+    {
+      "label": "HELLO",
+      "color": "warning",
+      "children": [
+        {
+          "label": "THERE1",
+          "color": "secondary"
+        },
+        {
+          "label": "THERE2"
+        },
+        {
+          "label": "THERE3"
+        },
+        {
+          "label": "THERE4"
+        },
+        {
+          "label": "THERE5"
+        }
+      ]
+    },
+    {
+      "label": "HELLO2",
+      "color": "btn-warning",
+      "children": [
+        {
+          "label": "XXX",
+          "color": "secondary"
+        },
+        {
+          "label": "AAA"
+        },
+        {
+          "label": "BBB"
+        },
+        {
+          "label": "CCC"
+        },
+        {
+          "label": "DDD"
+        }
+      ]
+    },
+    {
+      "label": "HELLO1"
+    },
+    {
+      "label": "HELLO2"
+    },
+    {
+      "label": "HELLO3"
+    },
+    {
+      "label": "HELLO4"
+    },
+    {
+      "label": "github.com",
+      "link": "http://www.github.com"
+    }
+  ]
+}
