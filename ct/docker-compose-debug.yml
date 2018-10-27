@@ -15,7 +15,7 @@ services:
     - "8082:80"
 
   development-overview:
-    image: ckleinhuis/ufp-env-handlebars:5
+    image: ckleinhuis/ufp-env-handlebars:latest
     environment:
     - "CFG_BRAND_LABEL=Dev Ufp-Env-Handlebars-Docker"
     - "CFG_MENU_0_LABEL=Portainer"

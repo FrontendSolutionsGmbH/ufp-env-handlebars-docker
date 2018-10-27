@@ -14,7 +14,7 @@ ACTIVE_STACKS=()
 # Variables
 ###
 PROJECT_NAME="ckleinhuis/ufp-env-handlebars"
-VERSION=5
+VERSION=6
 SCRIPT_PATH=$(realpath "$0")
 SCRIPT_NAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 SCRIPT_HOME=${SCRIPT_PATH%$SCRIPT_NAME}
@@ -48,10 +48,13 @@ RESULT=0
 ###
 
 help() {
+  echo " "
+  echo " SIDT Cli"
+  echo " "
   echo " Starts/Stops the local stack and their debug-tools."
   echo " Options:"
   echo "   -h          Show this help"
-  echo "   -p          Pulls the latest docker images"
+  echo "   -p <stack>  Pulls the latest docker images"
   echo "   -b          Starts stack in background with -d"
   echo "   -c          (re-)create container stacks"
   echo "   -l <stack>  Show the logs of stacks"
@@ -63,8 +66,9 @@ help() {
   echo "     service   The involved services"
   echo "     debug     The debug tools"
   echo "     all       All these stacks"
+  echo "     *any      Any other ct/docker-compose-[*any].yml"
   echo ""
-  echo " Default behavior: Starts the service only"
+  echo " Default behavior: Does Nothing"
   echo ""
   echo " (continued) author: ck@froso.de"
   echo " (initial) author: s.schumann@tarent.de"
@@ -95,8 +99,7 @@ startStack() {
 	  if [ "$COMPOSE_FILENAME" = "$STACK_LOCATION_SERVICE" ]; then
     	#    hnandle call to docker build of main service in root Dockerfile
 	log "Building main docker image $PROJECT_NAME:$VERSION"
-        docker build --no-cache -t $PROJECT_NAME:$VERSION .
-        docker build -t $PROJECT_NAME:latest .
+        docker build   --no-cache -t $PROJECT_NAME:$VERSION  -t $PROJECT_NAME:latest .
     fi
 
 		docker-compose -f $COMPOSE_FILENAME build --no-cache  --force-rm
@@ -136,7 +139,7 @@ chooseServices() {
             ACTIVE_STACKS+=("test")
             ;;
      *)
-            echo "Using input --- $1"
+            log "Using input --- $1"
             STACK_NAME=$1
             ACTIVE_STACKS+=("$1")
     esac
@@ -151,7 +154,7 @@ if [ "$#" -ge 1 ]; then
     STACK_SERVICE=0
 fi
 
-while getopts 'u:d:hpl:bc' OPTION; do
+while getopts 'u:d:p:l:chb' OPTION; do
   case $OPTION in
     b)
     	log "Background flag -b found, starting in background"
@@ -159,7 +162,7 @@ while getopts 'u:d:hpl:bc' OPTION; do
     ;;
     p)
     	log "Pull All Images flag -p found, pulling all images"
-        pullAllImages
+        chooseServices $OPTARG
     ;;
     c)
     	log "Create flag -c found, (re-)creating stacks/images"
@@ -203,6 +206,7 @@ execute(){
     if [ "$STOP" -eq "1" ];then stopStack $1 ;fi
     if [ "$START" -eq "1" ];then startStack $1 ;fi
     if [ "$LOG_STACK" -eq "1" ];then logStack $1 ;fi
+    if [ "$PULL_STACK" -eq "1" ];then pullStack $1 ;fi
 }
 
 if [ "$DEBUG" -eq "1" ]; then
