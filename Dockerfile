@@ -2,18 +2,14 @@ FROM node:8-alpine as builder
 
 # Setup binary pathes for project node modules
 ENV PATH ${PATH}:/ufp-env-handlebars-build/node_modules/.bin
+WORKDIR /ufp-env-handlebars-build/js
 
 # Set up working directory, copying our local js folder as buil
 COPY js/ /ufp-env-handlebars-build
 
-WORKDIR /ufp-env-handlebars-build/js
 
 # Install dependencies (node modules is mounted, so if present will be used)
-RUN yarn install
-
-RUN ls /ufp-env-handlebars-build/js
 RUN yarn install --production=true
-RUN ls /ufp-env-handlebars-build/js
 
 # final step build distribution and execute the parse and serve steps
 FROM node:8-alpine

@@ -2,6 +2,9 @@
 
 
 
+2018-10-27 [6.0.0]
+	- smaller docker images
+
 2018-10-27 [5.0.0]
 
 	- template cleanup, extended tests, included robotframework repo in repo as reference
@@ -33,7 +36,8 @@
 
 	- Initial functionality release
               
-[unreleased]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/5.0.0-develop
+[unreleased]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/6.0.0-develop
+[unreleased]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/5.0.0-6.0.0
 [unreleased]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/4.0.0-5.0.0
 [4.0.0]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/3.1.0-4.0.0
 [3.0.0]: https://github.com/FrontendSolutionsGmbH/ufp-env-handlebars-docker/compare/2.1.0-3.1.0

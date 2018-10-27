@@ -1,7 +1,7 @@
 version: '2'
 services:
   ufp-env-handlebars:
-    image: ckleinhuis/ufp-env-handlebars:5
+    image: ckleinhuis/ufp-env-handlebars:latest
     environment:
     - "CFG_MENU_0_LABEL=UFP"
     - "CFG_MENU_0_LINK=https://frontendsolutions.de/"
@@ -34,7 +34,7 @@ services:
 
 
   ufp-env-handlebars2:
-    image: ckleinhuis/ufp-env-handlebars:5
+    image: ckleinhuis/ufp-env-handlebars:latest
     environment:
     - "CFG_MENU_0_LABEL=SERVICE 2"
     - "CFG_MENU_0_LINK=http://www.froso.de"
