@@ -69,16 +69,15 @@ help() {
 }
 
 pullStack() {
-    COMPOSE_FILENAME=${1}
+    COMPOSE_FILENAME=$1
 
 	log "Pulling Stack ${COMPOSE_FILENAME}"
     docker-compose -f ${COMPOSE_FILENAME} pull
 }
 
 logStack() {
-    COMPOSE_FILENAME=${1}
-
-	log "Loggin Stack ${COMPOSE_FILENAME}"
+    COMPOSE_FILENAME=$1
+    log "Loggin Stack ${COMPOSE_FILENAME}"
     docker-compose -f ${COMPOSE_FILENAME} logs
 }
 
@@ -94,7 +93,8 @@ startStack() {
 	  if [ "$COMPOSE_FILENAME" = "$STACK_LOCATION_SERVICE" ]; then
     	#    hnandle call to docker build of main service in root Dockerfile
 	log "Building main docker image $PROJECT_NAME:$VERSION"
-        docker build -t $PROJECT_NAME:$VERSION .
+        docker build --no-cache -t $PROJECT_NAME:$VERSION .
+        docker build -t $PROJECT_NAME:latest .
     fi
 
 		docker-compose -f $COMPOSE_FILENAME build --no-cache  --force-rm
@@ -112,11 +112,17 @@ stopStack() {
 }
 
 logAllImages() {
-    logStack  ${SCRIPT_HOME}/ct/docker-compose-service.yml
-    logStack ${SCRIPT_HOME}/ct/docker-compose-test.yml
-    logStack ${SCRIPT_HOME}/ct/docker-compose-debug.yml
-    logStack ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml
+    logStack ${STACK_LOCATION_SERVICE}
+    logStack ${STACK_LOCATION_INFRA}
+    logStack ${STACK_LOCATION_DEBUG}
+    logStack ${STACK_LOCATION_TEST}
+}
 
+pullAllImages() {
+    pullStack ${STACK_LOCATION_SERVICE}
+    pullStack ${STACK_LOCATION_INFRA}
+    pullStack ${STACK_LOCATION_DEBUG}
+    pullStack ${STACK_LOCATION_TEST}
 }
 
 chooseServices() {
@@ -132,69 +138,6 @@ chooseServices() {
 getEnv() {
     cat ${ENV_FILE} | grep ${1} | cut -d\= -f2
 }
-
-startInfraStack() {
-    stopStack ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml
-    startStack ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml
-}
-
-stopInfraStack() {
-   stopStack ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml
-}
-logInfraStack() {
-   logStack ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml
-}
-
-startDebugStack(){
-   stopStack ${SCRIPT_HOME}/ct/docker-compose-debug.yml
-   startStack ${SCRIPT_HOME}/ct/docker-compose-debug.yml
-}
-
-stopDebugStack(){
-    stopStack ${SCRIPT_HOME}/ct/docker-compose-debug.yml
-}
-
-logDebugStack(){
-    logStack ${SCRIPT_HOME}/ct/docker-compose-debug.yml
-}
-
-startServiceStack(){
-
-    stopServiceStack
-	if [ "$CREATE" -eq "1" ]; then
-		docker build --no-cache -t ${PROJECT_NAME}:${VERSION} .
-	fi
-    startStack  ${SCRIPT_HOME}/ct/docker-compose-service.yml
-
-}
-
-stopServiceStack(){
-
-    stopStack  ${SCRIPT_HOME}/ct/docker-compose-service.yml
-
-}
-logServiceStack(){
-
-    logStack  ${SCRIPT_HOME}/ct/docker-compose-service.yml
-
-}
-
-startTestStack(){
-
-    stopStack ${SCRIPT_HOME}/ct/docker-compose-test.yml
-    startStack ${SCRIPT_HOME}/ct/docker-compose-test.yml
-}
-
-stopTestStack(){
-
-    stopStack ${SCRIPT_HOME}/ct/docker-compose-test.yml
-}
-
-logTestStack(){
-
-    logStack ${SCRIPT_HOME}/ct/docker-compose-test.yml
-}
-
 
 ###
 # Main

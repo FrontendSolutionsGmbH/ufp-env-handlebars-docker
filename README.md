@@ -28,36 +28,25 @@ get rid of huge node modules folder
 
 # Build docker
 
-build the docker file using the 
+build and bring up the service the docker file using 
 
-	./test.sh 
+	./sidt.sh -u service -c
 	
-script, it performs the build as well, trigger successive builds using
-
-	./test.sh -c
+run the test using 
+	./sidt.sh -u test -c
 	
-or when you want to inspect the infrastructure keep it alive using
-
-	./test.sh -t
+run the development tools using
+	./sidt.sh -u debug -c
 	
-
-# Tryout/Test
-
-after the successful build you can execute
-
-	docker run  -p 3000:3000 ufp/env-handlebars 
-
-or use the configured docker-compose in the ./ct/ folder
-
-	cd ct
-	docker-compose up
+the debug tools provide an entry point under localhost:8080 which describes the project and links relevant infrastructure
+	 
 	
-
+ 
 # How To Use this Image
 
 ## Default Template Syntax
 
-The included template renders a json data containing these properties:
+The included template renders a environment with Prefix CFG_ to json data containing these properties:
 
 	{
 	

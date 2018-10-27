@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20181027 18:38:59.039" generator="Robot 3.0.4 (Python 2.7.15 on linux2)">
+<robot generated="20181027 19:02:35.114" generator="Robot 3.0.4 (Python 2.7.15 on linux2)">
 <suite source="/opt/robotframework/tests" id="s1" name="Tests">
 <suite source="/opt/robotframework/tests/test" id="s1-s1" name="Test">
 <suite source="/opt/robotframework/tests/test/ComponentTest.robot" id="s1-s1-s1" name="ComponentTest">
@@ -10,8 +10,8 @@
 <arg>local</arg>
 <arg>http://${SERVICE_NAME1}:${SERVICE_PORT1}</arg>
 </arguments>
-<msg timestamp="20181027 18:38:59.298" level="INFO">Creating Session using : alias=local, url=http://ufp-env-handlebars:3000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" endtime="20181027 18:38:59.299" starttime="20181027 18:38:59.297"></status>
+<msg timestamp="20181027 19:02:35.365" level="INFO">Creating Session using : alias=local, url=http://ufp-env-handlebars:3000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20181027 19:02:35.366" starttime="20181027 19:02:35.364"></status>
 </kw>
 <kw name="Get Request" library="RequestsLibrary">
 <doc>Send a GET request on the session object found using the</doc>
@@ -22,9 +22,9 @@
 <assign>
 <var>${resp}</var>
 </assign>
-<msg timestamp="20181027 18:38:59.309" level="INFO">Get Request using : alias=local, uri=/, headers=None json=None</msg>
-<msg timestamp="20181027 18:38:59.309" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
-<status status="PASS" endtime="20181027 18:38:59.309" starttime="20181027 18:38:59.300"></status>
+<msg timestamp="20181027 19:02:35.397" level="INFO">Get Request using : alias=local, uri=/, headers=None json=None</msg>
+<msg timestamp="20181027 19:02:35.397" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20181027 19:02:35.398" starttime="20181027 19:02:35.366"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -32,10 +32,10 @@
 <arg>${resp.status_code}</arg>
 <arg>200</arg>
 </arguments>
-<msg timestamp="20181027 18:38:59.311" level="INFO">Argument types are:
+<msg timestamp="20181027 19:02:35.399" level="INFO">Argument types are:
 &lt;type 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" endtime="20181027 18:38:59.311" starttime="20181027 18:38:59.310"></status>
+<status status="PASS" endtime="20181027 19:02:35.399" starttime="20181027 19:02:35.398"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -43,7 +43,7 @@
 <arg>${resp.text}</arg>
 <arg>MENU 3</arg>
 </arguments>
-<status status="PASS" endtime="20181027 18:38:59.313" starttime="20181027 18:38:59.312"></status>
+<status status="PASS" endtime="20181027 19:02:35.401" starttime="20181027 19:02:35.400"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -51,7 +51,7 @@
 <arg>${resp.text}</arg>
 <arg>MENU 2</arg>
 </arguments>
-<status status="PASS" endtime="20181027 18:38:59.314" starttime="20181027 18:38:59.313"></status>
+<status status="PASS" endtime="20181027 19:02:35.402" starttime="20181027 19:02:35.401"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -59,7 +59,7 @@
 <arg>${resp.text}</arg>
 <arg>UFP</arg>
 </arguments>
-<status status="PASS" endtime="20181027 18:38:59.315" starttime="20181027 18:38:59.314"></status>
+<status status="PASS" endtime="20181027 19:02:35.403" starttime="20181027 19:02:35.402"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -67,7 +67,7 @@
 <arg>${resp.text}</arg>
 <arg>btn-primary</arg>
 </arguments>
-<status status="PASS" endtime="20181027 18:38:59.316" starttime="20181027 18:38:59.315"></status>
+<status status="PASS" endtime="20181027 19:02:35.404" starttime="20181027 19:02:35.404"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -75,7 +75,7 @@
 <arg>${resp.text}</arg>
 <arg>btn-secondary</arg>
 </arguments>
-<status status="PASS" endtime="20181027 18:38:59.318" starttime="20181027 18:38:59.317"></status>
+<status status="PASS" endtime="20181027 19:02:35.406" starttime="20181027 19:02:35.405"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -83,7 +83,7 @@
 <arg>${resp.text}</arg>
 <arg>github.com</arg>
 </arguments>
-<status status="PASS" endtime="20181027 18:38:59.319" starttime="20181027 18:38:59.318"></status>
+<status status="PASS" endtime="20181027 19:02:35.407" starttime="20181027 19:02:35.406"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -91,14 +91,14 @@
 <arg>${resp.text}</arg>
 <arg>https://github.com</arg>
 </arguments>
-<status status="PASS" endtime="20181027 18:38:59.320" starttime="20181027 18:38:59.319"></status>
+<status status="PASS" endtime="20181027 19:02:35.408" starttime="20181027 19:02:35.407"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>${resp.text}</arg>
 </arguments>
-<msg timestamp="20181027 18:38:59.321" level="INFO">&lt;!DOCTYPE html&gt;
+<msg timestamp="20181027 19:02:35.409" level="INFO">&lt;!DOCTYPE html&gt;
 &lt;html lang="en" &gt;
 
     &lt;head &gt;
@@ -233,13 +233,13 @@
 
 &lt;/html &gt;
 </msg>
-<status status="PASS" endtime="20181027 18:38:59.322" starttime="20181027 18:38:59.320"></status>
+<status status="PASS" endtime="20181027 19:02:35.410" starttime="20181027 19:02:35.408"></status>
 </kw>
 <doc>This test checks that configured env variables from docker-compose-service.yml are found in service 1</doc>
 <tags>
 <tag>critical</tag>
 </tags>
-<status status="PASS" endtime="20181027 18:38:59.322" critical="yes" starttime="20181027 18:38:59.293"></status>
+<status status="PASS" endtime="20181027 19:02:35.410" critical="yes" starttime="20181027 19:02:35.361"></status>
 </test>
 <test id="s1-s1-s1-t2" name="Check Service 1 Path 2 With Current ENV Config in Docker-Compose.yml">
 <kw name="Create Session" library="RequestsLibrary">
@@ -248,8 +248,8 @@
 <arg>local</arg>
 <arg>http://${SERVICE_NAME1}:${SERVICE_PORT1}</arg>
 </arguments>
-<msg timestamp="20181027 18:38:59.328" level="INFO">Creating Session using : alias=local, url=http://ufp-env-handlebars:3000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" endtime="20181027 18:38:59.329" starttime="20181027 18:38:59.327"></status>
+<msg timestamp="20181027 19:02:35.415" level="INFO">Creating Session using : alias=local, url=http://ufp-env-handlebars:3000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20181027 19:02:35.416" starttime="20181027 19:02:35.414"></status>
 </kw>
 <kw name="Get Request" library="RequestsLibrary">
 <doc>Send a GET request on the session object found using the</doc>
@@ -260,9 +260,9 @@
 <assign>
 <var>${resp}</var>
 </assign>
-<msg timestamp="20181027 18:38:59.341" level="INFO">Get Request using : alias=local, uri=/folder2, headers=None json=None</msg>
-<msg timestamp="20181027 18:38:59.342" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
-<status status="PASS" endtime="20181027 18:38:59.342" starttime="20181027 18:38:59.329"></status>
+<msg timestamp="20181027 19:02:35.435" level="INFO">Get Request using : alias=local, uri=/folder2, headers=None json=None</msg>
+<msg timestamp="20181027 19:02:35.435" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20181027 19:02:35.435" starttime="20181027 19:02:35.416"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -270,10 +270,10 @@
 <arg>${resp.status_code}</arg>
 <arg>200</arg>
 </arguments>
-<msg timestamp="20181027 18:38:59.343" level="INFO">Argument types are:
+<msg timestamp="20181027 19:02:35.437" level="INFO">Argument types are:
 &lt;type 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" endtime="20181027 18:38:59.343" starttime="20181027 18:38:59.342"></status>
+<status status="PASS" endtime="20181027 19:02:35.437" starttime="20181027 19:02:35.436"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -281,14 +281,14 @@
 <arg>${resp.text}</arg>
 <arg>container-fluid</arg>
 </arguments>
-<status status="PASS" endtime="20181027 18:38:59.344" starttime="20181027 18:38:59.343"></status>
+<status status="PASS" endtime="20181027 19:02:35.439" starttime="20181027 19:02:35.438"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>${resp.text}</arg>
 </arguments>
-<msg timestamp="20181027 18:38:59.345" level="INFO">&lt;!DOCTYPE html&gt;
+<msg timestamp="20181027 19:02:35.440" level="INFO">&lt;!DOCTYPE html&gt;
 &lt;html lang="en" &gt;
     &lt;head &gt;
         &lt;title &gt;UFP ENV Handlebars Bootstrap Example&lt;/title &gt;
@@ -368,13 +368,13 @@
     &lt;/body &gt;
 &lt;/html &gt;
 </msg>
-<status status="PASS" endtime="20181027 18:38:59.346" starttime="20181027 18:38:59.345"></status>
+<status status="PASS" endtime="20181027 19:02:35.440" starttime="20181027 19:02:35.439"></status>
 </kw>
 <doc>This test checks that the second sub folder file is exported and accessible as well</doc>
 <tags>
 <tag>critical</tag>
 </tags>
-<status status="PASS" endtime="20181027 18:38:59.346" critical="yes" starttime="20181027 18:38:59.324"></status>
+<status status="PASS" endtime="20181027 19:02:35.441" critical="yes" starttime="20181027 19:02:35.411"></status>
 </test>
 <test id="s1-s1-s1-t3" name="Check Service 2 With Current ENV Config in Docker-Compose.yml">
 <kw name="Create Session" library="RequestsLibrary">
@@ -383,8 +383,8 @@
 <arg>local</arg>
 <arg>http://${SERVICE_NAME2}:${SERVICE_PORT2}</arg>
 </arguments>
-<msg timestamp="20181027 18:38:59.352" level="INFO">Creating Session using : alias=local, url=http://ufp-env-handlebars2:3000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" endtime="20181027 18:38:59.354" starttime="20181027 18:38:59.351"></status>
+<msg timestamp="20181027 19:02:35.446" level="INFO">Creating Session using : alias=local, url=http://ufp-env-handlebars2:3000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20181027 19:02:35.447" starttime="20181027 19:02:35.445"></status>
 </kw>
 <kw name="Get Request" library="RequestsLibrary">
 <doc>Send a GET request on the session object found using the</doc>
@@ -395,9 +395,9 @@
 <assign>
 <var>${resp}</var>
 </assign>
-<msg timestamp="20181027 18:38:59.362" level="INFO">Get Request using : alias=local, uri=/, headers=None json=None</msg>
-<msg timestamp="20181027 18:38:59.362" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
-<status status="PASS" endtime="20181027 18:38:59.362" starttime="20181027 18:38:59.354"></status>
+<msg timestamp="20181027 19:02:35.476" level="INFO">Get Request using : alias=local, uri=/, headers=None json=None</msg>
+<msg timestamp="20181027 19:02:35.477" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20181027 19:02:35.477" starttime="20181027 19:02:35.448"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -405,10 +405,10 @@
 <arg>${resp.status_code}</arg>
 <arg>200</arg>
 </arguments>
-<msg timestamp="20181027 18:38:59.363" level="INFO">Argument types are:
+<msg timestamp="20181027 19:02:35.478" level="INFO">Argument types are:
 &lt;type 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" endtime="20181027 18:38:59.364" starttime="20181027 18:38:59.362"></status>
+<status status="PASS" endtime="20181027 19:02:35.478" starttime="20181027 19:02:35.477"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -416,14 +416,14 @@
 <arg>${resp.text}</arg>
 <arg>SERVICE 2</arg>
 </arguments>
-<status status="PASS" endtime="20181027 18:38:59.365" starttime="20181027 18:38:59.364"></status>
+<status status="PASS" endtime="20181027 19:02:35.480" starttime="20181027 19:02:35.479"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>${resp.text}</arg>
 </arguments>
-<msg timestamp="20181027 18:38:59.366" level="INFO">&lt;!DOCTYPE html&gt;
+<msg timestamp="20181027 19:02:35.481" level="INFO">&lt;!DOCTYPE html&gt;
 &lt;html lang="en" &gt;
 
     &lt;head &gt;
@@ -515,158 +515,3 @@
     &lt;/body &gt;
 
 &lt;/html &gt;
-</msg>
-<status status="PASS" endtime="20181027 18:38:59.367" starttime="20181027 18:38:59.365"></status>
-</kw>
-<doc>This test checks that configured env variables from docker-compose-service.yml are found in service 2</doc>
-<tags>
-<tag>critical</tag>
-</tags>
-<status status="PASS" endtime="20181027 18:38:59.367" critical="yes" starttime="20181027 18:38:59.348"></status>
-</test>
-<doc>This test assumes that the docker-compose-service.yml stack is running and performs checks against the current configured environment variables to be present in the outputed pathes</doc>
-<status status="PASS" endtime="20181027 18:38:59.370" starttime="20181027 18:38:59.103"></status>
-</suite>
-<suite source="/opt/robotframework/tests/test/ComponentTestDebugStack.robot" id="s1-s1-s2" name="ComponentTestDebugStack">
-<test id="s1-s1-s2-t1" name="Check Localhost:8080 Is Working">
-<kw name="Open Browser" library="SeleniumLibrary">
-<doc>Opens a new browser instance to the given ``url``.</doc>
-<arguments>
-<arg>http://${SERVICE_NAME1}:${SERVICE_PORT1}</arg>
-<arg>Chrome</arg>
-</arguments>
-<msg timestamp="20181027 18:38:59.564" level="INFO">Opening browser 'Chrome' to base url 'http://development-overview:3000'.</msg>
-<status status="PASS" endtime="20181027 18:39:06.825" starttime="20181027 18:38:59.563"></status>
-</kw>
-<kw name="Wait Until Page Contains" library="SeleniumLibrary">
-<doc>Waits until ``text`` appears on current page.</doc>
-<arguments>
-<arg>Ufp-Env-Handlebars-Docker</arg>
-</arguments>
-<status status="PASS" endtime="20181027 18:39:06.884" starttime="20181027 18:39:06.826"></status>
-</kw>
-<kw name="Capture Page Screenshot" library="SeleniumLibrary">
-<doc>Takes screenshot of the current page and embeds it into log file.</doc>
-<arguments>
-<arg>ScreenshotDebug.png</arg>
-</arguments>
-<msg timestamp="20181027 18:39:07.452" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="ScreenshotDebug.png"&gt;&lt;img src="ScreenshotDebug.png" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" endtime="20181027 18:39:07.453" starttime="20181027 18:39:06.885"></status>
-</kw>
-<doc>This test checks that configured env variables from docker-compose-service.yml are found in service 1</doc>
-<tags>
-<tag>critical</tag>
-</tags>
-<status status="PASS" endtime="20181027 18:39:07.453" critical="yes" starttime="20181027 18:38:59.560"></status>
-</test>
-<doc>This test assumes that the docker-compose-service.yml stack is running and performs checks against the current configured environment variables to be present in the outputed pathes</doc>
-<status status="PASS" endtime="20181027 18:39:07.456" starttime="20181027 18:38:59.377"></status>
-</suite>
-<suite source="/opt/robotframework/tests/test/ComponentTestFrontend.robot" id="s1-s1-s3" name="ComponentTestFrontend">
-<test id="s1-s1-s3-t1" name="Check Service 1 With Current ENV Config in Docker-Compose.yml">
-<kw name="Open Browser" library="SeleniumLibrary">
-<doc>Opens a new browser instance to the given ``url``.</doc>
-<arguments>
-<arg>http://${SERVICE_NAME1}:${SERVICE_PORT1}</arg>
-<arg>Chrome</arg>
-</arguments>
-<msg timestamp="20181027 18:39:07.479" level="INFO">Opening browser 'Chrome' to base url 'http://ufp-env-handlebars:3000'.</msg>
-<status status="PASS" endtime="20181027 18:39:14.994" starttime="20181027 18:39:07.478"></status>
-</kw>
-<kw name="Wait Until Page Contains" library="SeleniumLibrary">
-<doc>Waits until ``text`` appears on current page.</doc>
-<arguments>
-<arg>UFP</arg>
-</arguments>
-<status status="PASS" endtime="20181027 18:39:15.049" starttime="20181027 18:39:14.995"></status>
-</kw>
-<kw name="Capture Page Screenshot" library="SeleniumLibrary">
-<doc>Takes screenshot of the current page and embeds it into log file.</doc>
-<arguments>
-<arg>ScreenshotFrontend1.png</arg>
-</arguments>
-<msg timestamp="20181027 18:39:15.553" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="ScreenshotFrontend1.png"&gt;&lt;img src="ScreenshotFrontend1.png" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" endtime="20181027 18:39:15.553" starttime="20181027 18:39:15.050"></status>
-</kw>
-<doc>This test checks that configured env variables from docker-compose-service.yml are found in service 1</doc>
-<tags>
-<tag>critical</tag>
-</tags>
-<status status="PASS" endtime="20181027 18:39:15.553" critical="yes" starttime="20181027 18:39:07.474"></status>
-</test>
-<test id="s1-s1-s3-t2" name="Check Service 2 With Current ENV Config in Docker-Compose.yml">
-<kw name="Open Browser" library="SeleniumLibrary">
-<doc>Opens a new browser instance to the given ``url``.</doc>
-<arguments>
-<arg>http://${SERVICE_NAME2}:${SERVICE_PORT2}</arg>
-<arg>Chrome</arg>
-</arguments>
-<msg timestamp="20181027 18:39:15.561" level="INFO">Opening browser 'Chrome' to base url 'http://ufp-env-handlebars2:3000'.</msg>
-<status status="PASS" endtime="20181027 18:39:22.828" starttime="20181027 18:39:15.560"></status>
-</kw>
-<kw name="Wait Until Page Contains" library="SeleniumLibrary">
-<doc>Waits until ``text`` appears on current page.</doc>
-<arguments>
-<arg>UFP</arg>
-</arguments>
-<status status="PASS" endtime="20181027 18:39:22.892" starttime="20181027 18:39:22.829"></status>
-</kw>
-<kw name="Capture Page Screenshot" library="SeleniumLibrary">
-<doc>Takes screenshot of the current page and embeds it into log file.</doc>
-<arguments>
-<arg>ScreenshotFrontend2.png</arg>
-</arguments>
-<msg timestamp="20181027 18:39:23.480" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="ScreenshotFrontend2.png"&gt;&lt;img src="ScreenshotFrontend2.png" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" endtime="20181027 18:39:23.480" starttime="20181027 18:39:22.892"></status>
-</kw>
-<doc>This test checks that configured env variables from docker-compose-service.yml are found in service 1</doc>
-<tags>
-<tag>critical</tag>
-</tags>
-<status status="PASS" endtime="20181027 18:39:23.481" critical="yes" starttime="20181027 18:39:15.556"></status>
-</test>
-<doc>This test assumes that the docker-compose-service.yml stack is running and performs checks against the current configured environment variables to be present in the outputed pathes</doc>
-<status status="PASS" endtime="20181027 18:39:23.486" starttime="20181027 18:39:07.463"></status>
-</suite>
-<suite source="/opt/robotframework/tests/test/HelloWorld.robot" id="s1-s1-s4" name="HelloWorld">
-<test id="s1-s1-s4-t1" name="HelloWorld">
-<kw name="Log To Console" library="BuiltIn">
-<doc>Logs the given message to the console.</doc>
-<arguments>
-<arg>Hello World</arg>
-</arguments>
-<status status="PASS" endtime="20181027 18:39:23.510" starttime="20181027 18:39:23.509"></status>
-</kw>
-<tags>
-<tag>playground</tag>
-</tags>
-<status status="PASS" endtime="20181027 18:39:23.511" critical="no" starttime="20181027 18:39:23.507"></status>
-</test>
-<status status="PASS" endtime="20181027 18:39:23.513" starttime="20181027 18:39:23.498"></status>
-</suite>
-<status status="PASS" endtime="20181027 18:39:23.526" starttime="20181027 18:38:59.098"></status>
-</suite>
-<status status="PASS" endtime="20181027 18:39:23.543" starttime="20181027 18:38:59.045"></status>
-</suite>
-<statistics>
-<total>
-<stat fail="0" pass="6">Critical Tests</stat>
-<stat fail="0" pass="7">All Tests</stat>
-</total>
-<tag>
-<stat info="critical" fail="0" pass="6">critical</stat>
-<stat info="non-critical" fail="0" pass="0">noncritical</stat>
-<stat fail="0" pass="1">playground</stat>
-</tag>
-<suite>
-<stat fail="0" id="s1" name="Tests" pass="7">Tests</stat>
-<stat fail="0" id="s1-s1" name="Test" pass="7">Tests.Test</stat>
-<stat fail="0" id="s1-s1-s1" name="ComponentTest" pass="3">Tests.Test.ComponentTest</stat>
-<stat fail="0" id="s1-s1-s2" name="ComponentTestDebugStack" pass="1">Tests.Test.ComponentTestDebugStack</stat>
-<stat fail="0" id="s1-s1-s3" name="ComponentTestFrontend" pass="2">Tests.Test.ComponentTestFrontend</stat>
-<stat fail="0" id="s1-s1-s4" name="HelloWorld" pass="1">Tests.Test.HelloWorld</stat>
-</suite>
-</statistics>
-<errors>
-</errors>
-</robot>
