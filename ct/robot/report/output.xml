@@ -515,3 +515,158 @@
     &lt;/body &gt;
 
 &lt;/html &gt;
+</msg>
+<status status="PASS" endtime="20181027 19:02:35.482" starttime="20181027 19:02:35.480"></status>
+</kw>
+<doc>This test checks that configured env variables from docker-compose-service.yml are found in service 2</doc>
+<tags>
+<tag>critical</tag>
+</tags>
+<status status="PASS" endtime="20181027 19:02:35.482" critical="yes" starttime="20181027 19:02:35.442"></status>
+</test>
+<doc>This test assumes that the docker-compose-service.yml stack is running and performs checks against the current configured environment variables to be present in the outputed pathes</doc>
+<status status="PASS" endtime="20181027 19:02:35.484" starttime="20181027 19:02:35.180"></status>
+</suite>
+<suite source="/opt/robotframework/tests/test/ComponentTestDebugStack.robot" id="s1-s1-s2" name="ComponentTestDebugStack">
+<test id="s1-s1-s2-t1" name="Check Localhost:8080 Is Working">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the given ``url``.</doc>
+<arguments>
+<arg>http://${SERVICE_NAME1}:${SERVICE_PORT1}</arg>
+<arg>Chrome</arg>
+</arguments>
+<msg timestamp="20181027 19:02:35.657" level="INFO">Opening browser 'Chrome' to base url 'http://development-overview:3000'.</msg>
+<status status="PASS" endtime="20181027 19:02:43.023" starttime="20181027 19:02:35.656"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on current page.</doc>
+<arguments>
+<arg>Ufp-Env-Handlebars-Docker</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:43.082" starttime="20181027 19:02:43.023"></status>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes screenshot of the current page and embeds it into log file.</doc>
+<arguments>
+<arg>ScreenshotDebug.png</arg>
+</arguments>
+<msg timestamp="20181027 19:02:43.653" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="ScreenshotDebug.png"&gt;&lt;img src="ScreenshotDebug.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20181027 19:02:43.653" starttime="20181027 19:02:43.083"></status>
+</kw>
+<doc>This test checks that configured env variables from docker-compose-service.yml are found in service 1</doc>
+<tags>
+<tag>critical</tag>
+</tags>
+<status status="PASS" endtime="20181027 19:02:43.654" critical="yes" starttime="20181027 19:02:35.653"></status>
+</test>
+<doc>This test assumes that the docker-compose-service.yml stack is running and performs checks against the current configured environment variables to be present in the outputed pathes</doc>
+<status status="PASS" endtime="20181027 19:02:43.656" starttime="20181027 19:02:35.490"></status>
+</suite>
+<suite source="/opt/robotframework/tests/test/ComponentTestFrontend.robot" id="s1-s1-s3" name="ComponentTestFrontend">
+<test id="s1-s1-s3-t1" name="Check Service 1 With Current ENV Config in Docker-Compose.yml">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the given ``url``.</doc>
+<arguments>
+<arg>http://${SERVICE_NAME1}:${SERVICE_PORT1}</arg>
+<arg>Chrome</arg>
+</arguments>
+<msg timestamp="20181027 19:02:43.677" level="INFO">Opening browser 'Chrome' to base url 'http://ufp-env-handlebars:3000'.</msg>
+<status status="PASS" endtime="20181027 19:02:50.918" starttime="20181027 19:02:43.676"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on current page.</doc>
+<arguments>
+<arg>UFP</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:50.969" starttime="20181027 19:02:50.919"></status>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes screenshot of the current page and embeds it into log file.</doc>
+<arguments>
+<arg>ScreenshotFrontend1.png</arg>
+</arguments>
+<msg timestamp="20181027 19:02:51.499" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="ScreenshotFrontend1.png"&gt;&lt;img src="ScreenshotFrontend1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20181027 19:02:51.500" starttime="20181027 19:02:50.970"></status>
+</kw>
+<doc>This test checks that configured env variables from docker-compose-service.yml are found in service 1</doc>
+<tags>
+<tag>critical</tag>
+</tags>
+<status status="PASS" endtime="20181027 19:02:51.500" critical="yes" starttime="20181027 19:02:43.673"></status>
+</test>
+<test id="s1-s1-s3-t2" name="Check Service 2 With Current ENV Config in Docker-Compose.yml">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the given ``url``.</doc>
+<arguments>
+<arg>http://${SERVICE_NAME2}:${SERVICE_PORT2}</arg>
+<arg>Chrome</arg>
+</arguments>
+<msg timestamp="20181027 19:02:51.507" level="INFO">Opening browser 'Chrome' to base url 'http://ufp-env-handlebars2:3000'.</msg>
+<status status="PASS" endtime="20181027 19:02:58.774" starttime="20181027 19:02:51.506"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on current page.</doc>
+<arguments>
+<arg>UFP</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:58.837" starttime="20181027 19:02:58.775"></status>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes screenshot of the current page and embeds it into log file.</doc>
+<arguments>
+<arg>ScreenshotFrontend2.png</arg>
+</arguments>
+<msg timestamp="20181027 19:02:59.390" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="ScreenshotFrontend2.png"&gt;&lt;img src="ScreenshotFrontend2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20181027 19:02:59.390" starttime="20181027 19:02:58.837"></status>
+</kw>
+<doc>This test checks that configured env variables from docker-compose-service.yml are found in service 1</doc>
+<tags>
+<tag>critical</tag>
+</tags>
+<status status="PASS" endtime="20181027 19:02:59.391" critical="yes" starttime="20181027 19:02:51.502"></status>
+</test>
+<doc>This test assumes that the docker-compose-service.yml stack is running and performs checks against the current configured environment variables to be present in the outputed pathes</doc>
+<status status="PASS" endtime="20181027 19:02:59.394" starttime="20181027 19:02:43.663"></status>
+</suite>
+<suite source="/opt/robotframework/tests/test/HelloWorld.robot" id="s1-s1-s4" name="HelloWorld">
+<test id="s1-s1-s4-t1" name="HelloWorld">
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Hello World</arg>
+</arguments>
+<status status="PASS" endtime="20181027 19:02:59.414" starttime="20181027 19:02:59.413"></status>
+</kw>
+<tags>
+<tag>playground</tag>
+</tags>
+<status status="PASS" endtime="20181027 19:02:59.414" critical="no" starttime="20181027 19:02:59.412"></status>
+</test>
+<status status="PASS" endtime="20181027 19:02:59.416" starttime="20181027 19:02:59.406"></status>
+</suite>
+<status status="PASS" endtime="20181027 19:02:59.420" starttime="20181027 19:02:35.176"></status>
+</suite>
+<status status="PASS" endtime="20181027 19:02:59.432" starttime="20181027 19:02:35.119"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="6">Critical Tests</stat>
+<stat fail="0" pass="7">All Tests</stat>
+</total>
+<tag>
+<stat info="critical" fail="0" pass="6">critical</stat>
+<stat info="non-critical" fail="0" pass="0">noncritical</stat>
+<stat fail="0" pass="1">playground</stat>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Tests" pass="7">Tests</stat>
+<stat fail="0" id="s1-s1" name="Test" pass="7">Tests.Test</stat>
+<stat fail="0" id="s1-s1-s1" name="ComponentTest" pass="3">Tests.Test.ComponentTest</stat>
+<stat fail="0" id="s1-s1-s2" name="ComponentTestDebugStack" pass="1">Tests.Test.ComponentTestDebugStack</stat>
+<stat fail="0" id="s1-s1-s3" name="ComponentTestFrontend" pass="2">Tests.Test.ComponentTestFrontend</stat>
+<stat fail="0" id="s1-s1-s4" name="HelloWorld" pass="1">Tests.Test.HelloWorld</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
