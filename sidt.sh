@@ -262,6 +262,7 @@ done
 log ""
 log "SIDT - Performing action"
 log ""
+set -x
 execute(){
     log "Executing ${1}"
 

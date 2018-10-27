@@ -27,7 +27,7 @@ services:
     - "CFG_WELCOME_ENTRIES_0_TEXTS_0_TEXT=This is just a debug overview entrypoint, a portaines ist started, and 2 services run, funny enough its the same service used to render this page"
 
     - "CFG_WELCOME_ENTRIES_0_BUTTONS_0_LABEL=Portainer"
-    - "CFG_WELCOME_ENTRIES_0_BUTTONS_0_DESCRIPTION=For showing debug functionality usage of SIDT paradigm a portainer is started up in debug stack"
+    - "CFG_WELCOME_ENTRIES_0_BUTTONS_0_DESCRIPTION=For showing debug functionality usage of SIDT paradigm a Portainer is started up in debug stack"
     - "CFG_WELCOME_ENTRIES_0_BUTTONS_0_LINK=http://localhost:8081"
     - "CFG_WELCOME_ENTRIES_0_BUTTONS_0_TARGET=portainer"
     - "CFG_WELCOME_ENTRIES_0_BUTTONS_0_COLOR=secondary"
@@ -37,13 +37,13 @@ services:
     - "CFG_WELCOME_ENTRIES_0_BUTTONS_1_DESCRIPTION=Show the service configured for example 1 testing properties for welcome and menu"
 
     - "CFG_WELCOME_ENTRIES_0_BUTTONS_2_LABEL=Ufp Env Handlebars example 2"
-    - "CFG_WELCOME_ENTRIES_0_BUTTONS_2_LINK=http://localhost:3000"
+    - "CFG_WELCOME_ENTRIES_0_BUTTONS_2_LINK=http://localhost:3001"
     - "CFG_WELCOME_ENTRIES_0_BUTTONS_2_DESCRIPTION=A double check, having the service a second time around with different env values"
     - "CFG_WELCOME_ENTRIES_0_BUTTONS_2_COLOR=primary"
 
     - "CFG_WELCOME_ENTRIES_0_BUTTONS_3_LABEL=Test Report"
     - "CFG_WELCOME_ENTRIES_0_BUTTONS_3_LINK=http://localhost:8082/report.html"
-    - "CFG_WELCOME_ENTRIES_0_BUTTONS_3_DESCRIPTION=Robotframework Test Report, use  './sidt.sh -u test -c' for creating new report, and restart debug stack using './sidt.sh -u test -c' "
+    - "CFG_WELCOME_ENTRIES_0_BUTTONS_3_DESCRIPTION=RobotFramework Test Report, use  './sidt.sh -u test -c' for creating new report, and restart debug stack using './sidt.sh -u test -c' "
     - "CFG_WELCOME_ENTRIES_0_BUTTONS_3_COLOR=success"
 
     ports:

@@ -5,22 +5,13 @@ Library           SeleniumLibrary
 Library           RequestsLibrary
 
 *** Variables ***
-${SERVICE_NAME1}    ufp-env-handlebars
+${SERVICE_NAME1}    development-overview
 ${SERVICE_PORT1}    3000
-${SERVICE_NAME2}    ufp-env-handlebars2
-${SERVICE_PORT2}    3000
 
 *** Test Cases ***
-Check Service 1 With Current ENV Config in Docker-Compose.yml
+Check Localhost:8080 Is Working
     [Documentation]    This test checks that configured env variables from docker-compose-service.yml are found in service 1
     [Tags]    critical
     Open Browser    http://${SERVICE_NAME1}:${SERVICE_PORT1}    Chrome
-    Wait Until Page Contains    UFP
-    Capture Page Screenshot
-
-Check Service 2 With Current ENV Config in Docker-Compose.yml
-    [Documentation]    This test checks that configured env variables from docker-compose-service.yml are found in service 1
-    [Tags]    critical
-    Open Browser    http://${SERVICE_NAME2}:${SERVICE_PORT2}    Chrome
-    Wait Until Page Contains    UFP
-    Capture Page Screenshot
+    Wait Until Page Contains    Ufp-Env-Handlebars-Docker
+    Capture Page Screenshot    ScreenshotDebug.png
