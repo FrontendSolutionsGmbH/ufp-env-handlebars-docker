@@ -1,7 +1,9 @@
 {
   "title": "Ufp Env Handlebars - Ufp Menu",
-  "brand": "UFP Menu",
-  "brandLink": "http://www.froso.de",
+  "brand": {
+    "label": "UFP Menu",
+    "color": "primary"
+  },
   "welcome": {
     "entries": [
       {

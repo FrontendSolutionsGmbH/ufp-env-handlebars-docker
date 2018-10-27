@@ -44,25 +44,26 @@
                 {{default text 'defaultText'}} </p >
             {{/texts}}
             {{#buttons}}
-            <div class="container" >
-                <div class="row" >
+            <ul class="list-group" >
+                <li class="list-group-item" >
                     <a class="btn col-sm  btn-{{default color 'primary'}}"
                        href="{{default link '#'}}"
+                       target="{{default target '_self'}}"
                        role="button" >{{default label 'defaultLabel'}}</a >
                     <span class="col-sm" >{{description}}</span >
-                </div >
-            </div >
+                </li >
+            </ul >
             {{/buttons}}
 
         </div >
         {{/data.welcome.entries}}
 
-        <div  class="container" >
-            Callback Data:
-            {{#each data.callback}}
-            Key: {{@key}}={{this}} <br />
-            {{/each}}
-        </div >
+        <!--<div  class="container" >-->
+            <!--Callback Data:-->
+            <!--{{#each data.callback}}-->
+            <!--Key: {{@key}}={{this}} <br />-->
+            <!--{{/each}}-->
+        <!--</div >-->
 
     </body >
 

@@ -1,6 +1,7 @@
 # Changelog
 
 
+
 2018-10-21 [3.0.0]
     - more extensive default template and setup
     - include `callback.sh` as callback for own dynamic functionality

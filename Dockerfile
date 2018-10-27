@@ -26,11 +26,5 @@ COPY --from=builder /ufp-env-handlebars-build /ufp-env-handlebars
 
 
 WORKDIR /ufp-env-handlebars
-RUN ls -la
-RUN ls -la static
-RUN ls -la static/config
-RUN pwd
-RUN static/config/getjsondataexample.sh
-RUN /ufp-env-handlebars/static/config/getjsondataexample.sh
 EXPOSE 3000:3000
 CMD ["node","./execute.js"]

@@ -37,71 +37,63 @@
         </style >
     </head >
 
-    {{#*inline "bootstrapColor"}}
-    {{default color 'btn-primary'}}
-    {{/inline}}
-
 
     {{#*inline "liMenuItemRenderer"}}
 
 
     {{#if children}}
-    <!-- HAS CHILDREN -->
-
-    <li class="dropdown-submenu   nav-item " >
-        <a tabindex="-1"
-           class="test btn btn-block dropdown-toggle {{>bootstrapColor}}"
-           target="{{default target 'content'}}"
-           href="{{default link '#'}}" >{{default label 'DefaultLabel'}}<span class="caret" ></span ></a >
-
-        {{>dropDownMenu}}
-    </li >
-
+    <!-- DO NOT ALLOW LEVEL 2> menues-->
     {{else}}
     <!-- NO CHILDREN, NORMAL LI -->
 
-    <li class="nav-item" ><a tabindex="-1"
-                             class="btn btn-block {{>bootstrapColor}} "
-                             target="{{default target 'content'}}"
-                             href="{{default link '#'}}" >{{default label 'DefaultLabel'}}</a ></li >
+    <a class="dropdown-item  "
+       target="{{default target 'content'}}"
+       href="{{default link '#'}}" >{{default label 'DefaultLabel'}}</a >
     {{/if}}
     {{/inline}}
 
     {{#*inline "dropDownMenu"}}
     {{#if children}}
-    <ul class="dropdown-menu p-0   " >
+    <div class="dropdown-menu"
+         aria-labelledby="navbarDropdown" >
         {{#children}}
         {{>liMenuItemRenderer}}
         {{/children}}
-    </ul >
+    </div >
     {{/if}}
     {{/inline}}
 
 
     {{#*inline "rootMenuRenderer"}}
 
-    {{#data.menu}}
-    <div class="dropdown" >
-        {{#if children}}
-        <a class="btn btn-block  dropdown-toggle  {{>bootstrapColor}}"
-           type="button"
-           data-toggle="dropdown" >{{default
-            label 'DefaultLabel'}}
+    <div class="collapse navbar-collapse" >
+        <ul class="navbar-nav mr-auto" >
+            {{#data.menu}}
+            {{#if children}}
+            <li class="nav-item dropdown " >
+                <a class="nav-link dropdown-toggle  "
+                   href="#"
+                   id="navbarDropdown"
+                   role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true"
+                   aria-expanded="false" >
+                    {{default label 'DefaultLabel'}}
+                </a >
+                {{>dropDownMenu}}
+            </li >
+            {{else}}
+            <li class="nav-item" >
+                <a class="nav-link  "
+                   target="{{default target 'content'}}"
+                   href="{{default link '#'}}" >{{default label 'DefaultLabel'}}
 
-        </a >
-        {{else}}
-        <a class="btn  btn-block   "
-           type="button"
-           target="{{default target 'content'}}"
-           href="{{default link '#'}}"
-           data-toggle="dropdown" >{{default label 'DefaultLabel'}}
-
-        </a >
-
-        {{/if}}
-        {{>dropDownMenu}}
+                </a >
+            </li >
+            {{/if}}
+            {{/data.menu}}
+        </ul >
     </div >
-    {{/data.menu}}
 
     {{/inline}}
 
@@ -112,10 +104,15 @@
 
             {{JSONstringify data}}
          -->
-        <nav class="navbar  justify-content-start" >
-            <a class="navbar-brand"
-               href="{{default brand.link 'https://github.com/FrontendSolutionsGmbH'}}" >{{default brand.label 'UFP'}}</a >
+        <nav class="navbar navbar-expand-lg navbar-{{default data.nav.colorscheme 'light'}} navbar-{{default data.nav.colorscheme 'light'}} bg-{{default data.nav.type 'light'}}"
+
+        >
+            <a class="navbar-brand  "
+               href="{{default data.brand.link '/'}}"
+               target="{{default data.brand.target '_self'}}" >{{default data.brand.label 'UFP'}}</a >
             {{>rootMenuRenderer}}
+
+
         </nav >
 
         <div style="width:100%;height:calc(100% - 3em);position:absolute;padding-top:1em" >

@@ -1,18 +1,27 @@
 #!/usr/bin/env bash
-  set -x
 log(){
 	echo "[$(date +"%Y-%m-%d %H:%M:%S")] $@"
 }
 
-log "Stack.sh called"
+log ""
+log "SIDT - Service Infrastructure Debug Test"
+log ""
+
+
 
 ###
 # Variables
 ###
+PROJECT_NAME="ckleinhuis/ufp-env-handlebars"
 VERSION=5
 SCRIPT_PATH=$(realpath "$0")
 SCRIPT_NAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 SCRIPT_HOME=${SCRIPT_PATH%$SCRIPT_NAME}
+
+STACK_LOCATION_SERVICE="${SCRIPT_HOME}ct/docker-compose-service.yml"
+STACK_LOCATION_INFRA="${SCRIPT_HOME}ct/docker-compose-infrastructure.yml"
+STACK_LOCATION_DEBUG="${SCRIPT_HOME}ct/docker-compose-debug.yml"
+STACK_LOCATION_TEST="${SCRIPT_HOME}ct/docker-compose-test.yml"
 
 
 START=1
@@ -22,11 +31,14 @@ STACK_INFRA=0
 STACK_DEBUG=0
 STACK_SERVICE=1
 STACK_TEST=0
+LOG_STACK=0
+DEBUG=0
+
 
 BACKGROUND=""
 CREATE=0
 
-COMPOSE_PROJECT_NAME="ct"
+COMPOSE_PROJECT_NAME="${PROJECT_NAME}componenttest"
 
 RESULT=0
 ###
@@ -39,14 +51,14 @@ help() {
   echo "   -h          Show this help"
   echo "   -p          Pulls the latest docker images"
   echo "   -b          Starts stack in background with -d"
-  echo "   -c          do not create container stacks"
-  echo "   -l          Show the echos"
+  echo "   -c          (re-)create container stacks"
+  echo "   -l <stack>  Show the logs of stacks"
   echo "   -u <stack>  Starts the given stack. Possible stacks see below!"
   echo "   -d <stack>  Stops the given stack. Possible stacks see below!"
   echo ""
   echo "   Possible Stacks:"
   echo "     infra     The infrastructure needed by the services"
-  echo "     service   The order-process involved services"
+  echo "     service   The involved services"
   echo "     debug     The debug tools"
   echo "     all       All these stacks"
   echo ""
@@ -56,24 +68,56 @@ help() {
   echo " (initial) author: s.schumann@tarent.de"
 }
 
-pullAllImages() {
-    cd ${SCRIPT_HOME}/ct/
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml pull
-#    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml pull
-#    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-debug.yml pull
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml pull
-    cd -
+pullStack() {
+    COMPOSE_FILENAME=${1}
+
+	log "Pulling Stack ${COMPOSE_FILENAME}"
+    docker-compose -f ${COMPOSE_FILENAME} pull
+}
+
+logStack() {
+    COMPOSE_FILENAME=${1}
+
+	log "Loggin Stack ${COMPOSE_FILENAME}"
+    docker-compose -f ${COMPOSE_FILENAME} logs
+}
+
+startStack() {
+    COMPOSE_FILENAME=$1
+
+	log "(Re-)Starting Stack ${COMPOSE_FILENAME}"
+
+	stopStack  $COMPOSE_FILENAME
+    if [ "$CREATE" -eq "1" ]; then
+	log "(Re-)Creating Stack ${COMPOSE_FILENAME}"
+
+	  if [ "$COMPOSE_FILENAME" = "$STACK_LOCATION_SERVICE" ]; then
+    	#    hnandle call to docker build of main service in root Dockerfile
+	log "Building main docker image $PROJECT_NAME:$VERSION"
+        docker build -t $PROJECT_NAME:$VERSION .
+    fi
+
+		docker-compose -f $COMPOSE_FILENAME build --no-cache  --force-rm
+
+	fi
+
+    docker-compose -f $1 -p ${COMPOSE_PROJECT_NAME} up ${BACKGROUND}
+}
+stopStack() {
+
+    COMPOSE_FILENAME=$1
+	log "Stopping Stack ${COMPOSE_FILENAME}"
+
+    docker-compose -f ${COMPOSE_FILENAME} -p ${COMPOSE_PROJECT_NAME} down
 }
 
 logAllImages() {
-    cd ${SCRIPT_HOME}/ct/
-#    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml logs
-#    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml logs
-#    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-debug.yml logs
-#    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml logs
-    cd -
-}
+    logStack  ${SCRIPT_HOME}/ct/docker-compose-service.yml
+    logStack ${SCRIPT_HOME}/ct/docker-compose-test.yml
+    logStack ${SCRIPT_HOME}/ct/docker-compose-debug.yml
+    logStack ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml
 
+}
 
 chooseServices() {
     case $1 in
@@ -90,92 +134,65 @@ getEnv() {
 }
 
 startInfraStack() {
-    cd ${SCRIPT_HOME}/ct/
-
-
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml -p ${COMPOSE_PROJECT_NAME} ${BACKGROUND}
-    cd -
+    stopStack ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml
+    startStack ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml
 }
 
 stopInfraStack() {
-    cd ${SCRIPT_HOME}/ct/
-    if [ "$CREATE" -eq "1" ]; then
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml build --no-cache
-    fi
-
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml -p ${COMPOSE_PROJECT_NAME} down
-    cd -
+   stopStack ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml
+}
+logInfraStack() {
+   logStack ${SCRIPT_HOME}/ct/docker-compose-infrastructure.yml
 }
 
 startDebugStack(){
-    cd ${SCRIPT_HOME}/ct/
-
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-debug.yml -p ${COMPOSE_PROJECT_NAME} up ${BACKGROUND}
-    cd -
+   stopStack ${SCRIPT_HOME}/ct/docker-compose-debug.yml
+   startStack ${SCRIPT_HOME}/ct/docker-compose-debug.yml
 }
 
 stopDebugStack(){
-    cd ${SCRIPT_HOME}/ct/
+    stopStack ${SCRIPT_HOME}/ct/docker-compose-debug.yml
+}
 
-	if [ "$CREATE" -eq "1" ]; then
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-debug.yml build --no-cache
-    fi
-
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-debug.yml -p ${COMPOSE_PROJECT_NAME} down
-    cd -
+logDebugStack(){
+    logStack ${SCRIPT_HOME}/ct/docker-compose-debug.yml
 }
 
 startServiceStack(){
-	log "Starting Service Stack"
 
-
+    stopServiceStack
 	if [ "$CREATE" -eq "1" ]; then
-		docker build --no-cache -t ckleinhuis/ufp-env-handlebars:${VERSION} .
+		docker build --no-cache -t ${PROJECT_NAME}:${VERSION} .
 	fi
+    startStack  ${SCRIPT_HOME}/ct/docker-compose-service.yml
 
-    cd ${SCRIPT_HOME}/ct/
-
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml -p ${COMPOSE_PROJECT_NAME} up ${BACKGROUND}
-    RESULT=$?
-    cd -
-
-	log "Returning Service Stack"
 }
 
 stopServiceStack(){
-	log "Stopping Service Stack"
 
-	if [ "$CREATE" -eq "1" ]; then
-		docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml build --no-cache
-	fi
+    stopStack  ${SCRIPT_HOME}/ct/docker-compose-service.yml
 
-    cd ${SCRIPT_HOME}/ct/
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-service.yml -p ${COMPOSE_PROJECT_NAME} down
-    cd -
+}
+logServiceStack(){
 
-	log "Stopping Service Stack End"
+    logStack  ${SCRIPT_HOME}/ct/docker-compose-service.yml
+
 }
 
 startTestStack(){
 
-    cd ${SCRIPT_HOME}/ct/
-
-
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml  -p ${COMPOSE_PROJECT_NAME} up --exit-code-from robot-test --abort-on-container-exit ${BACKGROUND}
-    RESULT=$?
-    cd -
-	log "Starting Test Stack End ${RESULT}"
+    stopStack ${SCRIPT_HOME}/ct/docker-compose-test.yml
+    startStack ${SCRIPT_HOME}/ct/docker-compose-test.yml
 }
 
 stopTestStack(){
-    cd ${SCRIPT_HOME}/ct/
 
-    if [ "$CREATE" -eq "1" ]; then
-		docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml build --no-cache
-	fi
+    stopStack ${SCRIPT_HOME}/ct/docker-compose-test.yml
+}
 
-    docker-compose -f ${SCRIPT_HOME}/ct/docker-compose-test.yml -p ${COMPOSE_PROJECT_NAME} down
-    cd -
+logTestStack(){
+
+    logStack ${SCRIPT_HOME}/ct/docker-compose-test.yml
 }
 
 
@@ -187,26 +204,37 @@ if [ "$#" -ge 1 ]; then
     STACK_SERVICE=0
 fi
 
-while getopts 'u:d:hplbc' OPTION; do
+while getopts 'u:d:hpl:bc' OPTION; do
   case $OPTION in
     b)
+    	log "Background flag -b found, starting in background"
         BACKGROUND="-d"
     ;;
     p)
+    	log "Pull All Images flag -p found, pulling all images"
         pullAllImages
     ;;
     c)
+    	log "Create flag -c found, (re-)creating stacks/images"
         CREATE=1
     ;;
+
     l)
-        logAllImages
+    	log "Log flag -l found, logging  stacks"
+#        logAllImages
+		LOG_STACK=1
+        START=0
+        STOP=0
+        chooseServices $OPTARG
     ;;
     u)
+    	log "Start flag -u found, starting"
         START=1
         STOP=0
         chooseServices $OPTARG
     ;;
     d)
+    	log "Stop flag -d found, stopping"
         START=0
         STOP=1
         chooseServices $OPTARG
@@ -219,36 +247,53 @@ while getopts 'u:d:hplbc' OPTION; do
 done
 
 
-log "SCRIPT_PATH=${SCRIPT_PATH}"
-log "SCRIPT_NAME=${SCRIPT_NAME}"
-log "SCRIPT_HOME=${SCRIPT_HOME}"
-log "START=${START}"
-log "STOP=${STOP}"
-log "STACK_INFRA=${STACK_INFRA}"
-log "STACK_DEBUG=${STACK_DEBUG}"
-log "STACK_SERVICE=${STACK_SERVICE}"
-log "STACK_TEST=${STACK_TEST}"
-log "CREATE=${CREATE}"
+#log "SCRIPT_PATH=${SCRIPT_PATH}"
+#log "SCRIPT_NAME=${SCRIPT_NAME}"
+#log "SCRIPT_HOME=${SCRIPT_HOME}"
+#log "START=${START}"
+#log "STOP=${STOP}"
+#log "STACK_INFRA=${STACK_INFRA}"
+#log "STACK_DEBUG=${STACK_DEBUG}"
+#log "STACK_SERVICE=${STACK_SERVICE}"
+#log "STACK_TEST=${STACK_TEST}"
+#log "CREATE=${CREATE}"
 
+
+log ""
+log "SIDT - Performing action"
+log ""
+execute(){
+    log "Executing ${1}"
+
+    if [ "$STOP" -eq "1" ];then stopStack $1 ;fi
+    if [ "$START" -eq "1" ];then startStack $1 ;fi
+    if [ "$LOG_STACK" -eq "1" ];then logStack $1 ;fi
+}
+
+if [ "$DEBUG" -eq "1" ]; then
+set -x
+fi
 
 if [ "$STACK_INFRA" -eq "1" ]; then
-    if [ "$START" -eq "1" ];then startInfraStack ;fi
-    if [ "$STOP" -eq "1" ];then stopInfraStack ;fi
-fi
-if [ "$STACK_DEBUG" -eq "1" ]; then
-    if [ "$START" -eq "1" ];then startDebugStack ;fi
-    if [ "$STOP" -eq "1" ];then stopDebugStack ;fi
+   execute $STACK_LOCATION_INFRA
 fi
 
 if [ "$STACK_SERVICE" -eq "1" ]; then
-    if [ "$START" -eq "1" ];then startServiceStack ;fi
-    if [ "$STOP" -eq "1" ];then stopServiceStack ;fi
+
+   execute $STACK_LOCATION_SERVICE
+fi
+
+if [ "$STACK_DEBUG" -eq "1" ]; then
+
+   execute $STACK_LOCATION_DEBUG
 fi
 
 if [ "$STACK_TEST" -eq "1" ]; then
-    if [ "$START" -eq "1" ];then startTestStack ;fi
-    if [ "$STOP" -eq "1" ];then stopTestStack ;fi
+
+   execute $STACK_LOCATION_TEST
 fi
 
-log "Stack.sh exit"
+log ""
+log "SIDT - Service Infrastructure Debug Test Exit"
+log ""
 exit ${RESULT}
