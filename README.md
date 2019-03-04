@@ -21,21 +21,33 @@ this is a dockerizd multi stage build, so the only installation that is required
 
 # Quickstart
 
-# Install node dependencies 
+# Development
 
-for now you have to install the node modules manually, this will be replaced with a webpack/rollup bundler to
-get rid of huge node modules folder
+the js application is in the /js folder, and can be started development using
+
+	npm run dev
+	
+this will start a development server under locahost:3000 it is using the default environment config,
+you can fill your shell environment with desired variables to see them, after you are finished include your
+desired config variables in the docker image environment: section
 
 # Build docker
-
+          
+	
 build and bring up the service the docker file using 
 
 	./sidt.sh -u service -c
-	
+
+the test below assumes debug stack is running as well, so start is
+        
+	./sidt.sh -u debug -c
+
 run the test using 
+
 	./sidt.sh -u test -c
 	
 run the development tools using
+
 	./sidt.sh -u debug -c
 	
 the debug tools provide an entry point under localhost:8080 which describes the project and links relevant infrastructure

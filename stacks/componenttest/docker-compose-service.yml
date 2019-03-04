@@ -47,3 +47,4 @@ services:
     image: dadarek/wait-for-dependencies
     depends_on:
       - ufp-env-handlebars
+      - ufp-env-handlebars2

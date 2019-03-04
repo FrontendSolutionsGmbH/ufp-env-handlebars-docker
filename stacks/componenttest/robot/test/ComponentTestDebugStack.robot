@@ -11,7 +11,8 @@ ${SERVICE_PORT1}    3000
 *** Test Cases ***
 Check Localhost:8080 Is Working
     [Documentation]    This test checks that configured env variables from docker-compose-service.yml are found in service 1
-    [Tags]    critical
+    [Tags]
+    Comment    The debug stag is optional, start it using './sidt.sh -u debug' but included as example for the reader in the component test
     Open Browser    http://${SERVICE_NAME1}:${SERVICE_PORT1}    Chrome
     Wait Until Page Contains    Ufp-Env-Handlebars-Docker
     Capture Page Screenshot    ScreenshotDebug.png

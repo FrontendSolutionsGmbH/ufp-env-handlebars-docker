@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite failures="1" tests="7" errors="0" name="Tests" skip="0">
-<testcase classname="Tests.Test.ComponentTest" name="Check Service 1 With Current ENV Config in Docker-Compose.yml" time="0">
+<testsuite tests="7" errors="0" name="Tests" skipped="0" time="23.828" failures="0">
+<testcase classname="Tests.Test.ComponentTest" name="Check Service 1 With Current ENV Config in Docker-Compose.yml" time="0.032">
 </testcase>
-<testcase classname="Tests.Test.ComponentTest" name="Check Service 1 Path 2 With Current ENV Config in Docker-Compose.yml" time="0">
+<testcase classname="Tests.Test.ComponentTest" name="Check Service 1 Path 2 With Current ENV Config in Docker-Compose.yml" time="0.026">
 </testcase>
-<testcase classname="Tests.Test.ComponentTest" name="Check Service 2 With Current ENV Config in Docker-Compose.yml" time="0">
+<testcase classname="Tests.Test.ComponentTest" name="Check Service 2 With Current ENV Config in Docker-Compose.yml" time="0.022">
 </testcase>
-<testcase classname="Tests.Test.ComponentTestDebugStack" name="Check Localhost:8080 Is Working" time="7">
-<failure message="Text 'Ufp-Env-Handlebars-Docker' did not appear in 5 seconds." type="AssertionError"></failure>
+<testcase classname="Tests.Test.ComponentTestDebugStack" name="Check Localhost:8080 Is Working" time="7.792">
 </testcase>
-<testcase classname="Tests.Test.ComponentTestFrontend" name="Check Service 1 With Current ENV Config in Docker-Compose.yml" time="8">
+<testcase classname="Tests.Test.ComponentTestFrontend" name="Check Service 1 With Current ENV Config in Docker-Compose.yml" time="7.684">
 </testcase>
-<testcase classname="Tests.Test.ComponentTestFrontend" name="Check Service 2 With Current ENV Config in Docker-Compose.yml" time="8">
+<testcase classname="Tests.Test.ComponentTestFrontend" name="Check Service 2 With Current ENV Config in Docker-Compose.yml" time="7.741">
 </testcase>
-<testcase classname="Tests.Test.HelloWorld" name="HelloWorld" time="0">
+<testcase classname="Tests.Test.HelloWorld" name="HelloWorld" time="0.003">
 </testcase>
 </testsuite>
