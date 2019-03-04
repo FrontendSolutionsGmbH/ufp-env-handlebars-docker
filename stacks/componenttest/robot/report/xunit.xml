@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite tests="7" errors="0" name="Tests" skipped="0" time="23.828" failures="0">
-<testcase classname="Tests.Test.ComponentTest" name="Check Service 1 With Current ENV Config in Docker-Compose.yml" time="0.032">
+<testsuite tests="7" errors="0" name="Tests" skipped="0" time="24.613" failures="0">
+<testcase classname="Tests.Test.ComponentTest" name="Check Service 1 With Current ENV Config in Docker-Compose.yml" time="0.077">
 </testcase>
-<testcase classname="Tests.Test.ComponentTest" name="Check Service 1 Path 2 With Current ENV Config in Docker-Compose.yml" time="0.026">
+<testcase classname="Tests.Test.ComponentTest" name="Check Service 1 Path 2 With Current ENV Config in Docker-Compose.yml" time="0.035">
 </testcase>
-<testcase classname="Tests.Test.ComponentTest" name="Check Service 2 With Current ENV Config in Docker-Compose.yml" time="0.022">
+<testcase classname="Tests.Test.ComponentTest" name="Check Service 2 With Current ENV Config in Docker-Compose.yml" time="0.055">
 </testcase>
-<testcase classname="Tests.Test.ComponentTestDebugStack" name="Check Localhost:8080 Is Working" time="7.792">
+<testcase classname="Tests.Test.ComponentTestDebugStack" name="Check Localhost:8080 Is Working" time="8.005">
 </testcase>
-<testcase classname="Tests.Test.ComponentTestFrontend" name="Check Service 1 With Current ENV Config in Docker-Compose.yml" time="7.684">
+<testcase classname="Tests.Test.ComponentTestFrontend" name="Check Service 1 With Current ENV Config in Docker-Compose.yml" time="7.830">
 </testcase>
-<testcase classname="Tests.Test.ComponentTestFrontend" name="Check Service 2 With Current ENV Config in Docker-Compose.yml" time="7.741">
+<testcase classname="Tests.Test.ComponentTestFrontend" name="Check Service 2 With Current ENV Config in Docker-Compose.yml" time="7.833">
 </testcase>
-<testcase classname="Tests.Test.HelloWorld" name="HelloWorld" time="0.003">
+<testcase classname="Tests.Test.HelloWorld" name="HelloWorld" time="0.004">
 </testcase>
 </testsuite>
