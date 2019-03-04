@@ -2,6 +2,13 @@
 
 
 
+2019-03-04 [7.0.0]
+	- new: brand logo image 
+     CFG_BRAND_LOG_SRC=[image src/base64 encoded image]
+     CFG_BRAND_LOG_HREF=[click target]
+     CFG_BRAND_LOG_TARGET=[frame target]
+    - allow binary files in template folder, they get copyied only, default favicon included
+    
 2018-10-27 [6.0.0]
 	- smaller docker images
 

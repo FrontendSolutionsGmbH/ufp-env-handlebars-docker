@@ -30,8 +30,8 @@ DOCKERFILESUFFIX="service"
 
 SUITE_NAME=${SIDT_SUITE:-"componenttest"}
 
-PROJECT_NAME=${SIDT_PROJECT_NAME:-"frontendsolutions/ufp-testreport-backend"}
-export VERSION=${SIDT_VERSION:-1}
+PROJECT_NAME=${SIDT_PROJECT_NAME:-"ckleinhuis/ufp-env-handlebars"}
+export VERSION=${SIDT_VERSION:-7}
 SCRIPT_PATH=$(realpath "$0")
 SCRIPT_NAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 SCRIPT_HOME=${SCRIPT_PATH%$SCRIPT_NAME}

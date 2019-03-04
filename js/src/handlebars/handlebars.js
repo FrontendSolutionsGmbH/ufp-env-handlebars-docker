@@ -1,18 +1,18 @@
 const Handlebars = require('handlebars')
-// const rainuEnvParser = require('rainu-env-parser')
-const rainuEnvParser = require('../rainu-env-parser')
+const rainuEnvParser = require('rainu-env-parser')
+
+// removed because of npm audit issues
 // const helpersHandlebars = require('handlebars-helpers')
 // Handlebars.registerHelper(helpersHandlebars())
 
 const childProcess = require('child_process')
-// const helpersTemplate = require('template-helpers')
 const fs = require('fs')
 const path = require('path')
+const readChunk = require('read-chunk');
+const fileType = require('file-type')
 const glob = require('glob')
 const mkdirp = require('mkdirp')
 
-// Handlebars.registerHelper(helpersTemplate())
-// Handlebars.registerHelper(helpersTemplate)
 /**
  * one of the handlebars utility methods
  * after registering the ;default; helper you can use
@@ -33,7 +33,6 @@ function line() {
 }
 
 // Consts
-
 const ufpConfig = rainuEnvParser.parse('UFP_', {
     templatedir: 'static/template',
     targetdir: 'static/public',
@@ -84,25 +83,41 @@ console.log('(** (use CFG_ prefix environment to override))')
 line()
 
 function handleFile(src, dest) {
+    src=path.resolve(src)
+    dest=path.resolve(dest)
     console.log(`Parsing ${src}`)
-    const source = fs.readFileSync(src, 'utf8')
-    var template
-    var result
-    try {
-        template = Handlebars.compile(source)
-        result = template(parsedEnv)
-    } catch (e) {
-        result = source + '\n-------------------UFP ENV HANDLEBARS PARSE ERROR ---------------\n' + e
-        console.log(`Error parsing ${src}`)
-        console.log(e)
-    }
 
-    if (!fs.existsSync(path.dirname(dest))) {
-        console.log('Creating dir:', path.dirname(dest))
-        mkdirp.sync(path.dirname(dest))
-    }
-    fs.writeFileSync(dest, result)
-    console.log(`Written ${dest}`)
+
+    console.log('Determining file type')
+    const buffer = readChunk.sync(src, 0, fileType.minimumBytes);
+    const currentFileType= fileType(buffer)
+   console.log('Filetype is ',currentFileType)
+     if(currentFileType==null||(currentFileType&&currentFileType.mime==='text/html')) {
+         console.log('Processing handlebars file')
+         const source = fs.readFileSync(src, 'utf8')
+         var template
+         var result
+         try {
+             template = Handlebars.compile(source)
+             result = template(parsedEnv)
+         } catch (e) {
+             result = source + '\n-------------------UFP ENV HANDLEBARS PARSE ERROR ---------------\n' + e
+             console.log(`Error parsing ${src}`)
+             console.log(e)
+         }
+
+         if (!fs.existsSync(path.dirname(dest))) {
+             console.log('Creating dir:', path.dirname(dest))
+             mkdirp.sync(path.dirname(dest))
+         }
+         fs.writeFileSync(dest, result)
+         console.log(`Written ${dest}`)
+     }else
+         {
+             console.log('Likely binary file detected, copying')
+             fs.copyFileSync(src,dest);
+
+         }
 }
 
 const help1 = path.join(process.cwd(), ufpConfig.templatedir)
