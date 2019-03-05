@@ -115,6 +115,10 @@ function handleFile(src, dest) {
      }else
          {
              console.log('Likely binary file detected, copying')
+             if (!fs.existsSync(path.dirname(dest))) {
+                 console.log('Creating dir:', path.dirname(dest))
+                 mkdirp.sync(path.dirname(dest))
+             }
              fs.copyFileSync(src,dest);
 
          }
