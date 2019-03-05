@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20181027 22:51:17.324" generator="Robot 3.0.4 (Python 2.7.15 on linux2)">
+<robot rpa="false" generated="20190304 11:54:06.515" generator="Robot 3.1 (Python 2.7.15 on linux2)">
 <suite source="/opt/robotframework/tests" id="s1" name="Tests">
 <suite source="/opt/robotframework/tests/test" id="s1-s1" name="Test">
 <suite source="/opt/robotframework/tests/test/ComponentTest.robot" id="s1-s1-s1" name="ComponentTest">
@@ -10,11 +10,12 @@
 <arg>local</arg>
 <arg>http://${SERVICE_NAME1}:${SERVICE_PORT1}</arg>
 </arguments>
-<msg timestamp="20181027 22:51:17.584" level="INFO">Creating Session using : alias=local, url=http://ufp-env-handlebars:3000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" endtime="20181027 22:51:17.585" starttime="20181027 22:51:17.583"></status>
+<msg timestamp="20190304 11:54:06.934" level="INFO">Creating Session using : alias=local, url=http://ufp-env-handlebars:3000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20190304 11:54:06.936" starttime="20190304 11:54:06.933"></status>
 </kw>
 <kw name="Get Request" library="RequestsLibrary">
-<doc>Send a GET request on the session object found using the</doc>
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
 <arguments>
 <arg>local</arg>
 <arg>/</arg>
@@ -22,9 +23,9 @@
 <assign>
 <var>${resp}</var>
 </assign>
-<msg timestamp="20181027 22:51:17.592" level="INFO">Get Request using : alias=local, uri=/, headers=None json=None</msg>
-<msg timestamp="20181027 22:51:17.593" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
-<status status="PASS" endtime="20181027 22:51:17.593" starttime="20181027 22:51:17.585"></status>
+<msg timestamp="20190304 11:54:06.974" level="INFO">Get Request using : alias=local, uri=/, headers=None json=None</msg>
+<msg timestamp="20190304 11:54:06.975" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20190304 11:54:06.975" starttime="20190304 11:54:06.937"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -32,10 +33,10 @@
 <arg>${resp.status_code}</arg>
 <arg>200</arg>
 </arguments>
-<msg timestamp="20181027 22:51:17.594" level="INFO">Argument types are:
+<msg timestamp="20190304 11:54:06.977" level="INFO">Argument types are:
 &lt;type 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" endtime="20181027 22:51:17.594" starttime="20181027 22:51:17.593"></status>
+<status status="PASS" endtime="20190304 11:54:06.978" starttime="20190304 11:54:06.975"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -43,7 +44,7 @@
 <arg>${resp.text}</arg>
 <arg>MENU 3</arg>
 </arguments>
-<status status="PASS" endtime="20181027 22:51:17.595" starttime="20181027 22:51:17.595"></status>
+<status status="PASS" endtime="20190304 11:54:06.981" starttime="20190304 11:54:06.979"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -51,7 +52,7 @@
 <arg>${resp.text}</arg>
 <arg>MENU 2</arg>
 </arguments>
-<status status="PASS" endtime="20181027 22:51:17.597" starttime="20181027 22:51:17.596"></status>
+<status status="PASS" endtime="20190304 11:54:06.984" starttime="20190304 11:54:06.983"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -59,7 +60,7 @@
 <arg>${resp.text}</arg>
 <arg>UFP</arg>
 </arguments>
-<status status="PASS" endtime="20181027 22:51:17.598" starttime="20181027 22:51:17.597"></status>
+<status status="PASS" endtime="20190304 11:54:06.986" starttime="20190304 11:54:06.985"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -67,7 +68,7 @@
 <arg>${resp.text}</arg>
 <arg>btn-primary</arg>
 </arguments>
-<status status="PASS" endtime="20181027 22:51:17.599" starttime="20181027 22:51:17.598"></status>
+<status status="PASS" endtime="20190304 11:54:06.990" starttime="20190304 11:54:06.988"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -75,7 +76,7 @@
 <arg>${resp.text}</arg>
 <arg>btn-secondary</arg>
 </arguments>
-<status status="PASS" endtime="20181027 22:51:17.600" starttime="20181027 22:51:17.599"></status>
+<status status="PASS" endtime="20190304 11:54:06.993" starttime="20190304 11:54:06.991"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -83,7 +84,7 @@
 <arg>${resp.text}</arg>
 <arg>github.com</arg>
 </arguments>
-<status status="PASS" endtime="20181027 22:51:17.601" starttime="20181027 22:51:17.600"></status>
+<status status="PASS" endtime="20190304 11:54:06.995" starttime="20190304 11:54:06.994"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -91,14 +92,14 @@
 <arg>${resp.text}</arg>
 <arg>https://github.com</arg>
 </arguments>
-<status status="PASS" endtime="20181027 22:51:17.602" starttime="20181027 22:51:17.601"></status>
+<status status="PASS" endtime="20190304 11:54:07.000" starttime="20190304 11:54:06.998"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>${resp.text}</arg>
 </arguments>
-<msg timestamp="20181027 22:51:17.603" level="INFO">&lt;!DOCTYPE html&gt;
+<msg timestamp="20190304 11:54:07.002" level="INFO">&lt;!DOCTYPE html&gt;
 &lt;html lang="en" &gt;
 
     &lt;head &gt;
@@ -147,11 +148,88 @@
         &lt;!--
             Debug output shows incoming template data
 
-            {&amp;quot;title&amp;quot;:&amp;quot;Ufp Env Handlebars - Ufp Menu&amp;quot;,&amp;quot;brand&amp;quot;:{&amp;quot;label&amp;quot;:&amp;quot;UFP Menu&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;primary&amp;quot;},&amp;quot;welcome&amp;quot;:{&amp;quot;entries&amp;quot;:[{&amp;quot;texts&amp;quot;:[{&amp;quot;title&amp;quot;:&amp;quot;Welcome to this example&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;Welcome to this example&amp;quot;}]}]},&amp;quot;menu&amp;quot;:[{&amp;quot;link&amp;quot;:&amp;quot;https://frontendsolutions.de/&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;btn-primary&amp;quot;,&amp;quot;children&amp;quot;:[{&amp;quot;link&amp;quot;:&amp;quot;https://frontendsolutions.de/#/enterprise&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;btn-primary&amp;quot;,&amp;quot;label&amp;quot;:&amp;quot;Welcome&amp;quot;},{&amp;quot;link&amp;quot;:&amp;quot;https://frontendsolutions.de/#/startup&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;btn-secondary&amp;quot;,&amp;quot;label&amp;quot;:&amp;quot;More&amp;quot;}],&amp;quot;label&amp;quot;:&amp;quot;UFP&amp;quot;},{&amp;quot;link&amp;quot;:&amp;quot;https://github.com/FrontendSolutionsGmbH&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;btn-secondary&amp;quot;,&amp;quot;label&amp;quot;:&amp;quot;github.com&amp;quot;,&amp;quot;target&amp;quot;:&amp;quot;ufp github&amp;quot;},{&amp;quot;link&amp;quot;:&amp;quot;https://frontendsolutions.de/&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;btn-secondary&amp;quot;,&amp;quot;label&amp;quot;:&amp;quot;MENU 2&amp;quot;},{&amp;quot;link&amp;quot;:&amp;quot;https://frontendsolutions.de/&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;btn-secondary&amp;quot;,&amp;quot;label&amp;quot;:&amp;quot;MENU 3&amp;quot;}],&amp;quot;callback&amp;quot;:{&amp;quot;some&amp;quot;:&amp;quot;json&amp;quot;}}
+            {
+    "name": "json",
+    "hash": {},
+    "data": {
+        "root": {
+            "data": {
+                "title": "Ufp Env Handlebars - Ufp Menu",
+                "brand": {
+                    "label": "UFP Menu",
+                    "color": "primary",
+                    "logo": {
+                        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4gwSEzcZQrR34QAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAACBUlEQVR42u3dsS4EURSA4bMbrYRCQkQhsRKaDYWokGhEuUoewSrVSqL0HLTbKRQSW9IhUYlChEKhMp7AFByM3e97gBuZ8yd3M7nj1iIOi+BXHB2txvb23LfX6XTuYn39OOVvqhtLfxOAABAAAkAACAABIAAEgAAQAAJAAAgAASAAes9A1kL7+0uxuDjmiZaYmhpOWacoiuoF0GyOxPLyhCn/glqtZgtAAAgAASAABIAA+NMACh+Y9XcAie8msAUgAASAABAAAkAA/Iy0AyFZL4K63YfodO5MpsTNzUv1Ash6EXRx8RB7e+embAtAAAgAASAABIAAEAACQAAIAAEgAASAABAAX5R2IOT9PedI0Pj4YKys+FczZZ6e3uLq6rFaAdTrOUeCWq1GtFoNUy7h2jj8BkAACAABIAAEgAAQAAJAAAgAASAABIAAEACfSjsRtLt7FgcHXU+0RLs9n3LaqZLXxmWdUetlGxvTKeu4Ng4BIAAEgAAQAAJAAAgAASAABIAAEAACQACUSTsQsrk5G43GkCdaYmFhtHcD2NqaibW1SVO2BSAABIAAEAACQAD0QQCJXyvxHwNI/FoJWwACQAAIAAEgAATAz6jctXH3969xe/tsMiUuLx+rF0DWtXEnJ9exs3NqyrYABIAAEAACQAAIAAEgAASAABAAAkAACAABIAC+4gONnkzAHNVWPgAAAABJRU5ErkJggg==",
+                        "href": "http://www.froso.de",
+                        "target": "_top"
+                    }
+                },
+                "welcome": {
+                    "entries": [
+                        {
+                            "texts": [
+                                {
+                                    "title": "Welcome to this example",
+                                    "text": "Welcome to this example"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "menu": [
+                    {
+                        "link": "https://frontendsolutions.de/",
+                        "color": "btn-primary",
+                        "children": [
+                            {
+                                "link": "https://frontendsolutions.de/#/enterprise",
+                                "color": "btn-primary",
+                                "label": "Welcome"
+                            },
+                            {
+                                "link": "https://frontendsolutions.de/#/startup",
+                                "color": "btn-secondary",
+                                "label": "More"
+                            }
+                        ],
+                        "label": "UFP"
+                    },
+                    {
+                        "link": "https://github.com/FrontendSolutionsGmbH",
+                        "color": "btn-secondary",
+                        "label": "github.com",
+                        "target": "ufp github"
+                    },
+                    {
+                        "link": "https://frontendsolutions.de/",
+                        "color": "btn-secondary",
+                        "label": "MENU 2"
+                    },
+                    {
+                        "link": "https://frontendsolutions.de/",
+                        "color": "btn-secondary",
+                        "label": "MENU 3"
+                    }
+                ],
+                "callback": {
+                    "some": "json"
+                }
+            }
+        }
+    }
+}
          --&gt;
         &lt;nav class="navbar navbar-expand-lg navbar-light navbar-light bg-light"
 
         &gt;
+            &lt;a class="navbar-brand"
+               href="/"
+               target="_top" &gt;
+                &lt;img style="height:1.9em;"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4gwSEzcZQrR34QAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAACBUlEQVR42u3dsS4EURSA4bMbrYRCQkQhsRKaDYWokGhEuUoewSrVSqL0HLTbKRQSW9IhUYlChEKhMp7AFByM3e97gBuZ8yd3M7nj1iIOi+BXHB2txvb23LfX6XTuYn39OOVvqhtLfxOAABAAAkAACAABIAAEgAAQAAJAAAgAASAAes9A1kL7+0uxuDjmiZaYmhpOWacoiuoF0GyOxPLyhCn/glqtZgtAAAgAASAABIAA+NMACh+Y9XcAie8msAUgAASAABAAAkAA/Iy0AyFZL4K63YfodO5MpsTNzUv1Ash6EXRx8RB7e+embAtAAAgAASAABIAAEAACQAAIAAEgAASAABAAX5R2IOT9PedI0Pj4YKys+FczZZ6e3uLq6rFaAdTrOUeCWq1GtFoNUy7h2jj8BkAACAABIAAEgAAQAAJAAAgAASAABIAAEACfSjsRtLt7FgcHXU+0RLs9n3LaqZLXxmWdUetlGxvTKeu4Ng4BIAAEgAAQAAJAAAgAASAABIAAEAACQACUSTsQsrk5G43GkCdaYmFhtHcD2NqaibW1SVO2BSAABIAAEAACQAD0QQCJXyvxHwNI/FoJWwACQAAIAAEgAATAz6jctXH3969xe/tsMiUuLx+rF0DWtXEnJ9exs3NqyrYABIAAEAACQAAIAAEgAASAABAAAkAACAABIAC+4gONnkzAHNVWPgAAAABJRU5ErkJggg=="
+                     alt="" &gt;
+            &lt;/a &gt;
+
             &lt;a class="navbar-brand  "
                href="/"
                target="_self" &gt;UFP Menu&lt;/a &gt;
@@ -233,13 +311,13 @@
 
 &lt;/html &gt;
 </msg>
-<status status="PASS" endtime="20181027 22:51:17.605" starttime="20181027 22:51:17.603"></status>
+<status status="PASS" endtime="20190304 11:54:07.004" starttime="20190304 11:54:07.001"></status>
 </kw>
 <doc>This test checks that configured env variables from docker-compose-service.yml are found in service 1</doc>
 <tags>
 <tag>critical</tag>
 </tags>
-<status status="PASS" endtime="20181027 22:51:17.605" critical="yes" starttime="20181027 22:51:17.579"></status>
+<status status="PASS" endtime="20190304 11:54:07.005" critical="yes" starttime="20190304 11:54:06.928"></status>
 </test>
 <test id="s1-s1-s1-t2" name="Check Service 1 Path 2 With Current ENV Config in Docker-Compose.yml">
 <kw name="Create Session" library="RequestsLibrary">
@@ -248,11 +326,12 @@
 <arg>local</arg>
 <arg>http://${SERVICE_NAME1}:${SERVICE_PORT1}</arg>
 </arguments>
-<msg timestamp="20181027 22:51:17.612" level="INFO">Creating Session using : alias=local, url=http://ufp-env-handlebars:3000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" endtime="20181027 22:51:17.613" starttime="20181027 22:51:17.610"></status>
+<msg timestamp="20190304 11:54:07.012" level="INFO">Creating Session using : alias=local, url=http://ufp-env-handlebars:3000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20190304 11:54:07.013" starttime="20190304 11:54:07.011"></status>
 </kw>
 <kw name="Get Request" library="RequestsLibrary">
-<doc>Send a GET request on the session object found using the</doc>
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
 <arguments>
 <arg>local</arg>
 <arg>/folder2</arg>
@@ -260,9 +339,9 @@
 <assign>
 <var>${resp}</var>
 </assign>
-<msg timestamp="20181027 22:51:17.624" level="INFO">Get Request using : alias=local, uri=/folder2, headers=None json=None</msg>
-<msg timestamp="20181027 22:51:17.625" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
-<status status="PASS" endtime="20181027 22:51:17.625" starttime="20181027 22:51:17.614"></status>
+<msg timestamp="20190304 11:54:07.033" level="INFO">Get Request using : alias=local, uri=/folder2, headers=None json=None</msg>
+<msg timestamp="20190304 11:54:07.034" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20190304 11:54:07.034" starttime="20190304 11:54:07.014"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -270,10 +349,10 @@
 <arg>${resp.status_code}</arg>
 <arg>200</arg>
 </arguments>
-<msg timestamp="20181027 22:51:17.626" level="INFO">Argument types are:
+<msg timestamp="20190304 11:54:07.036" level="INFO">Argument types are:
 &lt;type 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" endtime="20181027 22:51:17.626" starttime="20181027 22:51:17.625"></status>
+<status status="PASS" endtime="20190304 11:54:07.037" starttime="20190304 11:54:07.035"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -281,14 +360,14 @@
 <arg>${resp.text}</arg>
 <arg>container-fluid</arg>
 </arguments>
-<status status="PASS" endtime="20181027 22:51:17.627" starttime="20181027 22:51:17.626"></status>
+<status status="PASS" endtime="20190304 11:54:07.039" starttime="20190304 11:54:07.037"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>${resp.text}</arg>
 </arguments>
-<msg timestamp="20181027 22:51:17.628" level="INFO">&lt;!DOCTYPE html&gt;
+<msg timestamp="20190304 11:54:07.041" level="INFO">&lt;!DOCTYPE html&gt;
 &lt;html lang="en" &gt;
     &lt;head &gt;
         &lt;title &gt;UFP ENV Handlebars Bootstrap Example&lt;/title &gt;
@@ -368,13 +447,13 @@
     &lt;/body &gt;
 &lt;/html &gt;
 </msg>
-<status status="PASS" endtime="20181027 22:51:17.629" starttime="20181027 22:51:17.628"></status>
+<status status="PASS" endtime="20190304 11:54:07.042" starttime="20190304 11:54:07.040"></status>
 </kw>
 <doc>This test checks that the second sub folder file is exported and accessible as well</doc>
 <tags>
 <tag>critical</tag>
 </tags>
-<status status="PASS" endtime="20181027 22:51:17.629" critical="yes" starttime="20181027 22:51:17.606"></status>
+<status status="PASS" endtime="20190304 11:54:07.043" critical="yes" starttime="20190304 11:54:07.008"></status>
 </test>
 <test id="s1-s1-s1-t3" name="Check Service 2 With Current ENV Config in Docker-Compose.yml">
 <kw name="Create Session" library="RequestsLibrary">
@@ -383,11 +462,12 @@
 <arg>local</arg>
 <arg>http://${SERVICE_NAME2}:${SERVICE_PORT2}</arg>
 </arguments>
-<msg timestamp="20181027 22:51:17.635" level="INFO">Creating Session using : alias=local, url=http://ufp-env-handlebars2:3000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" endtime="20181027 22:51:17.636" starttime="20181027 22:51:17.633"></status>
+<msg timestamp="20190304 11:54:07.052" level="INFO">Creating Session using : alias=local, url=http://ufp-env-handlebars2:3000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20190304 11:54:07.054" starttime="20190304 11:54:07.050"></status>
 </kw>
 <kw name="Get Request" library="RequestsLibrary">
-<doc>Send a GET request on the session object found using the</doc>
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
 <arguments>
 <arg>local</arg>
 <arg>/</arg>
@@ -395,9 +475,9 @@
 <assign>
 <var>${resp}</var>
 </assign>
-<msg timestamp="20181027 22:51:17.645" level="INFO">Get Request using : alias=local, uri=/, headers=None json=None</msg>
-<msg timestamp="20181027 22:51:17.646" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
-<status status="PASS" endtime="20181027 22:51:17.646" starttime="20181027 22:51:17.636"></status>
+<msg timestamp="20190304 11:54:07.090" level="INFO">Get Request using : alias=local, uri=/, headers=None json=None</msg>
+<msg timestamp="20190304 11:54:07.090" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20190304 11:54:07.091" starttime="20190304 11:54:07.056"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -405,10 +485,10 @@
 <arg>${resp.status_code}</arg>
 <arg>200</arg>
 </arguments>
-<msg timestamp="20181027 22:51:17.647" level="INFO">Argument types are:
+<msg timestamp="20190304 11:54:07.093" level="INFO">Argument types are:
 &lt;type 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" endtime="20181027 22:51:17.648" starttime="20181027 22:51:17.646"></status>
+<status status="PASS" endtime="20190304 11:54:07.093" starttime="20190304 11:54:07.092"></status>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
@@ -416,14 +496,14 @@
 <arg>${resp.text}</arg>
 <arg>SERVICE 2</arg>
 </arguments>
-<status status="PASS" endtime="20181027 22:51:17.649" starttime="20181027 22:51:17.648"></status>
+<status status="PASS" endtime="20190304 11:54:07.096" starttime="20190304 11:54:07.094"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>${resp.text}</arg>
 </arguments>
-<msg timestamp="20181027 22:51:17.650" level="INFO">&lt;!DOCTYPE html&gt;
+<msg timestamp="20190304 11:54:07.098" level="INFO">&lt;!DOCTYPE html&gt;
 &lt;html lang="en" &gt;
 
     &lt;head &gt;
@@ -472,11 +552,60 @@
         &lt;!--
             Debug output shows incoming template data
 
-            {&amp;quot;title&amp;quot;:&amp;quot;Ufp Env Handlebars - Ufp Menu&amp;quot;,&amp;quot;brand&amp;quot;:{&amp;quot;label&amp;quot;:&amp;quot;UFP Menu&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;primary&amp;quot;},&amp;quot;welcome&amp;quot;:{&amp;quot;entries&amp;quot;:[{&amp;quot;texts&amp;quot;:[{&amp;quot;title&amp;quot;:&amp;quot;Welcome to UFP Env Handlebars&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;This is the default value for the ${CFG_WELCOME_TEXT} env value, override to set new. The title is controlled using the ${CFG_WELCOME_TILE} env property&amp;quot;}]}]},&amp;quot;menu&amp;quot;:[{&amp;quot;link&amp;quot;:&amp;quot;http://www.froso.de&amp;quot;,&amp;quot;color&amp;quot;:&amp;quot;w3-blue&amp;quot;,&amp;quot;label&amp;quot;:&amp;quot;SERVICE 2&amp;quot;}],&amp;quot;callback&amp;quot;:{&amp;quot;some&amp;quot;:&amp;quot;json&amp;quot;}}
+            {
+    "name": "json",
+    "hash": {},
+    "data": {
+        "root": {
+            "data": {
+                "title": "Ufp Env Handlebars - Ufp Menu",
+                "brand": {
+                    "label": "UFP Menu",
+                    "color": "primary",
+                    "logo": {
+                        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4gwSEzcZQrR34QAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAACBUlEQVR42u3dsS4EURSA4bMbrYRCQkQhsRKaDYWokGhEuUoewSrVSqL0HLTbKRQSW9IhUYlChEKhMp7AFByM3e97gBuZ8yd3M7nj1iIOi+BXHB2txvb23LfX6XTuYn39OOVvqhtLfxOAABAAAkAACAABIAAEgAAQAAJAAAgAASAAes9A1kL7+0uxuDjmiZaYmhpOWacoiuoF0GyOxPLyhCn/glqtZgtAAAgAASAABIAA+NMACh+Y9XcAie8msAUgAASAABAAAkAA/Iy0AyFZL4K63YfodO5MpsTNzUv1Ash6EXRx8RB7e+embAtAAAgAASAABIAAEAACQAAIAAEgAASAABAAX5R2IOT9PedI0Pj4YKys+FczZZ6e3uLq6rFaAdTrOUeCWq1GtFoNUy7h2jj8BkAACAABIAAEgAAQAAJAAAgAASAABIAAEACfSjsRtLt7FgcHXU+0RLs9n3LaqZLXxmWdUetlGxvTKeu4Ng4BIAAEgAAQAAJAAAgAASAABIAAEAACQACUSTsQsrk5G43GkCdaYmFhtHcD2NqaibW1SVO2BSAABIAAEAACQAD0QQCJXyvxHwNI/FoJWwACQAAIAAEgAATAz6jctXH3969xe/tsMiUuLx+rF0DWtXEnJ9exs3NqyrYABIAAEAACQAAIAAEgAASAABAAAkAACAABIAC+4gONnkzAHNVWPgAAAABJRU5ErkJggg==",
+                        "href": "http://www.froso.de",
+                        "target": "_top"
+                    }
+                },
+                "welcome": {
+                    "entries": [
+                        {
+                            "texts": [
+                                {
+                                    "title": "Welcome to UFP Env Handlebars",
+                                    "text": "This is the default value for the ${CFG_WELCOME_TEXT} env value, override to set new. The title is controlled using the ${CFG_WELCOME_TILE} env property"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "menu": [
+                    {
+                        "link": "http://www.froso.de",
+                        "color": "w3-blue",
+                        "label": "SERVICE 2"
+                    }
+                ],
+                "callback": {
+                    "some": "json"
+                }
+            }
+        }
+    }
+}
          --&gt;
         &lt;nav class="navbar navbar-expand-lg navbar-light navbar-light bg-light"
 
         &gt;
+            &lt;a class="navbar-brand"
+               href="/"
+               target="_top" &gt;
+                &lt;img style="height:1.9em;"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4gwSEzcZQrR34QAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAACBUlEQVR42u3dsS4EURSA4bMbrYRCQkQhsRKaDYWokGhEuUoewSrVSqL0HLTbKRQSW9IhUYlChEKhMp7AFByM3e97gBuZ8yd3M7nj1iIOi+BXHB2txvb23LfX6XTuYn39OOVvqhtLfxOAABAAAkAACAABIAAEgAAQAAJAAAgAASAAes9A1kL7+0uxuDjmiZaYmhpOWacoiuoF0GyOxPLyhCn/glqtZgtAAAgAASAABIAA+NMACh+Y9XcAie8msAUgAASAABAAAkAA/Iy0AyFZL4K63YfodO5MpsTNzUv1Ash6EXRx8RB7e+embAtAAAgAASAABIAAEAACQAAIAAEgAASAABAAX5R2IOT9PedI0Pj4YKys+FczZZ6e3uLq6rFaAdTrOUeCWq1GtFoNUy7h2jj8BkAACAABIAAEgAAQAAJAAAgAASAABIAAEACfSjsRtLt7FgcHXU+0RLs9n3LaqZLXxmWdUetlGxvTKeu4Ng4BIAAEgAAQAAJAAAgAASAABIAAEAACQACUSTsQsrk5G43GkCdaYmFhtHcD2NqaibW1SVO2BSAABIAAEAACQAD0QQCJXyvxHwNI/FoJWwACQAAIAAEgAATAz6jctXH3969xe/tsMiUuLx+rF0DWtXEnJ9exs3NqyrYABIAAEAACQAAIAAEgAASAABAAAkAACAABIAC+4gONnkzAHNVWPgAAAABJRU5ErkJggg=="
+                     alt="" &gt;
+            &lt;/a &gt;
+
             &lt;a class="navbar-brand  "
                href="/"
                target="_self" &gt;UFP Menu&lt;/a &gt;
@@ -516,49 +645,55 @@
 
 &lt;/html &gt;
 </msg>
-<status status="PASS" endtime="20181027 22:51:17.651" starttime="20181027 22:51:17.650"></status>
+<status status="PASS" endtime="20190304 11:54:07.100" starttime="20190304 11:54:07.097"></status>
 </kw>
 <doc>This test checks that configured env variables from docker-compose-service.yml are found in service 2</doc>
 <tags>
 <tag>critical</tag>
 </tags>
-<status status="PASS" endtime="20181027 22:51:17.652" critical="yes" starttime="20181027 22:51:17.630"></status>
+<status status="PASS" endtime="20190304 11:54:07.101" critical="yes" starttime="20190304 11:54:07.046"></status>
 </test>
 <doc>This test assumes that the docker-compose-service.yml stack is running and performs checks against the current configured environment variables to be present in the outputed pathes</doc>
-<status status="PASS" endtime="20181027 22:51:17.654" starttime="20181027 22:51:17.391"></status>
+<status status="PASS" endtime="20190304 11:54:07.104" starttime="20190304 11:54:06.624"></status>
 </suite>
 <suite source="/opt/robotframework/tests/test/ComponentTestDebugStack.robot" id="s1-s1-s2" name="ComponentTestDebugStack">
 <test id="s1-s1-s2-t1" name="Check Localhost:8080 Is Working">
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>The debug stag is optional, start it using './sidt.sh -u debug' but included as example for the reader in the component test</arg>
+</arguments>
+<status status="PASS" endtime="20190304 11:54:07.397" starttime="20190304 11:54:07.396"></status>
+</kw>
 <kw name="Open Browser" library="SeleniumLibrary">
 <doc>Opens a new browser instance to the given ``url``.</doc>
 <arguments>
 <arg>http://${SERVICE_NAME1}:${SERVICE_PORT1}</arg>
 <arg>Chrome</arg>
 </arguments>
-<msg timestamp="20181027 22:51:17.835" level="INFO">Opening browser 'Chrome' to base url 'http://development-overview:3000'.</msg>
-<status status="PASS" endtime="20181027 22:51:19.723" starttime="20181027 22:51:17.834"></status>
+<msg timestamp="20190304 11:54:07.401" level="INFO">Opening browser 'Chrome' to base url 'http://development-overview:3000'.</msg>
+<status status="PASS" endtime="20190304 11:54:14.729" starttime="20190304 11:54:07.399"></status>
 </kw>
 <kw name="Wait Until Page Contains" library="SeleniumLibrary">
 <doc>Waits until ``text`` appears on current page.</doc>
 <arguments>
 <arg>Ufp-Env-Handlebars-Docker</arg>
 </arguments>
+<status status="PASS" endtime="20190304 11:54:14.794" starttime="20190304 11:54:14.731"></status>
+</kw>
 <kw name="Capture Page Screenshot" library="SeleniumLibrary">
 <doc>Takes screenshot of the current page and embeds it into log file.</doc>
-<msg timestamp="20181027 22:51:25.256" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" endtime="20181027 22:51:25.257" starttime="20181027 22:51:24.753"></status>
-</kw>
-<msg timestamp="20181027 22:51:25.258" level="FAIL">Text 'Ufp-Env-Handlebars-Docker' did not appear in 5 seconds.</msg>
-<status status="FAIL" endtime="20181027 22:51:25.259" starttime="20181027 22:51:19.723"></status>
+<arguments>
+<arg>ScreenshotDebug.png</arg>
+</arguments>
+<msg timestamp="20190304 11:54:15.394" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="ScreenshotDebug.png"&gt;&lt;img src="ScreenshotDebug.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20190304 11:54:15.395" starttime="20190304 11:54:14.795"></status>
 </kw>
 <doc>This test checks that configured env variables from docker-compose-service.yml are found in service 1</doc>
-<tags>
-<tag>critical</tag>
-</tags>
-<status status="FAIL" endtime="20181027 22:51:25.259" critical="yes" starttime="20181027 22:51:17.830">Text 'Ufp-Env-Handlebars-Docker' did not appear in 5 seconds.</status>
+<status status="PASS" endtime="20190304 11:54:15.396" critical="no" starttime="20190304 11:54:07.391"></status>
 </test>
 <doc>This test assumes that the docker-compose-service.yml stack is running and performs checks against the current configured environment variables to be present in the outputed pathes</doc>
-<status status="FAIL" endtime="20181027 22:51:25.263" starttime="20181027 22:51:17.660"></status>
+<status status="PASS" endtime="20190304 11:54:15.401" starttime="20190304 11:54:07.111"></status>
 </suite>
 <suite source="/opt/robotframework/tests/test/ComponentTestFrontend.robot" id="s1-s1-s3" name="ComponentTestFrontend">
 <test id="s1-s1-s3-t1" name="Check Service 1 With Current ENV Config in Docker-Compose.yml">
@@ -568,29 +703,29 @@
 <arg>http://${SERVICE_NAME1}:${SERVICE_PORT1}</arg>
 <arg>Chrome</arg>
 </arguments>
-<msg timestamp="20181027 22:51:25.286" level="INFO">Opening browser 'Chrome' to base url 'http://ufp-env-handlebars:3000'.</msg>
-<status status="PASS" endtime="20181027 22:51:32.525" starttime="20181027 22:51:25.285"></status>
+<msg timestamp="20190304 11:54:15.431" level="INFO">Opening browser 'Chrome' to base url 'http://ufp-env-handlebars:3000'.</msg>
+<status status="PASS" endtime="20190304 11:54:22.669" starttime="20190304 11:54:15.430"></status>
 </kw>
 <kw name="Wait Until Page Contains" library="SeleniumLibrary">
 <doc>Waits until ``text`` appears on current page.</doc>
 <arguments>
 <arg>UFP</arg>
 </arguments>
-<status status="PASS" endtime="20181027 22:51:32.580" starttime="20181027 22:51:32.526"></status>
+<status status="PASS" endtime="20190304 11:54:22.728" starttime="20190304 11:54:22.670"></status>
 </kw>
 <kw name="Capture Page Screenshot" library="SeleniumLibrary">
 <doc>Takes screenshot of the current page and embeds it into log file.</doc>
 <arguments>
 <arg>ScreenshotFrontend1.png</arg>
 </arguments>
-<msg timestamp="20181027 22:51:33.090" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="ScreenshotFrontend1.png"&gt;&lt;img src="ScreenshotFrontend1.png" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" endtime="20181027 22:51:33.091" starttime="20181027 22:51:32.581"></status>
+<msg timestamp="20190304 11:54:23.252" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="ScreenshotFrontend1.png"&gt;&lt;img src="ScreenshotFrontend1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20190304 11:54:23.253" starttime="20190304 11:54:22.730"></status>
 </kw>
 <doc>This test checks that configured env variables from docker-compose-service.yml are found in service 1</doc>
 <tags>
 <tag>critical</tag>
 </tags>
-<status status="PASS" endtime="20181027 22:51:33.091" critical="yes" starttime="20181027 22:51:25.281"></status>
+<status status="PASS" endtime="20190304 11:54:23.254" critical="yes" starttime="20190304 11:54:15.424"></status>
 </test>
 <test id="s1-s1-s3-t2" name="Check Service 2 With Current ENV Config in Docker-Compose.yml">
 <kw name="Open Browser" library="SeleniumLibrary">
@@ -599,32 +734,32 @@
 <arg>http://${SERVICE_NAME2}:${SERVICE_PORT2}</arg>
 <arg>Chrome</arg>
 </arguments>
-<msg timestamp="20181027 22:51:33.097" level="INFO">Opening browser 'Chrome' to base url 'http://ufp-env-handlebars2:3000'.</msg>
-<status status="PASS" endtime="20181027 22:51:40.357" starttime="20181027 22:51:33.096"></status>
+<msg timestamp="20190304 11:54:23.262" level="INFO">Opening browser 'Chrome' to base url 'http://ufp-env-handlebars2:3000'.</msg>
+<status status="PASS" endtime="20190304 11:54:30.485" starttime="20190304 11:54:23.261"></status>
 </kw>
 <kw name="Wait Until Page Contains" library="SeleniumLibrary">
 <doc>Waits until ``text`` appears on current page.</doc>
 <arguments>
 <arg>UFP</arg>
 </arguments>
-<status status="PASS" endtime="20181027 22:51:40.414" starttime="20181027 22:51:40.358"></status>
+<status status="PASS" endtime="20190304 11:54:30.548" starttime="20190304 11:54:30.487"></status>
 </kw>
 <kw name="Capture Page Screenshot" library="SeleniumLibrary">
 <doc>Takes screenshot of the current page and embeds it into log file.</doc>
 <arguments>
 <arg>ScreenshotFrontend2.png</arg>
 </arguments>
-<msg timestamp="20181027 22:51:40.944" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="ScreenshotFrontend2.png"&gt;&lt;img src="ScreenshotFrontend2.png" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" endtime="20181027 22:51:40.944" starttime="20181027 22:51:40.415"></status>
+<msg timestamp="20190304 11:54:31.089" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="ScreenshotFrontend2.png"&gt;&lt;img src="ScreenshotFrontend2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20190304 11:54:31.089" starttime="20190304 11:54:30.549"></status>
 </kw>
 <doc>This test checks that configured env variables from docker-compose-service.yml are found in service 1</doc>
 <tags>
 <tag>critical</tag>
 </tags>
-<status status="PASS" endtime="20181027 22:51:40.944" critical="yes" starttime="20181027 22:51:33.093"></status>
+<status status="PASS" endtime="20190304 11:54:31.090" critical="yes" starttime="20190304 11:54:23.257"></status>
 </test>
 <doc>This test assumes that the docker-compose-service.yml stack is running and performs checks against the current configured environment variables to be present in the outputed pathes</doc>
-<status status="PASS" endtime="20181027 22:51:40.948" starttime="20181027 22:51:25.271"></status>
+<status status="PASS" endtime="20190304 11:54:31.094" starttime="20190304 11:54:15.411"></status>
 </suite>
 <suite source="/opt/robotframework/tests/test/HelloWorld.robot" id="s1-s1-s4" name="HelloWorld">
 <test id="s1-s1-s4-t1" name="HelloWorld">
@@ -633,34 +768,34 @@
 <arguments>
 <arg>Hello World</arg>
 </arguments>
-<status status="PASS" endtime="20181027 22:51:40.967" starttime="20181027 22:51:40.967"></status>
+<status status="PASS" endtime="20190304 11:54:31.114" starttime="20190304 11:54:31.113"></status>
 </kw>
 <tags>
 <tag>playground</tag>
 </tags>
-<status status="PASS" endtime="20181027 22:51:40.968" critical="no" starttime="20181027 22:51:40.965"></status>
+<status status="PASS" endtime="20190304 11:54:31.115" critical="no" starttime="20190304 11:54:31.111"></status>
 </test>
-<status status="PASS" endtime="20181027 22:51:40.969" starttime="20181027 22:51:40.958"></status>
+<status status="PASS" endtime="20190304 11:54:31.117" starttime="20190304 11:54:31.105"></status>
 </suite>
-<status status="FAIL" endtime="20181027 22:51:40.975" starttime="20181027 22:51:17.387"></status>
+<status status="PASS" endtime="20190304 11:54:31.123" starttime="20190304 11:54:06.616"></status>
 </suite>
-<status status="FAIL" endtime="20181027 22:51:40.989" starttime="20181027 22:51:17.330"></status>
+<status status="PASS" endtime="20190304 11:54:31.136" starttime="20190304 11:54:06.523"></status>
 </suite>
 <statistics>
 <total>
-<stat fail="1" pass="5">Critical Tests</stat>
-<stat fail="1" pass="6">All Tests</stat>
+<stat fail="0" pass="5">Critical Tests</stat>
+<stat fail="0" pass="7">All Tests</stat>
 </total>
 <tag>
-<stat info="critical" fail="1" pass="5">critical</stat>
+<stat info="critical" fail="0" pass="5">critical</stat>
 <stat info="non-critical" fail="0" pass="0">noncritical</stat>
 <stat fail="0" pass="1">playground</stat>
 </tag>
 <suite>
-<stat fail="1" id="s1" name="Tests" pass="6">Tests</stat>
-<stat fail="1" id="s1-s1" name="Test" pass="6">Tests.Test</stat>
+<stat fail="0" id="s1" name="Tests" pass="7">Tests</stat>
+<stat fail="0" id="s1-s1" name="Test" pass="7">Tests.Test</stat>
 <stat fail="0" id="s1-s1-s1" name="ComponentTest" pass="3">Tests.Test.ComponentTest</stat>
-<stat fail="1" id="s1-s1-s2" name="ComponentTestDebugStack" pass="0">Tests.Test.ComponentTestDebugStack</stat>
+<stat fail="0" id="s1-s1-s2" name="ComponentTestDebugStack" pass="1">Tests.Test.ComponentTestDebugStack</stat>
 <stat fail="0" id="s1-s1-s3" name="ComponentTestFrontend" pass="2">Tests.Test.ComponentTestFrontend</stat>
 <stat fail="0" id="s1-s1-s4" name="HelloWorld" pass="1">Tests.Test.HelloWorld</stat>
 </suite>

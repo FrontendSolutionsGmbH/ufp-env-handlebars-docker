@@ -102,11 +102,23 @@
         <!--
             Debug output shows incoming template data
 
-            {{JSONstringify data}}
+            {{{json data}}}
          -->
         <nav class="navbar navbar-expand-lg navbar-{{default data.nav.colorscheme 'light'}} navbar-{{default data.nav.colorscheme 'light'}} bg-{{default data.nav.type 'light'}}"
 
         >
+            {{#if data.brand}}
+            {{#if data.brand.logo}}
+            <a class="navbar-brand"
+               href="{{default data.brand.logo.link '/'}}"
+               target="{{default data.brand.logo.target '_self'}}" >
+                <img style="height:1.9em;"
+                     src="{{default data.brand.logo.src '#'}}"
+                     alt="" >
+            </a >
+            {{/if}}
+            {{/if}}
+
             <a class="navbar-brand  "
                href="{{default data.brand.link '/'}}"
                target="{{default data.brand.target '_self'}}" >{{default data.brand.label 'UFP'}}</a >

@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   ufp-env-handlebars:
     image: ckleinhuis/ufp-env-handlebars:latest
@@ -42,3 +42,9 @@ services:
 
     ports:
     - "3001:3000"
+
+  start-dependencies:
+    image: dadarek/wait-for-dependencies
+    depends_on:
+      - ufp-env-handlebars
+      - ufp-env-handlebars2
